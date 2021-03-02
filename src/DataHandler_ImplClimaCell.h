@@ -28,11 +28,10 @@
 class DataHandler_ImplClimaCell : public DataHandler {
   public:
     DataHandler_ImplClimaCell();
-    ~DataHandler_ImplClimaCell() { writeToDB(); }
+    ~DataHandler_ImplClimaCell() {}
 
     bool readFromCache();
-    bool readFromAPI();
-    int  run();
+    bool readFromApi();
 
     const char*                         getCondition        (int weatherCode);
     const char*                         getPrecipType       (int code) const;

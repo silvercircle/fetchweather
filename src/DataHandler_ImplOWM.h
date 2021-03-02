@@ -29,7 +29,9 @@ class DataHandler_ImplOWM : public DataHandler {
   public:
     DataHandler_ImplOWM();
 
-    int  run();
+    bool    readFromCache();
+    bool    readFromApi();
+    void    populateSnapshot();
 };
 
 #endif //CLIMACELL_FETCH_SRC_DATAHANDLER_IMPLOWM_H_

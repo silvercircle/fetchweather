@@ -71,7 +71,7 @@ class DataHandler {
 
     void doOutput();
     void dumpSnapshot();
-
+    int  run();
     std::pair<std::string, std::string> degToBearing        (unsigned int wind_direction) const;
     std::pair<double, char>             convertTemperature  (double temp, char unit) const;
     double                              convertWindspeed    (double speed) const;
@@ -95,11 +95,14 @@ class DataHandler {
     static constexpr const char *weekDays[] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
                                                "Sun", "_invalid"};
   protected:
+    virtual         bool            readFromCache() = 0;
+    virtual         bool            readFromApi() = 0;
     ProgramOptions                  &m_options;
     DataPoint                       m_DataPoint;
     DailyForecast                   m_daily[3];         // 3 days, might be desireable to have this customizable
     nlohmann::json                  result_current, result_forecast;
 
+    std::string                     m_currentCache, m_ForecastCache;
     void writeToDB();
 
   private:

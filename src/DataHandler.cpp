@@ -27,9 +27,21 @@
 DataHandler::DataHandler() : m_options{ProgramOptions::getInstance()},
                              m_DataPoint { .valid = false }
 {
-    this->db_path.assign(m_options.getConfig().data_dir_path);
+    const CFG& cfg = m_options.getConfig();
+
+    this->db_path.assign(cfg.data_dir_path);
     this->db_path.append("/history.sqlite3");
     LOG_F(INFO, "Database path: %s", this->db_path.c_str());
+
+    this->m_currentCache.assign(cfg.data_dir_path);
+    this->m_currentCache.append("/cache/");
+    this->m_currentCache.append(cfg.apiProviderString).append(".");
+
+    this->m_ForecastCache.assign(this->m_currentCache);
+    this->m_ForecastCache.append("forecast.json");
+    this->m_currentCache.append("current.json");
+    LOG_F(INFO, "Current Cache: %s", this->m_currentCache.c_str());
+    LOG_F(INFO, "Forecast Cache: %s", this->m_ForecastCache.c_str());
 }
 
 /**
@@ -144,6 +156,10 @@ void DataHandler::doOutput()
     outputTemperature(m_DataPoint.temperatureMin, true);		                    // 29
     outputTemperature(m_DataPoint.temperatureMax, true);		                    // 30
     printf("** end data **\n");                                          		    // 31
+    printf("%.0f (Clouds)\n", m_DataPoint.cloudCover);
+    printf("%.0f (Cloudbase)\n", m_DataPoint.cloudBase);
+    printf("%.0f (Cloudceil)\n", m_DataPoint.cloudCeiling);
+    printf("%d (Moon)\n", m_DataPoint.moonPhase);
 }
 
 /**
@@ -217,7 +233,7 @@ void DataHandler::writeToDB()
           precip_probability REAL DEFAULT 0.0,
           precip_intensity REAL DEFAULT 0.0,
           precip_type TEXT DEFAULT 'none',
-          clouds REAL DEFAULT 0.0,
+          cloudCover REAL DEFAULT 0.0,
           cloudBase REAL DEFAULT 0.0,
           cloudCeiling REAL DEFAULT 0.0,
           moonPhase INTEGER DEFAULT 0,
@@ -286,4 +302,29 @@ void DataHandler::writeToDB()
         LOG_F(INFO, "DataHandler::writeToDB(): prepare stmt, error: %s", sqlite3_errmsg(the_db));
     }
     sqlite3_close(the_db);
+}
+
+/**
+ * This performs all the work.
+ *
+ * @author alex (25.02.21)
+ */
+int DataHandler::run()
+{
+    if(m_options.getConfig().offline) {
+        LOG_F(INFO, "DataHandler::run(): Attempting to read from cache (--offline option present");
+        if(!this->readFromCache()) {
+            LOG_F(INFO, "run() Reading from cache failed, giving up.");
+            return -1;
+        }
+    } else {
+        LOG_F(INFO, "DataHandler::run(): --offline not specified, attemptingn to fetch from API");
+        this->readFromApi();
+    }
+    if(this->result_current["success"] == true && this->result_forecast["success"] == true) {
+        LOG_F(INFO, "run() - valid data, beginning output");
+        this->doOutput();
+        return 1;
+    }
+    return 0;
 }

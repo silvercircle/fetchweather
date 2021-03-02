@@ -24,6 +24,8 @@
 
 #define __OPTIONS_INTERNAL
 
+#include "utils.h"
+
 ProgramOptions::ProgramOptions() : m_oCommand(),
                                    m_config{
                                      .apiProvider = 0, .temp_unit = 'C', .config_dir_path = "", .apikeyFile = "",
@@ -69,6 +71,14 @@ void ProgramOptions::_init()
                           this->m_config.location,
                           "Set the location.\nThis is either a location id from your dashboard\n"
                           "or a LAT,LON location like 38.1222795,14.3347827.");
+    m_oCommand.add_option("--lat",
+                          this->m_config.lat,
+                          "Set the latitude part of the location for API providers who need separate\n"
+                          "latitude and longitude parameters. Format example: --lat=38.1222795");
+    m_oCommand.add_option("--lon",
+                          this->m_config.lon,
+                          "Set the longitude part of the location for API providers who need separate\n"
+                          "latitude and longitude parameters. Format example: --lon=16.1222795");
     m_oCommand.add_option("--tz", this->m_config.timezone, "Set the time zone, e.g. Europe/Berlin");
     m_oCommand.add_option("--ouput,-o", this->m_config.output_dir,
                           "Also write result to this file.");
@@ -100,32 +110,45 @@ int ProgramOptions::parse(int argc, char **argv)
     const gchar *homedir = g_get_home_dir();
     const gchar *cfgdir = g_get_user_config_dir();
 
-    if(this->m_config.apiProviderString.length() == 0) {
+    if(this->m_config.apiProviderString.length() != 0) {
+        bool found = false;
+        unsigned pIndex = 0;
+        for(const auto& it : ProgramOptions::api_shortcodes) {
+            if(this->m_config.apiProviderString == it) {
+                found = true;
+                m_config.apiProvider = pIndex;
+                break;
+            }
+            pIndex++;
+        }
+        if(!found) {
+            this->m_config.apiProviderString.assign("CC");
+            LOG_F(INFO, "ProgramOptions::parse(): found invalid API provider. Set to default (CC)");
+            m_config.apiProvider = 0;
+        }
+    } else {
         m_config.apiProviderString.assign("CC");
         LOG_F(INFO, "ProgramOptions::parse(): API Provider set to default (CC)");
+        m_config.apiProvider = 0;
     }
 
-    for(const auto& it : ProgramOptions::api_shortcodes) {
-        printf("%s\n", it);
-    }
-    /*
-    if(std::find(std::begin(ProgramOptions::api_shortcodes),
-                 std::end(ProgramOptions::api_shortcodes, this->m_config.apiProviderString) != ProgramOptions::api_shortcodes + 4) {
+    LOG_F(INFO, "ProgramOptions::parse(): Final weather API provider set to: %s (%d)\n",
+          m_config.apiProviderString.c_str(), m_config.apiProvider);
 
-    }
-     */
     std::string tmp(cfgdir);
-    tmp.append("/objctest/config.toml");
+    tmp.append("/config.toml");
 
+    this->m_config.config_dir_path.assign(cfgdir);
+    this->m_config.config_dir_path.append("/").append(ProgramOptions::_appname);
     this->m_config.config_file_path.assign(tmp);
     this->m_config.data_dir_path.assign(datadir);
-    this->m_config.data_dir_path.append("/climacell");
+    this->m_config.data_dir_path.append("/").append(ProgramOptions::_appname);
 
     this->logfile_path.assign(this->m_config.data_dir_path);
     this->logfile_path.append("/log.log");
     loguru::add_file(this->logfile_path.c_str(), loguru::Append, loguru::Verbosity_MAX);
 
-    std::string p(this->getConfig().data_dir_path);
+    std::string p(m_config.data_dir_path);
     p.append("/cache");
     fs::path path(p);
     std::error_code ec;
@@ -140,6 +163,44 @@ int ProgramOptions::parse(int argc, char **argv)
         LOG_F(INFO, "ProgramOptions::parse(): Could not create the data directories. Maybe no permission or they exist?");
         LOG_F(INFO, "ProgramOptions::parse(): Attempted to create: %s", path.c_str());
         LOG_F(INFO, "ProgramOptions::parse(): Error code: %d : %s", ec.value(), ec.message().c_str());
+    }
+
+    if (bool res = fs::create_directories(fs::path(m_config.config_dir_path), ec)) {
+        LOG_F(INFO, "ProgramOptions::parse(): Config directory %s created", m_config.config_dir_path.c_str());
+    }
+    /*
+     * try to read API key from a file, when present.
+     * usually $HOME/.config/fetchweather/XX.key where XX is the API provider
+     * i.e. CC.key holds the key for ClimaCell.
+     */
+    std::string keyfile(m_config.config_dir_path);
+    keyfile.append("/").append(m_config.apiProviderString).append(".key");
+    LOG_F(INFO, "ProgramOptions::parse(): Attempting to read the API key from: %s", keyfile.c_str());
+
+    std::ifstream f;
+
+    f.open(keyfile);
+    if(!f.fail()) {         // i dislike the overloaded ! for streams.
+        std::string line;
+        std::getline(f, line);
+        /*
+         * The first line is supposed to contain the api key, nothing else. Everyhing
+         * else is ignored.
+         */
+        if(line.length() > 0) {
+            utils::trim(line);
+            LOG_F(INFO, "ProgramOptions::parse(): An API key for Provider %s has been found: %s",
+                  m_config.apiProviderString.c_str(), line.c_str());
+            if(this->m_oCommand.get_option("--apikey")->count() == 0) {
+                LOG_F(INFO, "Setting this key as API key because none was supplied on the command line.");
+                m_config.apikey.assign(line);
+            } else {
+                LOG_F(INFO, "Ignoring the key, because the command line option --apikey takes precedence");
+            }
+        }
+        f.close();
+    } else {
+        LOG_F(INFO, "ProgramOptions::parse(): No keyfile found for API provider %s", m_config.apiProviderString.c_str());
     }
     return this->m_oCommand.get_option("--version")->count() ? 1 : 2;
 }

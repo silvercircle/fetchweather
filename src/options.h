@@ -43,6 +43,7 @@ typedef struct _cfg {
     std::string pressure_unit;
     std::string output_dir;
     std::string location;
+    std::string lat, lon;
     std::string timezone;
     bool offline, nocache, skipcache, silent, debug;
 } CFG;
@@ -73,11 +74,10 @@ class ProgramOptions {
      * the file names for the two cache files, relativ to CFG.data_dir_path
      * (usually $HOME/.local/share/APPNAME on *iX).
      */
-    static inline std::string const _current_cache_file = "/cache/current.json";
-    static inline std::string const _forecast_cache_file = "/cache/forecast.json";
     static inline std::string const _version_number = "0.1.1";
+    static inline std::string const _appname = "fetchweather";
 
-    static constexpr std::array<const char*, 2> api_shortcodes = { "CC", "OMW" };
+    static constexpr std::array<const char*, 2> api_shortcodes = { "CC", "OWM" };
     enum { API_CLIMACELL, API_OMW, _API_END_ };
 
   private:

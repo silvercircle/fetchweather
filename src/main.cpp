@@ -65,7 +65,7 @@ int main(int argc, char **argv)
         printf("\nThe API Key is missing. You must specify it with --apikey=your_key.\n");
     }
 
-    if(cfg.location.length() == 0) {
+    if(cfg.location.length() == 0 && cfg.lat.length() == 0 && cfg.lon.length() == 0) {
         LOG_F(INFO, "main(): Location is missing. Aborting.");
         extended_checks_failed = true;
         printf("No location given. Option --loc=LOCATION is mandatory, where LOCATION\n"

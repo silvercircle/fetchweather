@@ -70,7 +70,6 @@ DataHandler_ImplClimaCell::DataHandler_ImplClimaCell() : DataHandler(),
       {7000, "uu"},                 {7001, "uu"},
       {7102, "uu"},                 {8000, "kK"} }
 {
-    
 }
 
 char DataHandler_ImplClimaCell::getCode(const int weatherCode, const bool daylight)
@@ -82,52 +81,22 @@ char DataHandler_ImplClimaCell::getCode(const int weatherCode, const bool daylig
 }
 
 /**
- * This performs all the work.
- *
- * @author alex (25.02.21)
- */
-int DataHandler_ImplClimaCell::run()
-{
-    if(m_options.getConfig().offline) {
-        LOG_F(INFO, "DataHandler::run(): Attempting to read from cache (--offline option present");
-        if(!this->readFromCache()) {
-            LOG_F(INFO, "run() Reading from cache failed, giving up.");
-            return -1;
-        }
-    } else {
-        LOG_F(INFO, "DataHandler::run(): --offline not specified, attemptingn to fetch from API");
-        this->readFromAPI();
-    }
-    if(!this->result_current["data"].empty() && !this->result_forecast["data"].empty()) {
-        LOG_F(INFO, "run() - valid data, beginning output");
-        this->doOutput();
-        return 1;
-    }
-    return 0;
-}
-
-/**
  * attempt to read current and forecast data from cached JSON
  *
  * @return  true if successful, false otherwise.
  */
 bool DataHandler_ImplClimaCell::readFromCache()
 {
-    std::string path(m_options.getConfig().data_dir_path);
-    path.append(ProgramOptions::_current_cache_file);
-    LOG_F(INFO, "Attempting to read current from cache: %s", path.c_str());
-    std::ifstream current(path);
+    LOG_F(INFO, "Attempting to read current from cache: %s", this->m_currentCache.c_str());
+    std::ifstream current(this->m_currentCache);
     std::stringstream current_buffer, forecast_buffer;
     current_buffer << current.rdbuf();
     //current_buffer.seekg(0, std::ios::end);
     current.close();
     this->result_current = json::parse(current_buffer.str().c_str());
 
-    path.assign(m_options.getConfig().data_dir_path);
-    path.append(ProgramOptions::_forecast_cache_file);
-    LOG_F(INFO, "Attempting to read forecast from cache: %s", path.c_str());
-
-    std::ifstream forecast(path);
+    LOG_F(INFO, "Attempting to read forecast from cache: %s", this->m_currentCache.c_str());
+    std::ifstream forecast(this->m_currentCache);
     forecast_buffer << forecast.rdbuf();
     //forecast_buffer.seekg(0, std::ios::end);
     forecast.close();
@@ -149,7 +118,7 @@ bool DataHandler_ImplClimaCell::readFromCache()
  *
  * @return      - true if successful.
  */
-bool DataHandler_ImplClimaCell::readFromAPI()
+bool DataHandler_ImplClimaCell::readFromApi()
 {
     bool fSuccess = true;
     std::string baseurl("https://data.climacell.co/v4/timelines?&apikey=");
@@ -162,12 +131,12 @@ bool DataHandler_ImplClimaCell::readFromAPI()
     }
     std::string current(baseurl);
     current.append("&fields=weatherCode,temperature,temperatureApparent,visibility,windSpeed,windDirection,");
-    current.append("precipitationType,precipitationProbability,pressureSeaLevel,windGust,cloudCover,cloudBase");
-    current.append("cloudCeiling,humidity,precipitationIntensity,moonPhase,dewPoint&timesteps=current&units=metric");
+    current.append("precipitationType,precipitationProbability,pressureSeaLevel,windGust,cloudCover,cloudBase,");
+    current.append("cloudCeiling,humidity,precipitationIntensity,dewPoint&timesteps=current&units=metric");
     //std::cout << current << std::endl;
 
     std::string daily(baseurl);
-    daily.append("&fields=weatherCode,temperatureMax,temperatureMin,sunriseTime,sunsetTime,");
+    daily.append("&fields=weatherCode,temperatureMax,temperatureMin,sunriseTime,sunsetTime,moonPhase,");
     daily.append("precipitationType,precipitationProbability&timesteps=1d&startTime=");
 
     /*
@@ -218,15 +187,16 @@ bool DataHandler_ImplClimaCell::readFromAPI()
             this->result_current = json::parse(response.c_str());
             if(result_current["data"].empty()) {
                 LOG_F(INFO, "Current forecast: Request failed, no valid data received");
-            } else if(m_options.getConfig().nocache) {
-                LOG_F(INFO, "Current forecast: Skipping cache refresh (--nocache option present)");
+                fSuccess = false;
             } else {
-                std::string path(m_options.getConfig().data_dir_path);
-                path.append(ProgramOptions::_current_cache_file);
-                std::ofstream f(path);
-                f.write(response.c_str(), response.length());
-                f.flush();
-                f.close();
+                if(m_options.getConfig().nocache) {
+                    LOG_F(INFO, "Current forecast: Skipping cache refresh (--nocache option present)");
+                } else {
+                    std::ofstream f(this->m_currentCache);
+                    f.write(response.c_str(), response.length());
+                    f.flush();
+                    f.close();
+                }
             }
         }
     }
@@ -248,22 +218,24 @@ bool DataHandler_ImplClimaCell::readFromAPI()
             this->result_forecast = json::parse(response.c_str());
             if(result_forecast["data"].empty()) {
                 LOG_F(INFO, "Daily forecast: Request failed, no valid data received");
-            } else if(m_options.getConfig().nocache) {
-                LOG_F(INFO, "Daily forecast: Skipping cache refresh (--nocache option present)");
+                fSuccess = false;
             } else {
-                std::string path(m_options.getConfig().data_dir_path);
-                path.append(ProgramOptions::_forecast_cache_file);
-                std::ofstream f(path);
-                f.write(response.c_str(), response.length());
-                f.flush();
-                f.close();
+                result_forecast["success"] = true;
+                if(m_options.getConfig().nocache) {
+                    LOG_F(INFO, "Daily forecast: Skipping cache refresh (--nocache option present)");
+                } else {
+                    std::ofstream f(this->m_ForecastCache);
+                    f.write(response.c_str(), response.length());
+                    f.flush();
+                    f.close();
+                }
             }
         }
     }
     curl_easy_cleanup(curl);
     curl_global_cleanup();
     this->populateSnapshot();
-    return (fSuccess && !this->result_current["data"].empty() && !this->result_forecast["data"].empty());
+    return (fSuccess && this->result_current["success"] == true && this->result_forecast["success"] == true);
 }
 
 /**
@@ -344,12 +316,18 @@ void DataHandler_ImplClimaCell::populateSnapshot()
     snprintf(tmp, 100, "%02d:%02d", sunrise->tm_hour, sunrise->tm_min);
     snprintf(p.sunriseTimeAsString, 19, "%s", tmp);
 
-
     p.precipitationType = d["precipitationType"].is_number() ? d["precipitationType"].get<int>() : 0;
     snprintf(p.precipitationTypeAsString, 19, "%s", this->getPrecipType(p.precipitationType));
     snprintf(p.conditionAsString, 99, "%s", this->getCondition(p.weatherCode));
 
     p.weatherSymbol = this->getCode(p.weatherCode, p.is_day);
+
+    p.cloudCover = d["cloudCover"].is_number() ? d["cloudCover"].get<double>() : 0;
+    p.cloudBase = d["cloudBase"].is_number() ? d["cloudBase"].get<double>() : 0;
+    p.cloudCeiling = d["cloudCeiling"].is_number() ? d["cloudCeiling"].get<double>() : 0;
+
+    p.moonPhase = this->result_forecast["data"]["timelines"][0]["intervals"][0]["values"]["moonPhase"].is_number() ?
+      this->result_forecast["data"]["timelines"][0]["intervals"][0]["values"]["moonPhase"].get<int>() : 0;
 
     p.valid = true;
     LOG_F(INFO, "DataHandler::populateSnapshot(): snapshot populated successfully.");
