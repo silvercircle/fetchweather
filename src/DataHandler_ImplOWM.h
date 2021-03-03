@@ -32,6 +32,8 @@ class DataHandler_ImplOWM : public DataHandler {
     bool    readFromCache();
     bool    readFromApi();
     void    populateSnapshot();
+
+    char    getCode(const int weatherCode, const bool daylight);
 };
 
 #endif //CLIMACELL_FETCH_SRC_DATAHANDLER_IMPLOWM_H_

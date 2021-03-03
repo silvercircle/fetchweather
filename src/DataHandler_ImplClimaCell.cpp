@@ -185,10 +185,12 @@ bool DataHandler_ImplClimaCell::readFromApi()
             fSuccess = false;
         } else {
             this->result_current = json::parse(response.c_str());
+            this->result_current["success"] = false;
             if(result_current["data"].empty()) {
                 LOG_F(INFO, "Current forecast: Request failed, no valid data received");
                 fSuccess = false;
             } else {
+                this->result_current["success"] = true;
                 if(m_options.getConfig().nocache) {
                     LOG_F(INFO, "Current forecast: Skipping cache refresh (--nocache option present)");
                 } else {
@@ -216,11 +218,12 @@ bool DataHandler_ImplClimaCell::readFromApi()
             fSuccess = false;
         } else {
             this->result_forecast = json::parse(response.c_str());
+            this->result_forecast["success"] = false;
             if(result_forecast["data"].empty()) {
                 LOG_F(INFO, "Daily forecast: Request failed, no valid data received");
                 fSuccess = false;
             } else {
-                result_forecast["success"] = true;
+                this->result_forecast["success"] = true;
                 if(m_options.getConfig().nocache) {
                     LOG_F(INFO, "Daily forecast: Skipping cache refresh (--nocache option present)");
                 } else {

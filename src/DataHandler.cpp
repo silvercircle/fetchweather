@@ -141,7 +141,6 @@ void DataHandler::doOutput()
     printf("Humidity: %.1f\n", m_DataPoint.humidity);                                           // 18
     printf(cfg.pressure_unit == "hpa" ? "%.1f hPa\n" : "%.2f InHg\n",m_DataPoint.pressureSeaLevel);     // 19
     printf("%.1f %s\n", m_DataPoint.windSpeed, cfg.speed_unit.c_str());                                 // 20
-    //printf("UV: %d\n", 0);      // TODO UV index                                                      // 21
     printf("Prec: %.0f %s\n", m_DataPoint.precipitationProbability,
            m_DataPoint.precipitationProbability > 0 ? m_DataPoint.precipitationTypeAsString : "");           // 21
     printf("%.1f %s\n", m_DataPoint.visibility, cfg.vis_unit.c_str());                                  // 22
@@ -155,6 +154,7 @@ void DataHandler::doOutput()
     printf("%s\n", cfg.timezone.c_str());                                           // 28
     outputTemperature(m_DataPoint.temperatureMin, true);		                    // 29
     outputTemperature(m_DataPoint.temperatureMax, true);		                    // 30
+    printf("UV: %d\n", 0);                                                          // 31
     printf("** end data **\n");                                          		    // 31
     printf("%.0f (Clouds)\n", m_DataPoint.cloudCover);
     printf("%.0f (Cloudbase)\n", m_DataPoint.cloudBase);
@@ -279,7 +279,7 @@ void DataHandler::writeToDB()
         sqlite3_bind_double(stmt, 13, p.precipitationProbability);
         sqlite3_bind_double(stmt, 14, p.precipitationIntensity);
         sqlite3_bind_text(stmt, 15, p.precipitationTypeAsString, -1, 0);
-        sqlite3_bind_int(stmt, 16, 0);              // TODO UVindex
+        sqlite3_bind_int(stmt, 16, p.uvIndex);
         sqlite3_bind_int(stmt, 17, static_cast<int>(p.sunriseTime));
         sqlite3_bind_int(stmt, 18, static_cast<int>(p.sunsetTime));
         sqlite3_bind_double(stmt, 19, p.cloudBase);

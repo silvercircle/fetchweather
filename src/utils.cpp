@@ -52,15 +52,15 @@ namespace utils {
    * This callback is used by curl to store the data.
    *
    * @param contents  - the data chunk read
-   * @param size      - the length of the chunk
-   * @param nmemb
+   * @param size      - the length of the chunk in elements
+   * @param nmemb     - the size of one element
    * @param s         - user-supplied data (std::string *)
    * @return          - the total length of data read
    */
   size_t curl_callback(void *contents, size_t size, size_t nmemb, std::string *s)
   {
       s->append((char *)contents);
-      return s->length();
+      return size * nmemb;
   }
 
   int sqlite_callback(void *NotUsed, int argc, char **argv, char **azColName)
