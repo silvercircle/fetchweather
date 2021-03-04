@@ -29,6 +29,7 @@ int main(int argc, char **argv)
     loguru::init(argc, argv);
     ProgramOptions &opt = ProgramOptions::getInstance();
     char    msg[256];
+    int     runresult = 0;
 
     auto result = opt.parse(argc, argv);
     LOG_F(INFO, "main(): The result from ProgramOptions::parse() was: %d", result);
@@ -86,16 +87,19 @@ int main(int argc, char **argv)
     switch(cfg.apiProvider) {
         case ProgramOptions::API_CLIMACELL: {
             DataHandler_ImplClimaCell dh;
-            dh.run();
+            runresult = dh.run();
             break;
         }
         case ProgramOptions::API_OMW: {
             DataHandler_ImplOWM dh;
-            dh.run();
+            runresult = dh.run();
             break;
         }
         default:
             LOG_F(INFO, "No valid Provider selected. exiting.");
+            runresult = -1;
             break;
     }
+
+    exit(cfg.debug ? -1 : runresult);
 }

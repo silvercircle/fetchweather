@@ -1,12 +1,12 @@
 # Weather fetching app 
 
-** this is work in progress **
+## this is work in progress, probably not very useful yet.
 
 This is the C++ Version of my old darksky Rust app that fetches JSON weather data from the service API. For years, I've been using darksky for this purpose, but since it's been acquired by Apple and will be closing at the end of 2021, a new provider must be used. I decided to give [ClimaCell](https://climacell.co) a try. Unfortunately, their data format is quite a bit different from Darksky's, so some work to adjust was necessary.
 
 This application will be able to use multiple APIs and normalize the data into a common format. Planned are support for ClimaCell (mostly done), OpenWeatherMap, VisualCrossing and maybe others.
 
-This works pretty much like the D and Rust versions of the program, the command line parameters for supplying the API Key and other data are similar.
+Right now, it can fetch weather from ClimaCell and Open Weather Map.
 
 ## Built instructions
 

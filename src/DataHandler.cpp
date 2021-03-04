@@ -56,7 +56,7 @@ std::pair<std::string, std::string> DataHandler::degToBearing(unsigned int wind_
     wind_direction = (wind_direction > 360) ? 0 : wind_direction;
     size_t _val = (size_t) (((double) wind_direction / 22.5) + 0.5);
     std::string retval;
-    retval.assign(DataHandler_ImplClimaCell::wind_directions[_val % 16]);
+    retval.assign(DataHandler::wind_directions[_val % 16]);
     return std::pair<std::string, std::string>(retval, this->m_options.getConfig().speed_unit);
 }
 
@@ -139,7 +139,7 @@ void DataHandler::doOutput()
     this->outputTemperature(m_DataPoint.temperatureApparent, true);                             // 16
     this->outputTemperature(m_DataPoint.dewPoint, true);                                        // 17
     printf("Humidity: %.1f\n", m_DataPoint.humidity);                                           // 18
-    printf(cfg.pressure_unit == "hpa" ? "%.1f hPa\n" : "%.2f InHg\n",m_DataPoint.pressureSeaLevel);     // 19
+    printf(cfg.pressure_unit == "hPa" ? "%.0f hPa\n" : "%.2f InHg\n",m_DataPoint.pressureSeaLevel);     // 19
     printf("%.1f %s\n", m_DataPoint.windSpeed, cfg.speed_unit.c_str());                                 // 20
     printf("Prec: %.0f %s\n", m_DataPoint.precipitationProbability,
            m_DataPoint.precipitationIntensity > 0 ? m_DataPoint.precipitationTypeAsString : "");           // 21
@@ -307,13 +307,12 @@ void DataHandler::writeToDB()
 
 /**
  * This performs all the work.
+ * returns 0 if everything ok, -1 otherwise (used as exit code in main())
  *
  * @author alex (25.02.21)
  */
 int DataHandler::run()
 {
-    bool fSuccess = true;
-
     if(m_options.getConfig().offline) {
         LOG_F(INFO, "DataHandler::run(): Attempting to read from cache (--offline option present");
         if(!this->readFromCache()) {
@@ -322,16 +321,25 @@ int DataHandler::run()
         }
     } else {
         LOG_F(INFO, "DataHandler::run(): --offline not specified, attemptingn to fetch from API");
-        this->readFromApi();
-    }
-    if(fSuccess) {
-        if(!m_options.getConfig().debug) {
-            LOG_F(INFO, "run() - valid data, beginning output");
-            this->doOutput();
-            return 1;
-        } else {
-            LOG_F(INFO, "run() - valid data, debug mode, no output genereated");
+        if(this->readFromApi() == false) {
+            if(!this->m_options.getConfig().skipcache) {
+                LOG_F(INFO, "DataHandler::run(): readFromApi() failed, trying cache");
+                if(this->readFromCache() == false) {
+                    LOG_F(INFO, "DataHandler::run(): BOTH readFromApi() and readFromCache() failed, giving up...");
+                    return -1;
+                }
+            } else {
+                LOG_F(INFO, "DataHandler::run(): readFromApi() failed, cache opted-out, giving up...");
+                return -1;
+            }
         }
+    }
+    if(!m_options.getConfig().debug) {
+        LOG_F(INFO, "run() - valid data, beginning output");
+        this->doOutput();
+        return 0;
+    } else {
+        LOG_F(INFO, "run() - valid data, debug mode, no output genereated");
     }
     return 0;
 }

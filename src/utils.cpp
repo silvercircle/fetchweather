@@ -55,7 +55,7 @@ namespace utils {
    * @param size      - the length of the chunk in elements
    * @param nmemb     - the size of one element
    * @param s         - user-supplied data (std::string *)
-   * @return          - the total length of data read
+   * @return          - amount of data read and processed.
    */
   size_t curl_callback(void *contents, size_t size, size_t nmemb, std::string *s)
   {
@@ -71,5 +71,52 @@ namespace utils {
       }
       printf("\n");
       return 0;
+  }
+
+  /**
+   * fetch a document from the given url.
+   *
+   * @param url             - the document URI
+   * @param parse_result    - json object to be parsed into
+   * @param cache           - write the response to this cache file
+   * @param skipcache       - skip the caching step (option --skipcache)
+   * @return                - 0 for failure, 1 otherwise
+   */
+  unsigned int curl_fetch(const char *url, nlohmann::json& parse_result, const std::string& cache,
+                          bool skipcache)
+  {
+      unsigned int result = 1;
+      std::string response;
+
+      CURL *curl = curl_easy_init();
+      if(curl) {
+          curl_easy_setopt(curl, CURLOPT_URL, url);
+          curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, utils::curl_callback);
+          curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+          auto rc = curl_easy_perform(curl);
+          if(rc != CURLE_OK) {
+              LOG_F(INFO, "curl_easy_perform() failed, return = %s", curl_easy_strerror(rc));
+              result = 0;
+          } else {
+              parse_result = json::parse(response.c_str());
+              if(parse_result.empty()) {
+                  LOG_F(INFO, "Current forecast: Request failed, no valid data received");
+                  result = 0;
+              } else {
+                  if(skipcache) {
+                      LOG_F(INFO, "Current forecast: Skipping cache refresh (--nocache option present)");
+                  } else {
+                      std::ofstream f(cache);
+                      f.write(response.c_str(), response.length());
+                      f.flush();
+                      f.close();
+                  }
+              }
+          }
+      }
+      curl_easy_cleanup(curl);
+      curl_global_cleanup();
+
+      return result;
   }
 }

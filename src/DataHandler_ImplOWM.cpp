@@ -106,7 +106,6 @@ char DataHandler_ImplOWM::getCode(const int weatherCode, const bool daylight)
 bool DataHandler_ImplOWM::readFromApi()
 {
     const CFG& cfg = m_options.getConfig();
-    bool fSuccess = true;
     std::string baseurl("http://api.openweathermap.org/data/2.5/onecall?appid=");
     baseurl.append(cfg.apikey);
     baseurl.append("&lat=").append(cfg.lat).append("&lon=").append(cfg.lon);
@@ -117,46 +116,29 @@ bool DataHandler_ImplOWM::readFromApi()
     const char *url = current.c_str();
     curl_global_init(CURL_GLOBAL_DEFAULT);
 
-    if(cfg.debug) {
-        printf("Debug Mode: Attempting to fetch weather from %s\n", ProgramOptions::api_readable_names[cfg.apiProvider]);
+    if (cfg.debug) {
+        printf("Debug Mode: Attempting to fetch weather from %s\n",
+               ProgramOptions::api_readable_names[cfg.apiProvider]);
     }
     // read the current forecast first
-    CURL *curl = curl_easy_init();
-    if(curl) {
-        std::string response;
-        const char *url = current.c_str();
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, utils::curl_callback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-        auto rc = curl_easy_perform(curl);
-        if(rc != CURLE_OK) {
-            LOG_F(INFO, "curl_easy_perform() failed, return = %s", curl_easy_strerror(rc));
-            fSuccess = false;
-        } else {
-            this->result_current = json::parse(response.c_str());
-            this->result_current["success"] = false;
-            if(result_current["current"].empty()) {
-                LOG_F(INFO, "Current forecast: Request failed, no valid data received");
-                fSuccess = false;
-            } else {
-                this->result_current["success"] = true;
-                if(m_options.getConfig().nocache) {
-                    LOG_F(INFO, "Current forecast: Skipping cache refresh (--nocache option present)");
-                } else {
-                    std::ofstream f(this->m_currentCache);
-                    f.write(response.c_str(), response.length());
-                    f.flush();
-                    f.close();
-                }
-            }
+    auto result = utils::curl_fetch(current.c_str(), this->result_current,
+                                    this->m_currentCache, m_options.getConfig().skipcache);
+    if(result) {
+        if (!this->result_current["cod"].empty()) {         // field "cod" means error
+            LOG_F(INFO,
+                  "readFromApi(): Failure, error code = %d, error message = %s",
+                  this->result_current["cod"].get<int>(),
+                  this->result_current["message"].get<std::string>().c_str());
+            return false;
         }
+        this->populateSnapshot();
+        /**
+         * validation
+         */
+        return (this->result_current["current"].empty() || this->result_current["hourly"].empty()
+          || this->result_current["daily"].empty()) ? false : true;
     }
-    curl_easy_cleanup(curl);
-    curl_global_cleanup();
-    this->populateSnapshot();
-    this->result_forecast["success"] = true;        // need to "fake" this even though
-                                                    // we don't use the extra forecast at all
-    return (fSuccess && this->result_current["success"] == true);
+    return false;
 }
 
 bool DataHandler_ImplOWM::readFromCache()
@@ -168,12 +150,15 @@ bool DataHandler_ImplOWM::readFromCache()
     current.close();
     this->result_current = json::parse(current_buffer.str().c_str());
 
-    if(!result_current["current"].empty()) {
+    if (result_current["current"].empty() || result_current["hourly"].empty()
+      || result_current["daily"].empty()) {
+        LOG_F(INFO, "Cache read from %s failed.", this->m_currentCache.c_str());
+        return false;
+    } else {
         LOG_F(INFO, "Cache read successful.");
         this->populateSnapshot();
         return true;
     }
-    return false;
 }
 
 void DataHandler_ImplOWM::populateSnapshot()
@@ -256,12 +241,11 @@ void DataHandler_ImplOWM::populateSnapshot()
     snprintf(tmp, 100, "%02d:%02d", sunrise->tm_hour, sunrise->tm_min);
     snprintf(p.sunriseTimeAsString, 19, "%s", tmp);
 
-    //p.precipitationType = d["precipitationType"].is_number() ? d["precipitationType"].get<int>() : 0;
-    //snprintf(p.precipitationTypeAsString, 19, "%s", this->getPrecipType(p.precipitationType));
     snprintf(p.conditionAsString, 99, "%s", d["weather"][0]["main"].is_string() ?
       d["weather"][0]["main"].get<std::string>().c_str() : "Unknown");
 
     p.cloudCover = d["clouds"].is_number() ? d["clouds"].get<double>() : 0;
+    // this is not provided by OWM
     p.cloudBase = 0; //d["cloudBase"].is_number() ? d["cloudBase"].get<double>() : 0;
     p.cloudCeiling = 0; //d["cloudCeiling"].is_number() ? d["cloudCeiling"].get<double>() : 0;
 
