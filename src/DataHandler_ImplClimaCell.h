@@ -39,7 +39,7 @@ class DataHandler_ImplClimaCell : public DataHandler {
     char getCode            (const int weatherCode, const bool daylight = true);
     void populateSnapshot   ();
 
-    static constexpr const char *precipType[] = { "", "(Rain)", "(Snow)", "(Freezing Rain)", "(Ice Pellets)" };
+    static constexpr const char *precipType[] = { "", "Rain", "Snow", "Freezing Rain", "Ice Pellets" };
   private:
     std::map<int, const char *>     m_conditions;
     std::map<int, const char *>     m_icons;

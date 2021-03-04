@@ -55,7 +55,7 @@ typedef struct _DataPoint {
     double          pressureSeaLevel, humidity, dewPoint;
     char            sunsetTimeAsString[20], sunriseTimeAsString[20], windBearing[10], windUnit[10];
     char            conditionAsString[100];
-    int             uvIndex;
+    double          uvIndex;
 } DataPoint;
 
 typedef struct _DailyForecast {

@@ -79,7 +79,7 @@ std::pair<double, char> DataHandler::convertTemperature(double temp, char unit) 
 
 double DataHandler::convertVis(const double vis) const
 {
-    return this->m_options.getConfig().vis_unit == "miles" ? vis / 1.609 : vis;
+    return this->m_options.getConfig().vis_unit == "mi" ? vis / 1.609 : vis;
 }
 
 double DataHandler::convertWindspeed(double speed) const
@@ -89,7 +89,7 @@ double DataHandler::convertWindspeed(double speed) const
         return speed * 3.6;
     else if(_unit == "mph")
         return speed * 2.237;
-    else if(_unit == "knots")
+    else if(_unit == "kts")
         return speed * 1.944;
     else
         return speed;
@@ -142,7 +142,7 @@ void DataHandler::doOutput()
     printf(cfg.pressure_unit == "hpa" ? "%.1f hPa\n" : "%.2f InHg\n",m_DataPoint.pressureSeaLevel);     // 19
     printf("%.1f %s\n", m_DataPoint.windSpeed, cfg.speed_unit.c_str());                                 // 20
     printf("Prec: %.0f %s\n", m_DataPoint.precipitationProbability,
-           m_DataPoint.precipitationProbability > 0 ? m_DataPoint.precipitationTypeAsString : "");           // 21
+           m_DataPoint.precipitationIntensity > 0 ? m_DataPoint.precipitationTypeAsString : "");           // 21
     printf("%.1f %s\n", m_DataPoint.visibility, cfg.vis_unit.c_str());                                  // 22
 
     printf("%s\n", m_DataPoint.sunriseTimeAsString);                                                    // 23
@@ -154,8 +154,8 @@ void DataHandler::doOutput()
     printf("%s\n", cfg.timezone.c_str());                                           // 28
     outputTemperature(m_DataPoint.temperatureMin, true);		                    // 29
     outputTemperature(m_DataPoint.temperatureMax, true);		                    // 30
-    printf("UV: %d\n", 0);                                                          // 31
-    printf("** end data **\n");                                          		    // 31
+    printf("UV: %.1f\n", m_DataPoint.uvIndex);                                      // 31
+    printf("** end data **\n");                                          		    // 32
     printf("%.0f (Clouds)\n", m_DataPoint.cloudCover);
     printf("%.0f (Cloudbase)\n", m_DataPoint.cloudBase);
     printf("%.0f (Cloudceil)\n", m_DataPoint.cloudCeiling);
@@ -279,7 +279,7 @@ void DataHandler::writeToDB()
         sqlite3_bind_double(stmt, 13, p.precipitationProbability);
         sqlite3_bind_double(stmt, 14, p.precipitationIntensity);
         sqlite3_bind_text(stmt, 15, p.precipitationTypeAsString, -1, 0);
-        sqlite3_bind_int(stmt, 16, p.uvIndex);
+        sqlite3_bind_int(stmt, 16, static_cast<int>(p.uvIndex));
         sqlite3_bind_int(stmt, 17, static_cast<int>(p.sunriseTime));
         sqlite3_bind_int(stmt, 18, static_cast<int>(p.sunsetTime));
         sqlite3_bind_double(stmt, 19, p.cloudBase);
@@ -295,6 +295,7 @@ void DataHandler::writeToDB()
             rc = sqlite3_finalize(stmt);
         } else {
             LOG_F(INFO, "DataHandler::writeToDB(): sqlite3_step error: %s", sqlite3_errmsg(the_db));
+            rc = sqlite3_finalize(stmt);
         }
 
     }
@@ -311,6 +312,8 @@ void DataHandler::writeToDB()
  */
 int DataHandler::run()
 {
+    bool fSuccess = true;
+
     if(m_options.getConfig().offline) {
         LOG_F(INFO, "DataHandler::run(): Attempting to read from cache (--offline option present");
         if(!this->readFromCache()) {
@@ -321,10 +324,14 @@ int DataHandler::run()
         LOG_F(INFO, "DataHandler::run(): --offline not specified, attemptingn to fetch from API");
         this->readFromApi();
     }
-    if(this->result_current["success"] == true && this->result_forecast["success"] == true) {
-        LOG_F(INFO, "run() - valid data, beginning output");
-        this->doOutput();
-        return 1;
+    if(fSuccess) {
+        if(!m_options.getConfig().debug) {
+            LOG_F(INFO, "run() - valid data, beginning output");
+            this->doOutput();
+            return 1;
+        } else {
+            LOG_F(INFO, "run() - valid data, debug mode, no output genereated");
+        }
     }
     return 0;
 }

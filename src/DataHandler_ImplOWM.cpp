@@ -117,6 +117,9 @@ bool DataHandler_ImplOWM::readFromApi()
     const char *url = current.c_str();
     curl_global_init(CURL_GLOBAL_DEFAULT);
 
+    if(cfg.debug) {
+        printf("Debug Mode: Attempting to fetch weather from %s\n", ProgramOptions::api_readable_names[cfg.apiProvider]);
+    }
     // read the current forecast first
     CURL *curl = curl_easy_init();
     if(curl) {
@@ -158,7 +161,19 @@ bool DataHandler_ImplOWM::readFromApi()
 
 bool DataHandler_ImplOWM::readFromCache()
 {
-    return true;
+    LOG_F(INFO, "Attempting to read current from cache: %s", this->m_currentCache.c_str());
+    std::ifstream current(this->m_currentCache);
+    std::stringstream current_buffer, forecast_buffer;
+    current_buffer << current.rdbuf();
+    current.close();
+    this->result_current = json::parse(current_buffer.str().c_str());
+
+    if(!result_current["current"].empty()) {
+        LOG_F(INFO, "Cache read successful.");
+        this->populateSnapshot();
+        return true;
+    }
+    return false;
 }
 
 void DataHandler_ImplOWM::populateSnapshot()
@@ -194,6 +209,11 @@ void DataHandler_ImplOWM::populateSnapshot()
     if(!d["snow"].empty()) {
         p.precipitationIntensity = d["snow"]["1h"].is_number() ?
                                    d["snow"]["1h"].get<double>() : 0.0f;
+    }
+
+    if(p.precipitationIntensity > 0) {
+        p.precipitationType = 1;
+        snprintf(p.precipitationTypeAsString, 19, "%s", d["snow"].empty() ? "Rain" : "Snow");
     }
 
     p.temperature = d["temp"].is_number() ?
@@ -241,21 +261,20 @@ void DataHandler_ImplOWM::populateSnapshot()
     snprintf(p.conditionAsString, 99, "%s", d["weather"][0]["main"].is_string() ?
       d["weather"][0]["main"].get<std::string>().c_str() : "Unknown");
 
-    //p.weatherSymbol = this->getCode(p.weatherCode, p.is_day);
-
     p.cloudCover = d["clouds"].is_number() ? d["clouds"].get<double>() : 0;
     p.cloudBase = 0; //d["cloudBase"].is_number() ? d["cloudBase"].get<double>() : 0;
     p.cloudCeiling = 0; //d["cloudCeiling"].is_number() ? d["cloudCeiling"].get<double>() : 0;
 
-    p.uvIndex = this->result_current["daily"][0]["uvi"].is_number() ?
-      this->result_current["daily"][0]["uvi"].get<int>() : 0;
+    p.uvIndex = d["uvi"].is_number() ? d["uvi"].get<double>() : 0;
 
     DailyForecast* daily = this->m_daily;
     nlohmann::json& jdaily = this->result_current["daily"];
 
     for(int i = 0; i < 3; i++) {
-        daily[i].temperatureMin = jdaily[i + 1]["temp"]["min"].is_number() ? jdaily[i + 1]["temp"]["min"].get<double>() : 0;
-        daily[i].temperatureMax = jdaily[i + 1]["temp"]["max"].is_number() ? jdaily[i + 1]["temp"]["max"].get<double>() : 0;
+        daily[i].temperatureMin = jdaily[i + 1]["temp"]["min"].is_number() ?
+          jdaily[i + 1]["temp"]["min"].get<double>() : 0;
+        daily[i].temperatureMax = jdaily[i + 1]["temp"]["max"].is_number() ?
+          jdaily[i + 1]["temp"]["max"].get<double>() : 0;
         daily[i].code = jdaily[i + 1]["weather"][0]["id"].is_number() ?
           this->getCode(jdaily[i + 1]["weather"][0]["id"].get<int>(), true) : 'a';
 

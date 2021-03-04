@@ -32,6 +32,7 @@ typedef struct _cfg {
     unsigned int apiProvider;
     int version;
     char temp_unit;
+    std::string temp_unit_raw;
     std::string config_dir_path;
     std::string config_file_path;
     std::string apikeyFile;
@@ -61,6 +62,7 @@ class ProgramOptions {
         return instance;
     }
     int parse(int argc, char **argv);
+    void dumpOptions();
     void flush();
     void print_version();
 
@@ -78,6 +80,7 @@ class ProgramOptions {
     static inline std::string const _appname = "fetchweather";
 
     static constexpr std::array<const char*, 2> api_shortcodes = { "CC", "OWM" };
+    static constexpr std::array<const char*, 2> api_readable_names = { "ClimaCell", "OpenWeatherMap" };
     enum { API_CLIMACELL, API_OMW, _API_END_ };
 
   private:

@@ -28,6 +28,8 @@ int main(int argc, char **argv)
     loguru::g_stderr_verbosity = loguru::Verbosity_OFF;
     loguru::init(argc, argv);
     ProgramOptions &opt = ProgramOptions::getInstance();
+    char    msg[256];
+
     auto result = opt.parse(argc, argv);
     LOG_F(INFO, "main(): The result from ProgramOptions::parse() was: %d", result);
     // catch the help
@@ -76,9 +78,9 @@ int main(int argc, char **argv)
     if(extended_checks_failed)
         exit(-1);
 
-    LOG_F(INFO, "Config file: %s", cfg.config_file_path.c_str());
-    LOG_F(INFO, "Data dir : %s", cfg.data_dir_path.c_str());
-    LOG_F(INFO, "Log file : %s", opt.getLogFilePath().c_str());
+    if(cfg.debug) {
+        opt.dumpOptions();
+    }
 
     //ProgramOptions::api_shortcodes
     switch(cfg.apiProvider) {

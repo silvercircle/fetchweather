@@ -120,14 +120,15 @@ bool DataHandler_ImplClimaCell::readFromCache()
  */
 bool DataHandler_ImplClimaCell::readFromApi()
 {
+    const CFG& cfg = m_options.getConfig();
     bool fSuccess = true;
     std::string baseurl("https://data.climacell.co/v4/timelines?&apikey=");
-    baseurl.append(m_options.getConfig().apikey);
+    baseurl.append(cfg.apikey);
     baseurl.append("&location=");
-    baseurl.append(m_options.getConfig().location);
-    if(m_options.getConfig().timezone.length() > 0) {
+    baseurl.append(cfg.location);
+    if(cfg.timezone.length() > 0) {
         baseurl.append("&timezone=");
-        baseurl.append(m_options.getConfig().timezone);
+        baseurl.append(cfg.timezone);
     }
     std::string current(baseurl);
     current.append("&fields=weatherCode,temperature,temperatureApparent,visibility,windSpeed,windDirection,");
@@ -138,6 +139,10 @@ bool DataHandler_ImplClimaCell::readFromApi()
     std::string daily(baseurl);
     daily.append("&fields=weatherCode,temperatureMax,temperatureMin,sunriseTime,sunsetTime,moonPhase,");
     daily.append("precipitationType,precipitationProbability&timesteps=1d&startTime=");
+
+    if(cfg.debug) {
+        printf("Debug Mode: Attempting to fetch weather from %s\n", ProgramOptions::api_readable_names[cfg.apiProvider]);
+    }
 
     /*
      * figure out the startTime parameter for the forcast. It needs to be UTC and tomorrow

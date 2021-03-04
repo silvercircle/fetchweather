@@ -28,9 +28,9 @@
 
 ProgramOptions::ProgramOptions() : m_oCommand(),
                                    m_config{
-                                     .apiProvider = 0, .temp_unit = 'C', .config_dir_path = "", .apikeyFile = "",
-                                     .apikey = "", .apiProviderString = "",
-                                     .vis_unit = "km", .speed_unit = "km/h", .pressure_unit = "hpa",
+                                     .apiProvider = 0, .temp_unit = 'C', .temp_unit_raw = "C",
+                                     .config_dir_path = "", .apikeyFile = "", .apikey = "", .apiProviderString = "",
+                                     .vis_unit = "km", .speed_unit = "km/h", .pressure_unit = "hPa",
                                      .output_dir = "", .location="", .timezone="Europe/Vienna",
                                      .offline = false, .nocache = false, .skipcache = false,
                                      .silent = false, .debug = false
@@ -54,8 +54,8 @@ void ProgramOptions::_init()
                         this->m_config.silent, "Do not print anything to stdout. "
                                                "Makes only sense with --output.");
     m_oCommand.add_flag("--debug,-d",
-                        this->m_config.debug, "Show various debugging output on the console "
-                                              "and possibly in the\nlog files. Do not use in production!");
+                        this->m_config.debug, "Dump config and perform a dry run showing what would be done.\n"
+                                              "don't use in production as no real work will be done!");
     m_oCommand.add_option("--apikey,-a", this->m_config.apikey, "Set the API key");
     m_oCommand.add_option("--provider,-p", this->m_config.apiProviderString,
                           "Set the API provider.\n"
@@ -82,6 +82,15 @@ void ProgramOptions::_init()
     m_oCommand.add_option("--tz", this->m_config.timezone, "Set the time zone, e.g. Europe/Berlin");
     m_oCommand.add_option("--ouput,-o", this->m_config.output_dir,
                           "Also write result to this file.");
+
+    m_oCommand.add_option("--tempUnit", this->m_config.temp_unit_raw,
+                          "Unit to output the temperature: C or F, default is C.");
+    m_oCommand.add_option("--speedUnit", this->m_config.speed_unit,
+                          "Unit to output wind speed. Allowed are: m/s (default), kts, km/h or mph");
+    m_oCommand.add_option("--visUnit", this->m_config.vis_unit,
+                          "Unit to output visibility. Allowed are: km (default) or mi (Miles)");
+    m_oCommand.add_option("--pressureUnit", this->m_config.pressure_unit,
+                          "Unit to output pressure. Allowed are: hPa (default) or inhg");
 }
 
 /**
@@ -104,6 +113,8 @@ void ProgramOptions::flush()
  */
 int ProgramOptions::parse(int argc, char **argv)
 {
+    char msg[256];
+
     CLI11_PARSE(this->m_oCommand, argc, argv);
 
     const gchar *datadir = g_get_user_data_dir();
@@ -202,14 +213,87 @@ int ProgramOptions::parse(int argc, char **argv)
     } else {
         LOG_F(INFO, "ProgramOptions::parse(): No keyfile found for API provider %s", m_config.apiProviderString.c_str());
     }
+
+    /**
+     * validators for units
+     * we do not exit for wrong values, just set the default and
+     * log the problem (or print to console in debug mode)
+     */
+
+    if(!m_config.temp_unit_raw.empty()) {
+        m_config.temp_unit = static_cast<char>(toupper(m_config.temp_unit_raw[0]));
+    }
+    if(m_config.temp_unit != 'F' && m_config.temp_unit != 'C') {
+        snprintf(msg, 255, "Unrecognized temperature Unit %c (allowed are C or F). Reverting default", m_config.temp_unit);
+        m_config.temp_unit = 'C';
+        if(m_config.debug) {
+            printf("%s\n", msg);
+        } else {
+            LOG_F(INFO, "%s", msg);
+        }
+    }
+
+    if(m_config.speed_unit != "m/s" && m_config.speed_unit != "km/h" && m_config.speed_unit != "kts" && m_config.speed_unit != "mph") {
+        snprintf(msg, 255, "Unrecognized speed unit %s (m/s, km/h, mph or knots). Reverting default.", m_config.speed_unit.c_str());
+        m_config.speed_unit.assign("km/h");
+        if(m_config.debug) {
+            printf("%s\n", msg);
+        } else {
+            LOG_F(INFO, "%s", msg);
+        }
+    }
+
+    if(m_config.vis_unit != "km" && m_config.vis_unit != "mi") {
+        snprintf(msg, 255, "Unrecognized visbility Unit %s (allowed are km or mi). Reverting default", m_config.vis_unit.c_str());
+        m_config.vis_unit.assign("km");
+        if(m_config.debug) {
+            printf("%s\n", msg);
+        } else {
+            LOG_F(INFO, "%s", msg);
+        }
+    }
+
+    if(m_config.pressure_unit != "hPa" && m_config.pressure_unit != "inhg") {
+        snprintf(msg, 255, "Unrecognized pressure Unit %s (allowed are hPa or inhg). Reverting default", m_config.pressure_unit.c_str());
+        m_config.pressure_unit.assign("hPa");
+        if(m_config.debug) {
+            printf("%s\n", msg);
+        } else {
+            LOG_F(INFO, "%s", msg);
+        }
+    }
     return this->m_oCommand.get_option("--version")->count() ? 1 : 2;
 }
 
 void ProgramOptions::print_version()
 {
-    std::cout << "This is climacell_fetch version " << ProgramOptions::_version_number << std::endl;
+    std::cout << "This is fetchweather version " << ProgramOptions::_version_number << std::endl;
     std::cout << "(C) 2021 by Alex Vie <silvercircle at gmail dot com>" << std::endl << std::endl;
     std::cout << "This software is free software governed by the MIT License." << std::endl;
     std::cout << "Please visit https://github.com/silvercircle/myconkysetup/tree/master/cpp" << std::endl;
     std::cout << "for more information about this software and copyright information." << std::endl;
+}
+
+/**
+ * this is for --debug. Dumps all options, performs a dry run.
+ */
+void ProgramOptions::dumpOptions()
+{
+    printf("*** DEBUG / DRY RUN output ***\n");
+    printf("This is fetchweather version %s\n\n", ProgramOptions::_version_number.c_str());
+    printf("* Configuration: *\n");
+    printf("Configuration directory: %s\n", m_config.config_dir_path.c_str());
+    printf("Data directory:          %s\n", m_config.data_dir_path.c_str());
+    printf("Log file:                %s\n", this->logfile_path.c_str());
+    printf("Selected API to use:     %d (%s)\n", m_config.apiProvider,
+           ProgramOptions::api_readable_names[m_config.apiProvider]);
+    printf("API Key:                 %s\n", m_config.apikey.c_str());
+    if (m_config.location.empty()) {
+        printf("Location:                %s, %s\n", m_config.lat.c_str(), m_config.lon.c_str());
+    } else {
+        printf("Location:                %s\n", m_config.location.c_str());
+    }
+    printf("Timezone:                %s\n", m_config.timezone.c_str());
+    printf("Units (Temp, Windspeed, Vis, Pressure): %c, %s, %s, %s\n", m_config.temp_unit,
+           m_config.speed_unit.c_str(), m_config.vis_unit.c_str(), m_config.pressure_unit.c_str());
 }
