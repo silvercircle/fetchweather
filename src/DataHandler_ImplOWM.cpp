@@ -250,6 +250,7 @@ void DataHandler_ImplOWM::populateSnapshot()
     p.cloudCeiling = 0; //d["cloudCeiling"].is_number() ? d["cloudCeiling"].get<double>() : 0;
 
     p.uvIndex = d["uvi"].is_number() ? d["uvi"].get<double>() : 0;
+    p.haveUVI = true;
 
     DailyForecast* daily = this->m_daily;
     nlohmann::json& jdaily = this->result_current["daily"];

@@ -79,8 +79,10 @@ class ProgramOptions {
     static inline std::string const _version_number = "0.1.1";
     static inline std::string const _appname = "fetchweather";
 
-    static constexpr std::array<const char*, 2> api_shortcodes = { "CC", "OWM" };
-    static constexpr std::array<const char*, 2> api_readable_names = { "ClimaCell", "OpenWeatherMap" };
+    static constexpr std::array<const char*, 3> api_shortcodes = { "CC", "OWM", "VC" };
+    static constexpr std::array<const char*, 3> api_readable_names = { "ClimaCell",
+                                                                       "OpenWeatherMap",
+                                                                       "Visual Crossing"};
     enum { API_CLIMACELL, API_OMW, _API_END_ };
 
   private:

@@ -93,6 +93,9 @@ namespace utils {
           curl_easy_setopt(curl, CURLOPT_URL, url);
           curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, utils::curl_callback);
           curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+          curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10);
+          curl_easy_setopt(curl, CURLOPT_TIMEOUT, 60);
+
           auto rc = curl_easy_perform(curl);
           if(rc != CURLE_OK) {
               LOG_F(INFO, "curl_easy_perform() failed, return = %s", curl_easy_strerror(rc));

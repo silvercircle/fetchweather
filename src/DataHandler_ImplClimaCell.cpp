@@ -74,7 +74,8 @@ DataHandler_ImplClimaCell::DataHandler_ImplClimaCell() : DataHandler(),
 
 char DataHandler_ImplClimaCell::getCode(const int weatherCode, const bool daylight)
 {
-    if(DataHandler_ImplClimaCell::m_icons.find(weatherCode) != DataHandler_ImplClimaCell::m_icons.end()) {
+    if (DataHandler_ImplClimaCell::m_icons.find(weatherCode)
+      != DataHandler_ImplClimaCell::m_icons.end()) {
         return DataHandler_ImplClimaCell::m_icons[weatherCode][daylight ? 0 : 1];
     }
     return 'a';
@@ -344,7 +345,7 @@ void DataHandler_ImplClimaCell::populateSnapshot()
 #endif
 
     // populate the 3 day forecast
-
+    p.haveUVI = false;
     DailyForecast* daily = this->m_daily;
 
     for(int i = 0; i < 3; i++) {

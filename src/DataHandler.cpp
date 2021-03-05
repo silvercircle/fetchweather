@@ -141,8 +141,12 @@ void DataHandler::doOutput()
     printf("Humidity: %.1f\n", m_DataPoint.humidity);                                           // 18
     printf(cfg.pressure_unit == "hPa" ? "%.0f hPa\n" : "%.2f InHg\n",m_DataPoint.pressureSeaLevel);     // 19
     printf("%.1f %s\n", m_DataPoint.windSpeed, cfg.speed_unit.c_str());                                 // 20
-    printf("Prec: %.0f %s\n", m_DataPoint.precipitationProbability,
-           m_DataPoint.precipitationIntensity > 0 ? m_DataPoint.precipitationTypeAsString : "");           // 21
+
+    if(m_DataPoint.precipitationIntensity > 0) {
+        printf("%s (%.1fmm/1h)\n", m_DataPoint.precipitationTypeAsString, m_DataPoint.precipitationIntensity);
+    } else {
+        printf("PoP: %.1f%%\n", m_DataPoint.precipitationProbability);
+    }
     printf("%.1f %s\n", m_DataPoint.visibility, cfg.vis_unit.c_str());                                  // 22
 
     printf("%s\n", m_DataPoint.sunriseTimeAsString);                                                    // 23
@@ -154,7 +158,12 @@ void DataHandler::doOutput()
     printf("%s\n", cfg.timezone.c_str());                                           // 28
     outputTemperature(m_DataPoint.temperatureMin, true);		                    // 29
     outputTemperature(m_DataPoint.temperatureMax, true);		                    // 30
-    printf("UV: %.1f\n", m_DataPoint.uvIndex);                                      // 31
+    // not all APIs provide the UV index
+    if(m_DataPoint.haveUVI) {
+        printf("UV: %.1f\n", m_DataPoint.uvIndex);                                  // 31
+    } else {
+        printf(" \n");                                                              // 31
+    }
     printf("** end data **\n");                                          		    // 32
     printf("%.0f (Clouds)\n", m_DataPoint.cloudCover);
     printf("%.0f (Cloudbase)\n", m_DataPoint.cloudBase);
@@ -341,5 +350,5 @@ int DataHandler::run()
     } else {
         LOG_F(INFO, "run() - valid data, debug mode, no output genereated");
     }
-    return 0;
+    return 1;
 }
