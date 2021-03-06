@@ -26,15 +26,16 @@
 
 #include "utils.h"
 
-ProgramOptions::ProgramOptions() : m_oCommand(),
-                                   m_config{
-                                     .apiProvider = 0, .temp_unit = 'C', .temp_unit_raw = "C",
-                                     .config_dir_path = "", .apikeyFile = "", .apikey = "", .apiProviderString = "",
-                                     .vis_unit = "km", .speed_unit = "km/h", .pressure_unit = "hPa",
-                                     .output_dir = "", .location="", .timezone="Europe/Vienna",
-                                     .offline = false, .nocache = false, .skipcache = false,
-                                     .silent = false, .debug = false
-                                   }
+ProgramOptions::ProgramOptions() :
+    m_oCommand(),
+    m_config{
+     .apiProvider = 0, .temp_unit = 'C', .temp_unit_raw = "C",
+     .config_dir_path = "", .apikeyFile = "", .apikey = "", .apiProviderString = "",
+     .vis_unit = "km", .speed_unit = "km/h", .pressure_unit = "hPa",
+     .output_dir = "", .location="", .timezone="Europe/Vienna",
+     .offline = false, .nocache = false, .skipcache = false,
+     .silent = false, .debug = false, .forecastDays = 3
+    }
 {
     this->_init();
 }
@@ -53,7 +54,7 @@ void ProgramOptions::_init()
     m_oCommand.add_flag("--silent,-s",
                         this->m_config.silent, "Do not print anything to stdout. "
                                                "Makes only sense with --output.");
-    m_oCommand.add_flag("--debug,-d",
+    m_oCommand.add_flag("--debug",
                         this->m_config.debug, "Dump config and perform a dry run showing what would be done.\n"
                                               "don't use in production as no real work will be done!");
     m_oCommand.add_option("--apikey,-a", this->m_config.apikey, "Set the API key");
@@ -91,6 +92,9 @@ void ProgramOptions::_init()
                           "Unit to output visibility. Allowed are: km (default) or mi (Miles)");
     m_oCommand.add_option("--pressureUnit", this->m_config.pressure_unit,
                           "Unit to output pressure. Allowed are: hPa (default) or inhg");
+    m_oCommand.add_option("--forecastDays,-d", this->m_config.forecastDays,
+                          "Number of days to record daily forecasts. Defaults to 3\n"
+                          "Maximum depends on the Weather API provider.");
 }
 
 /**
@@ -184,13 +188,14 @@ int ProgramOptions::parse(int argc, char **argv)
      * usually $HOME/.config/fetchweather/XX.key where XX is the API provider
      * i.e. CC.key holds the key for ClimaCell.
      */
-    std::string keyfile(m_config.config_dir_path);
-    keyfile.append("/").append(m_config.apiProviderString).append(".key");
-    LOG_F(INFO, "ProgramOptions::parse(): Attempting to read the API key from: %s", keyfile.c_str());
+    this->keyfile_path.assign(m_config.config_dir_path);
+    this->keyfile_path.append("/").append(m_config.apiProviderString).append(".key");
+    LOG_F(INFO, "ProgramOptions::parse(): Attempting to read the API key from: %s",
+          this->keyfile_path.c_str());
 
     std::ifstream f;
 
-    f.open(keyfile);
+    f.open(this->keyfile_path);
     if(!f.fail()) {         // i dislike the overloaded ! for streams.
         std::string line;
         std::getline(f, line);
@@ -205,6 +210,7 @@ int ProgramOptions::parse(int argc, char **argv)
             if(this->m_oCommand.get_option("--apikey")->count() == 0) {
                 LOG_F(INFO, "Setting this key as API key because none was supplied on the command line.");
                 m_config.apikey.assign(line);
+                this->fUseKeyfile = true;
             } else {
                 LOG_F(INFO, "Ignoring the key, because the command line option --apikey takes precedence");
             }
@@ -276,6 +282,7 @@ void ProgramOptions::print_version()
 
 /**
  * this is for --debug. Dumps all options, performs a dry run.
+ * does not fetch or modify any data.
  */
 void ProgramOptions::dumpOptions()
 {
@@ -287,7 +294,9 @@ void ProgramOptions::dumpOptions()
     printf("Log file:                %s\n", this->logfile_path.c_str());
     printf("Selected API to use:     %d (%s)\n", m_config.apiProvider,
            ProgramOptions::api_readable_names[m_config.apiProvider]);
-    printf("API Key:                 %s\n", m_config.apikey.c_str());
+    printf("API Key:                 %s %s %s\n", m_config.apikey.c_str(),
+           this->fUseKeyfile ? "From keyfile:" : "(from command line option)",
+           this->fUseKeyfile ? this->keyfile_path.c_str() : "");
     if (m_config.location.empty()) {
         printf("Location:                %s, %s\n", m_config.lat.c_str(), m_config.lon.c_str());
     } else {

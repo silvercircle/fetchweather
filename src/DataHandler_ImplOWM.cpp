@@ -255,7 +255,7 @@ void DataHandler_ImplOWM::populateSnapshot()
     DailyForecast* daily = this->m_daily;
     nlohmann::json& jdaily = this->result_current["daily"];
 
-    for(int i = 0; i < 3; i++) {
+    for(int i = 0; i < cfg.forecastDays; i++) {
         daily[i].temperatureMin = jdaily[i + 1]["temp"]["min"].is_number() ?
           jdaily[i + 1]["temp"]["min"].get<double>() : 0;
         daily[i].temperatureMax = jdaily[i + 1]["temp"]["max"].is_number() ?

@@ -63,6 +63,7 @@ typedef struct _DailyForecast {
     char            code;
     double          temperatureMin, temperatureMax;
     char            weekDay[10];
+    double          pop;
 } DailyForecast;
 
 class DataHandler {

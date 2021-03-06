@@ -70,6 +70,7 @@ DataHandler_ImplClimaCell::DataHandler_ImplClimaCell() : DataHandler(),
       {7000, "uu"},                 {7001, "uu"},
       {7102, "uu"},                 {8000, "kK"} }
 {
+
 }
 
 char DataHandler_ImplClimaCell::getCode(const int weatherCode, const bool daylight)

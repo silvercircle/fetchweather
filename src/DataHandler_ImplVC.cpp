@@ -28,7 +28,8 @@
 #include <utils.h>
 #include "DataHandler_ImplVC.h"
 
-DataHandler_ImplVC::DataHandler_ImplVC()
+DataHandler_ImplVC::DataHandler_ImplVC() : DataHandler()
 {
     printf("This is a dummy API, nothing is implemented yet.");
 }
+

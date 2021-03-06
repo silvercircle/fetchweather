@@ -136,25 +136,32 @@ void DataHandler::doOutput()
      * The 3 days of forecast
      */
     this->outputDailyForecast(false);
-    this->outputTemperature(m_DataPoint.temperatureApparent, true);                             // 16
-    this->outputTemperature(m_DataPoint.dewPoint, true);                                        // 17
-    printf("Humidity: %.1f\n", m_DataPoint.humidity);                                           // 18
-    printf(cfg.pressure_unit == "hPa" ? "%.0f hPa\n" : "%.2f InHg\n",m_DataPoint.pressureSeaLevel);     // 19
-    printf("%.1f %s\n", m_DataPoint.windSpeed, cfg.speed_unit.c_str());                                 // 20
+    this->outputTemperature(m_DataPoint.temperatureApparent, true);                 // 16
+    this->outputTemperature(m_DataPoint.dewPoint, true);                            // 17
+    printf("Humidity: %.1f\n", m_DataPoint.humidity);                               // 18
+    printf(cfg.pressure_unit == "hPa" ? "%.0f hPa\n" : "%.2f InHg\n",               // 19
+           m_DataPoint.pressureSeaLevel);
+    printf("%.1f %s\n", m_DataPoint.windSpeed, cfg.speed_unit.c_str());             // 20
 
     if(m_DataPoint.precipitationIntensity > 0) {
-        printf("%s (%.1fmm/1h)\n", m_DataPoint.precipitationTypeAsString, m_DataPoint.precipitationIntensity);
+        printf("%s (%.1fmm/1h)\n", m_DataPoint.precipitationTypeAsString,
+               m_DataPoint.precipitationIntensity);                                 // 21
     } else {
-        printf("PoP: %.1f%%\n", m_DataPoint.precipitationProbability);
+        printf("PoP: %.0f%%\n", m_DataPoint.precipitationProbability);              // 21
     }
-    printf("%.1f %s\n", m_DataPoint.visibility, cfg.vis_unit.c_str());                                  // 22
+    printf("%.1f %s\n", m_DataPoint.visibility, cfg.vis_unit.c_str());              // 22
 
-    printf("%s\n", m_DataPoint.sunriseTimeAsString);                                                    // 23
-    printf("%s\n", m_DataPoint.sunsetTimeAsString);                                                     // 24
+    printf("%s\n", m_DataPoint.sunriseTimeAsString);                                // 23
+    printf("%s\n", m_DataPoint.sunsetTimeAsString);                                 // 24
 
-    printf("%s\n", m_DataPoint.windBearing);                                                            // 25
+    printf("%s\n", m_DataPoint.windBearing);                                        // 25
     printf("%s\n", m_DataPoint.timeRecordedAsText);                                 // 26
-    printf("%s\n", m_DataPoint.conditionAsString);                                  // 27
+    printf("%s", m_DataPoint.conditionAsString);                                    // 27
+    if(m_DataPoint.cloudCover > 0) {
+        printf(" (%.0f%% cov.)\n", m_DataPoint.cloudCover);
+    } else {
+        printf("\n");
+    }
     printf("%s\n", cfg.timezone.c_str());                                           // 28
     outputTemperature(m_DataPoint.temperatureMin, true);		                    // 29
     outputTemperature(m_DataPoint.temperatureMax, true);		                    // 30
@@ -215,6 +222,12 @@ void DataHandler::writeToDB()
     if(!m_DataPoint.valid)
         return;
 
+    // don't modify db in debug mode
+    if(m_options.getConfig().debug) {
+        LOG_F(INFO, "DataHandler::writeToDB(): skipping DB recording (debug mode is on)");
+        return;
+    }
+
     LOG_F(INFO, "Flushing DB, attemptint to open: %s", this->db_path.c_str());
     auto rc = sqlite3_open(this->db_path.c_str(), &the_db);
     if(rc) {
@@ -260,13 +273,14 @@ void DataHandler::writeToDB()
         sqlite3_free(err);
     }
 
-    rc = sqlite3_prepare_v2(the_db, "INSERT INTO history(timestamp, summary, icon, temperature,"
-                                    "feelslike, dewpoint, windbearing, windspeed,"
-                                    "windgust, humidity, visibility, pressure,"
-                                    "precip_probability, precip_intensity, precip_type,"
-                                    "uvindex, sunrise, sunset, cloudBase, cloudCover, cloudCeiling, moonPhase,"
-                                    "tempMin, tempMax)"
-                                    "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", -1, &stmt, 0);
+    rc = sqlite3_prepare_v2(the_db,
+                            "INSERT INTO history(timestamp, summary, icon, temperature,"
+                            "feelslike, dewpoint, windbearing, windspeed,"
+                            "windgust, humidity, visibility, pressure,"
+                            "precip_probability, precip_intensity, precip_type,"
+                            "uvindex, sunrise, sunset, cloudBase, cloudCover, cloudCeiling, moonPhase,"
+                            "tempMin, tempMax)"
+                            "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", -1, &stmt, 0);
 
     if(SQLITE_OK == rc) {
         DataPoint& p = this->m_DataPoint;       // shortcut

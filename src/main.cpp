@@ -24,12 +24,15 @@
 
 int main(int argc, char **argv)
 {
-    bool extended_checks_failed = false;
+    bool    extended_checks_failed = false;
+    char    msg[256];
+    int     runresult = 0;
+
     loguru::g_stderr_verbosity = loguru::Verbosity_OFF;
     loguru::init(argc, argv);
     ProgramOptions &opt = ProgramOptions::getInstance();
-    char    msg[256];
-    int     runresult = 0;
+
+    const CFG& cfg = opt.getConfig();
 
     auto result = opt.parse(argc, argv);
     LOG_F(INFO, "main(): The result from ProgramOptions::parse() was: %d", result);
@@ -43,9 +46,12 @@ int main(int argc, char **argv)
         exit(0);
     }
 
+    if(cfg.debug) {
+        opt.dumpOptions();
+    }
+
     /* more sanity checks */
 
-    const CFG& cfg = opt.getConfig();
     if(cfg.offline && cfg.skipcache) {
         /* ignoring both online mode and the cache does not make sense */
         printf("The options --offline and --skipcache are mutually exclusive\n"
@@ -79,18 +85,13 @@ int main(int argc, char **argv)
     if(extended_checks_failed)
         exit(-1);
 
-    if(cfg.debug) {
-        opt.dumpOptions();
-    }
-
-    //ProgramOptions::api_shortcodes
     switch(cfg.apiProvider) {
         case ProgramOptions::API_CLIMACELL: {
             DataHandler_ImplClimaCell dh;
             runresult = dh.run();
             break;
         }
-        case ProgramOptions::API_OMW: {
+        case ProgramOptions::API_OWM: {
             DataHandler_ImplOWM dh;
             runresult = dh.run();
             break;

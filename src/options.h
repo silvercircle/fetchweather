@@ -47,14 +47,15 @@ typedef struct _cfg {
     std::string lat, lon;
     std::string timezone;
     bool offline, nocache, skipcache, silent, debug;
+    int  forecastDays = 3;
 } CFG;
 
 class ProgramOptions {
   public:
-    ProgramOptions();
     ProgramOptions(const ProgramOptions &) = delete;
     ProgramOptions &operator=(const ProgramOptions &) = delete;
 
+    // Meyer's singleton pattern. This is thread-safe.
     static ProgramOptions &getInstance()
     {
         static ProgramOptions instance;
@@ -83,14 +84,17 @@ class ProgramOptions {
     static constexpr std::array<const char*, 3> api_readable_names = { "ClimaCell",
                                                                        "OpenWeatherMap",
                                                                        "Visual Crossing"};
-    enum { API_CLIMACELL, API_OMW, _API_END_ };
+    enum { API_CLIMACELL, API_OWM, API_VC, _API_END_ };
 
   private:
-    CLI::App m_oCommand;
-    std::string m_name;
-    void _init();
-    unsigned int counter;
-    CFG m_config;
-    std::string logfile_path;
+    ProgramOptions();
+    ~ProgramOptions() { };
+    CLI::App        m_oCommand;
+    std::string     m_name;
+    void            _init();
+    unsigned int    counter;
+    CFG             m_config;
+    std::string     logfile_path, keyfile_path;
+    bool            fUseKeyfile = false;
 };
 #endif //OBJCTEST_OPTIONS_H
