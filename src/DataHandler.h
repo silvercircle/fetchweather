@@ -100,6 +100,7 @@ class DataHandler {
   protected:
     virtual         bool            readFromCache() = 0;
     virtual         bool            readFromApi() = 0;
+    virtual         bool            verifyData() = 0;
     ProgramOptions                  &m_options;
     DataPoint                       m_DataPoint;
     DailyForecast                   m_daily[3];         // 3 days, might be desireable to have this customizable

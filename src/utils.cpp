@@ -88,6 +88,7 @@ namespace utils {
       unsigned int result = 1;
       std::string response;
 
+      curl_global_init(CURL_GLOBAL_DEFAULT);
       CURL *curl = curl_easy_init();
       if(curl) {
           curl_easy_setopt(curl, CURLOPT_URL, url);

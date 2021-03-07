@@ -29,8 +29,10 @@ class DataHandler_ImplOWM : public DataHandler {
   public:
     DataHandler_ImplOWM();
 
-    bool    readFromCache();
-    bool    readFromApi();
+    virtual bool    readFromCache();
+    virtual bool    readFromApi();
+    virtual bool    verifyData() override;
+
     void    populateSnapshot();
 
     char    getCode(const int weatherCode, const bool daylight);

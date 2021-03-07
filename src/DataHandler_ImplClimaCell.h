@@ -30,8 +30,9 @@ class DataHandler_ImplClimaCell : public DataHandler {
     DataHandler_ImplClimaCell();
     ~DataHandler_ImplClimaCell() {}
 
-    bool readFromCache() override;
-    bool readFromApi() override;
+    virtual bool readFromCache() override;
+    virtual bool readFromApi() override;
+    virtual bool verifyData() override;
 
     const char*                         getCondition        (int weatherCode);
     const char*                         getPrecipType       (int code) const;

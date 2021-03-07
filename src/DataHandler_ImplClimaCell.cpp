@@ -123,7 +123,9 @@ bool DataHandler_ImplClimaCell::readFromCache()
 bool DataHandler_ImplClimaCell::readFromApi()
 {
     const CFG& cfg = m_options.getConfig();
-    bool fSuccess = true;
+    bool fSuccess_current = true;
+    bool fSuccess_forecast = true;
+
     std::string baseurl("https://data.climacell.co/v4/timelines?&apikey=");
     baseurl.append(cfg.apikey);
     baseurl.append("&location=");
@@ -174,78 +176,49 @@ bool DataHandler_ImplClimaCell::readFromApi()
     daily.append("&endTime=");
     _tmp.assign(cl);
     daily.append(_tmp);
-    //std::cout << daily << std::endl;
     const char *url = current.c_str();
-    curl_global_init(CURL_GLOBAL_DEFAULT);
 
-    // read the current forecast first
-    CURL *curl = curl_easy_init();
-    if(curl) {
-        std::string response;
-        const char *url = current.c_str();
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, utils::curl_callback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-        auto rc = curl_easy_perform(curl);
-        if(rc != CURLE_OK) {
-            LOG_F(INFO, "curl_easy_perform() failed, return = %s", curl_easy_strerror(rc));
-            fSuccess = false;
-        } else {
-            this->result_current = json::parse(response.c_str());
-            this->result_current["success"] = false;
-            if(result_current["data"].empty()) {
-                LOG_F(INFO, "Current forecast: Request failed, no valid data received");
-                fSuccess = false;
-            } else {
-                this->result_current["success"] = true;
-                if(m_options.getConfig().nocache) {
-                    LOG_F(INFO, "Current forecast: Skipping cache refresh (--nocache option present)");
-                } else {
-                    std::ofstream f(this->m_currentCache);
-                    f.write(response.c_str(), response.length());
-                    f.flush();
-                    f.close();
-                }
-            }
+    auto result = utils::curl_fetch(current.c_str(), this->result_current,
+                                    this->m_currentCache, m_options.getConfig().skipcache);
+    if(result) {
+        if (!this->result_current["cod"].empty()) {         // field "cod" means error
+            LOG_F(INFO,
+                  "readFromApi(): Failure, error code = %d, error message = %s",
+                  this->result_current["cod"].get<int>(),
+                  this->result_current["message"].get<std::string>().c_str());
+            return false;
         }
+        /**
+         * validation
+         */
+        fSuccess_current = !this->result_current["data"].empty();
+    } else {
+        fSuccess_current = false;
     }
-    curl_easy_cleanup(curl);
-
     // now the daily forecast
-    curl = curl_easy_init();
-    if(curl) {
-        std::string response;
-        const char *url = daily.c_str();
-        curl_easy_setopt(curl, CURLOPT_URL, url);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, utils::curl_callback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
-        auto rc = curl_easy_perform(curl);
-        if(rc != CURLE_OK) {
-            LOG_F(INFO, "curl_easy_perform() failed for forecast request, return = %s", curl_easy_strerror(rc));
-            fSuccess = false;
-        } else {
-            this->result_forecast = json::parse(response.c_str());
-            this->result_forecast["success"] = false;
-            if(result_forecast["data"].empty()) {
-                LOG_F(INFO, "Daily forecast: Request failed, no valid data received");
-                fSuccess = false;
-            } else {
-                this->result_forecast["success"] = true;
-                if(m_options.getConfig().nocache) {
-                    LOG_F(INFO, "Daily forecast: Skipping cache refresh (--nocache option present)");
-                } else {
-                    std::ofstream f(this->m_ForecastCache);
-                    f.write(response.c_str(), response.length());
-                    f.flush();
-                    f.close();
-                }
-            }
+
+    result = utils::curl_fetch(daily.c_str(), this->result_forecast,
+                                    this->m_ForecastCache, m_options.getConfig().skipcache);
+    if(result) {
+        if (!this->result_current["cod"].empty()) {         // field "cod" means error
+            LOG_F(INFO,
+                  "readFromApi(): Failure, error code = %d, error message = %s",
+                  this->result_current["cod"].get<int>(),
+                  this->result_current["message"].get<std::string>().c_str());
+            return false;
         }
+        /**
+         * validation
+         */
+        fSuccess_forecast = !this->result_current["data"].empty();
+    } else {
+        fSuccess_forecast = false;
     }
-    curl_easy_cleanup(curl);
-    curl_global_cleanup();
-    this->populateSnapshot();
-    return (fSuccess && this->result_current["success"] == true && this->result_forecast["success"] == true);
+    if (fSuccess_forecast && fSuccess_current) {
+        this->populateSnapshot();
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -389,4 +362,13 @@ const char *DataHandler_ImplClimaCell::getPrecipType(int code) const
 {
     code = (code > 4 || code < 0) ? 0 : code;
     return DataHandler_ImplClimaCell::precipType[code];
+}
+
+/**
+ * this verify the json data received for plausability
+ * @return  true, if checks passed
+ */
+bool DataHandler_ImplClimaCell::verifyData()
+{
+    return true;
 }

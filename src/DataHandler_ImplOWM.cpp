@@ -32,6 +32,12 @@ DataHandler_ImplOWM::DataHandler_ImplOWM() : DataHandler()
 {
 }
 
+/**
+ * get the charcter code for the current condition.
+ * @param weatherCode   the numerical weather "id" from the API provider
+ * @param daylight      is daylight (sunriseTime > currentTime > sunsetTime)
+ * @return              The character code for the weather font.
+ */
 char DataHandler_ImplOWM::getCode(const int weatherCode, const bool daylight)
 {
     size_t index = daylight ? 0 : 1;
@@ -114,13 +120,10 @@ bool DataHandler_ImplOWM::readFromApi()
     current.append("&exclude=minutely&units=metric");
 
     const char *url = current.c_str();
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-
     if (cfg.debug) {
         printf("Debug Mode: Attempting to fetch weather from %s\n",
                ProgramOptions::api_readable_names[cfg.apiProvider]);
     }
-    // read the current forecast first
     auto result = utils::curl_fetch(current.c_str(), this->result_current,
                                     this->m_currentCache, m_options.getConfig().skipcache);
     if(result) {
@@ -135,8 +138,7 @@ bool DataHandler_ImplOWM::readFromApi()
         /**
          * validation
          */
-        return (this->result_current["current"].empty() || this->result_current["hourly"].empty()
-          || this->result_current["daily"].empty()) ? false : true;
+        return this->verifyData();
     }
     return false;
 }
@@ -150,8 +152,7 @@ bool DataHandler_ImplOWM::readFromCache()
     current.close();
     this->result_current = json::parse(current_buffer.str().c_str());
 
-    if (result_current["current"].empty() || result_current["hourly"].empty()
-      || result_current["daily"].empty()) {
+    if (!this->verifyData()) {
         LOG_F(INFO, "Cache read from %s failed.", this->m_currentCache.c_str());
         return false;
     } else {
@@ -270,4 +271,14 @@ void DataHandler_ImplOWM::populateSnapshot()
     }
     p.weatherSymbol = this->getCode(p.weatherCode, p.is_day);
     p.valid = true;
+}
+
+/**
+ * this verify the json data received for plausability
+ * @return  true, if checks passed
+ */
+bool DataHandler_ImplOWM::verifyData()
+{
+    return (this->result_current["current"].empty() || this->result_current["hourly"].empty()
+      || this->result_current["daily"].empty()) ? false : true;
 }
