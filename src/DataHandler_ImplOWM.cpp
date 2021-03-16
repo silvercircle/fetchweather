@@ -247,8 +247,8 @@ void DataHandler_ImplOWM::populateSnapshot()
 
     p.cloudCover = d["clouds"].is_number() ? d["clouds"].get<double>() : 0;
     // this is not provided by OWM
-    p.cloudBase = 0; //d["cloudBase"].is_number() ? d["cloudBase"].get<double>() : 0;
-    p.cloudCeiling = 0; //d["cloudCeiling"].is_number() ? d["cloudCeiling"].get<double>() : 0;
+    p.cloudBase = 0;
+    p.cloudCeiling = 0;
 
     p.uvIndex = d["uvi"].is_number() ? d["uvi"].get<double>() : 0;
     p.haveUVI = true;

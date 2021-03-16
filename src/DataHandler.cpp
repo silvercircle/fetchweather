@@ -219,7 +219,7 @@ void DataHandler::writeToDB()
     char            *err = 0;
     DataPoint&      d = this->m_DataPoint;
 
-    if(!m_DataPoint.valid)
+    if(!d.valid)
         return;
 
     // don't modify db in debug mode
@@ -283,34 +283,33 @@ void DataHandler::writeToDB()
                             "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", -1, &stmt, 0);
 
     if(SQLITE_OK == rc) {
-        DataPoint& p = this->m_DataPoint;       // shortcut
         char    tmp[10];
         LOG_F(INFO, "DataHandler::writeToDB(): sqlite3_prepare_v2() succeeded. Statement compiled");
-        sqlite3_bind_int(stmt, 1, static_cast<int>(p.timeRecorded));
-        sqlite3_bind_text(stmt, 2, p.conditionAsString, -1, 0);
-        tmp[0] = p.weatherSymbol;
+        sqlite3_bind_int(stmt, 1, static_cast<int>(d.timeRecorded));
+        sqlite3_bind_text(stmt, 2, d.conditionAsString, -1, 0);
+        tmp[0] = d.weatherSymbol;
         sqlite3_bind_text(stmt, 3, tmp, -1, 0);
-        sqlite3_bind_double(stmt, 4, p.temperature);
-        sqlite3_bind_double(stmt, 5, p.temperatureApparent);
-        sqlite3_bind_double(stmt, 6, p.dewPoint);
-        sqlite3_bind_int(stmt, 7, p.windDirection);
-        sqlite3_bind_double(stmt, 8, p.windSpeed);
-        sqlite3_bind_double(stmt, 9, p.windGust);
-        sqlite3_bind_double(stmt, 10, p.humidity);
-        sqlite3_bind_double(stmt, 11, p.visibility);
-        sqlite3_bind_double(stmt, 12, p.pressureSeaLevel);
-        sqlite3_bind_double(stmt, 13, p.precipitationProbability);
-        sqlite3_bind_double(stmt, 14, p.precipitationIntensity);
-        sqlite3_bind_text(stmt, 15, p.precipitationTypeAsString, -1, 0);
-        sqlite3_bind_int(stmt, 16, static_cast<int>(p.uvIndex));
-        sqlite3_bind_int(stmt, 17, static_cast<int>(p.sunriseTime));
-        sqlite3_bind_int(stmt, 18, static_cast<int>(p.sunsetTime));
-        sqlite3_bind_double(stmt, 19, p.cloudBase);
-        sqlite3_bind_double(stmt, 20, p.cloudCover);
-        sqlite3_bind_double(stmt, 21, p.cloudCeiling);
-        sqlite3_bind_int(stmt, 22, p.moonPhase);
-        sqlite3_bind_double(stmt, 23, p.temperatureMin);
-        sqlite3_bind_double(stmt, 24, p.temperatureMax);
+        sqlite3_bind_double(stmt, 4, d.temperature);
+        sqlite3_bind_double(stmt, 5, d.temperatureApparent);
+        sqlite3_bind_double(stmt, 6, d.dewPoint);
+        sqlite3_bind_int(stmt, 7, d.windDirection);
+        sqlite3_bind_double(stmt, 8, d.windSpeed);
+        sqlite3_bind_double(stmt, 9, d.windGust);
+        sqlite3_bind_double(stmt, 10, d.humidity);
+        sqlite3_bind_double(stmt, 11, d.visibility);
+        sqlite3_bind_double(stmt, 12, d.pressureSeaLevel);
+        sqlite3_bind_double(stmt, 13, d.precipitationProbability);
+        sqlite3_bind_double(stmt, 14, d.precipitationIntensity);
+        sqlite3_bind_text(stmt, 15, d.precipitationTypeAsString, -1, 0);
+        sqlite3_bind_int(stmt, 16, static_cast<int>(d.uvIndex));
+        sqlite3_bind_int(stmt, 17, static_cast<int>(d.sunriseTime));
+        sqlite3_bind_int(stmt, 18, static_cast<int>(d.sunsetTime));
+        sqlite3_bind_double(stmt, 19, d.cloudBase);
+        sqlite3_bind_double(stmt, 20, d.cloudCover);
+        sqlite3_bind_double(stmt, 21, d.cloudCeiling);
+        sqlite3_bind_int(stmt, 22, d.moonPhase);
+        sqlite3_bind_double(stmt, 23, d.temperatureMin);
+        sqlite3_bind_double(stmt, 24, d.temperatureMax);
 
         rc = sqlite3_step(stmt);
         if(SQLITE_OK == rc) {
@@ -337,7 +336,7 @@ void DataHandler::writeToDB()
 int DataHandler::run()
 {
     if(m_options.getConfig().offline) {
-        LOG_F(INFO, "DataHandler::run(): Attempting to read from cache (--offline option present");
+        LOG_F(INFO, "DataHandler::run(): Attempting to read from cache (--offline option present)");
         if(!this->readFromCache()) {
             LOG_F(INFO, "run() Reading from cache failed, giving up.");
             return -1;

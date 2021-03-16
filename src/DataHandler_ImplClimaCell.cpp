@@ -366,6 +366,7 @@ const char *DataHandler_ImplClimaCell::getPrecipType(int code) const
 
 /**
  * this verify the json data received for plausability
+ * TODO implement this
  * @return  true, if checks passed
  */
 bool DataHandler_ImplClimaCell::verifyData()
