@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef CLIMACELL_FETCH_SRC_DATAHANDLER_IMPLOWM_H_
-#define CLIMACELL_FETCH_SRC_DATAHANDLER_IMPLOWM_H_
+#ifndef _DATAHANDLER_IMPLOWM_H_
+#define _DATAHANDLER_IMPLOWM_H_
 
 class DataHandler_ImplOWM : public DataHandler {
   public:
@@ -38,4 +38,4 @@ class DataHandler_ImplOWM : public DataHandler {
     char    getCode(const int weatherCode, const bool daylight);
 };
 
-#endif //CLIMACELL_FETCH_SRC_DATAHANDLER_IMPLOWM_H_
+#endif //_DATAHANDLER_IMPLOWM_H_

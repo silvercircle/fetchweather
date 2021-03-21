@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef CLIMACELL_FETCH__DATAHANDLER_H_
-#define CLIMACELL_FETCH__DATAHANDLER_H_
+#ifndef __DATAHANDLER_H_
+#define __DATAHANDLER_H_
 
 #include <nlohmann/json.hpp>
 
@@ -33,7 +33,7 @@
  * a) it is completely populated.
  * b) all values are in metric
  */
-typedef struct _DataPoint {
+struct DataPoint {
     bool            valid = false;
     bool            is_day;
     time_t          timeRecorded, sunsetTime, sunriseTime;
@@ -57,14 +57,14 @@ typedef struct _DataPoint {
     char            conditionAsString[100];
     double          uvIndex;
     bool            haveUVI;
-} DataPoint;
+};
 
-typedef struct _DailyForecast {
+struct DailyForecast {
     char            code;
     double          temperatureMin, temperatureMax;
     char            weekDay[10];
     double          pop;
-} DailyForecast;
+};
 
 class DataHandler {
 
@@ -113,4 +113,4 @@ class DataHandler {
     std::string                     db_path;
 };
 
-#endif //CLIMACELL_FETCH__DATAHANDLER_H_
+#endif //__DATAHANDLER_H_

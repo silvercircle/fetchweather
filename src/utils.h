@@ -25,8 +25,8 @@
  * generates the formatted output.
  */
 
-#ifndef CLIMACELL_FETCH_SRC_UTILS_H_
-#define CLIMACELL_FETCH_SRC_UTILS_H_
+#ifndef __UTILS_H_
+#define __UTILS_H_
 
 #include <time.h>
 #include <glib-2.0/glib.h>
@@ -85,4 +85,4 @@ namespace utils {
   }
 }
 
-#endif //CLIMACELL_FETCH_SRC_UTILS_H_
+#endif //__UTILS_H_

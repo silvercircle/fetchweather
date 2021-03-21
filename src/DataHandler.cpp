@@ -363,5 +363,5 @@ int DataHandler::run()
     } else {
         LOG_F(INFO, "run() - valid data, debug mode, no output genereated");
     }
-    return 1;
+    return -1;
 }

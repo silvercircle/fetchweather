@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef OBJCTEST_OPTIONS_H
-#define OBJCTEST_OPTIONS_H
+#ifndef __OPTIONS_H_
+#define __OPTIONS_H_
 
 #ifdef __OPTIONS_INTERNAL
 #endif
@@ -97,4 +97,4 @@ class ProgramOptions {
     std::string     logfile_path, keyfile_path;
     bool            fUseKeyfile = false;
 };
-#endif //OBJCTEST_OPTIONS_H
+#endif //__OPTIONS_H_

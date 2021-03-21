@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef OBJCTEST_SRC_DATAHANDLER_H_
-#define OBJCTEST_SRC_DATAHANDLER_H_
+#ifndef __DATAHANDLER_IMPL_CLIMACELL_H_
+#define __DATAHANDLER_IMPL_CLIMACELL_H_
 
 class DataHandler_ImplClimaCell : public DataHandler {
   public:
@@ -46,4 +46,4 @@ class DataHandler_ImplClimaCell : public DataHandler {
     std::map<int, const char *>     m_icons;
 };
 
-#endif //OBJCTEST_SRC_DATAHANDLER_H_
+#endif //__DATAHANDLER_IMPL_CLIMACELL_H_
