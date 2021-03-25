@@ -24,83 +24,17 @@
 
 int main(int argc, char **argv)
 {
-    bool    extended_checks_failed = false;
-    char    msg[256];
-    int     runresult = 0;
+    QCoreApplication a(argc, argv);
+    a.setApplicationName("fetchweather");
+    a.setApplicationVersion("0.1");
 
-    loguru::g_stderr_verbosity = loguru::Verbosity_OFF;
-    loguru::init(argc, argv);
     ProgramOptions &opt = ProgramOptions::getInstance();
+    opt.setAppObject(&a);
 
-    const CFG& cfg = opt.getConfig();
+    FetchWeatherApp w(&a, argc, argv);
 
-    auto result = opt.parse(argc, argv);
-    LOG_F(INFO, "main(): The result from ProgramOptions::parse() was: %d", result);
-    // catch the help
-    if (0 == result)
-        exit(result);
-
-    if (1 == result) {
-        // --version or -V parameter was given. Print version information and exit.
-        opt.print_version();
-        exit(0);
-    }
-
-    if(cfg.debug) {
-        opt.dumpOptions();
-    }
-
-    /* more sanity checks */
-
-    if(cfg.offline && cfg.skipcache) {
-        /* ignoring both online mode and the cache does not make sense */
-        printf("The options --offline and --skipcache are mutually exclusive\n"
-               "and cannot be used together.");
-        LOG_F(INFO, "main(): The options --offline and --skipcache cannot be used together");
-        exit(-1);
-    }
-    if(cfg.silent && cfg.output_dir.length() == 0) {
-        /* --silent without a filename for dumping the output does not make sense
-         * either
-         */
-        printf("The option --silent requires a filename specified with --output.");
-        LOG_F(INFO, "main(): --silent option was specified without using --output");
-        exit(-1);
-    }
-
-    if(cfg.apikey.length() == 0) {
-        LOG_F(INFO, "main(): Api KEY missing. Aborting.");
-        extended_checks_failed = true;
-        printf("\nThe API Key is missing. You must specify it with --apikey=your_key.\n");
-    }
-
-    if(cfg.location.length() == 0 && cfg.lat.length() == 0 && cfg.lon.length() == 0) {
-        LOG_F(INFO, "main(): Location is missing. Aborting.");
-        extended_checks_failed = true;
-        printf("No location given. Option --loc=LOCATION is mandatory, where LOCATION\n"
-               "is either in LAT,LON form or a location ID created on your ClimaCell dashboard.\n");
-
-    }
-
-    if(extended_checks_failed)
-        exit(-1);
-
-    switch(cfg.apiProvider) {
-        case ProgramOptions::API_CLIMACELL: {
-            DataHandler_ImplClimaCell dh;
-            runresult = dh.run();
-            break;
-        }
-        case ProgramOptions::API_OWM: {
-            DataHandler_ImplOWM dh;
-            runresult = dh.run();
-            break;
-        }
-        default:
-            LOG_F(INFO, "No valid Provider selected. exiting.");
-            runresult = -1;
-            break;
-    }
-
-    exit(cfg.debug ? -1 : runresult);
+    QObject::connect(&w, &FetchWeatherApp::finished, &a, &QCoreApplication::quit);
+    QObject::connect(&w, &FetchWeatherApp::testsignal, &w, &FetchWeatherApp::testSlot);
+    QTimer::singleShot(0, &w, SLOT(run()));
+    return a.exec();
 }

@@ -67,8 +67,13 @@ class ProgramOptions {
     void flush();
     void print_version();
 
+    void setAppObject(QCoreApplication *the_app) { this->m_app = the_app; }
+
     const CFG &getConfig()
-    { return m_config; }
+    { return this->m_config; }
+
+    const QCommandLineParser &getParser()
+    { return this->m_Parser; }
 
     const std::string &getLogFilePath()
     { return this->logfile_path; }
@@ -88,13 +93,15 @@ class ProgramOptions {
 
   private:
     ProgramOptions();
-    ~ProgramOptions() { };
-    CLI::App        m_oCommand;
-    std::string     m_name;
-    void            _init();
-    unsigned int    counter;
-    CFG             m_config;
-    std::string     logfile_path, keyfile_path;
-    bool            fUseKeyfile = false;
+    ~ProgramOptions()   { };
+    CLI::App            m_oCommand;
+    std::string         m_name;
+    void                _init();
+    unsigned int        counter;
+    CFG                 m_config;
+    std::string         logfile_path, keyfile_path;
+    bool                fUseKeyfile = false;
+    QCommandLineParser  m_Parser;
+    QCoreApplication*   m_app;
 };
 #endif //__OPTIONS_H_

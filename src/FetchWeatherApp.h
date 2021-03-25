@@ -20,40 +20,29 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
- * precompiled headers are produced from this file.
  */
 
+#ifndef FETCHWEATHER_SRC_FETCHWEATHERAPP_H_
+#define FETCHWEATHER_SRC_FETCHWEATHERAPP_H_
 
-#ifndef __PCH_H_
-#define __PCH_H_
+class FetchWeatherApp : public QObject {
+    Q_OBJECT
 
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <memory>
-#include <filesystem>
-#include <chrono>
-#include <ctime>
-#include <glib-2.0/glib-unix.h>
-#include <sqlite3.h>
-#include <curl/curl.h>
-#include "CLI/App.hpp"
-#include "CLI/Formatter.hpp"
-#include "CLI/Config.hpp"
-#include "nlohmann/json.hpp"
-#include "loguru/loguru.hpp"
-#include <QCommandLineParser>
-#include <QtCore>
-#include <QObject>
-#include "conf.h"
-#include "options.h"
-#include "DataHandler.h"
-#include "DataHandler_ImplClimaCell.h"
-#include "DataHandler_ImplOWM.h"
-#include "FetchWeatherApp.h"
+  public:
+    FetchWeatherApp(QObject *parent = 0, int argc = 0, char **argv = nullptr)
+        : QObject(parent) { this->m_argc = argc; this->m_argv = argv; this->m_app = parent; }
 
-namespace fs = std::filesystem;
-using namespace nlohmann;
+  public slots:
+    void run();
+    void testSlot(std::string& msg);
 
-#endif //__PCH_H_
+  signals:
+    void finished(int rc);
+    void testsignal(std::string& msg);
+
+  private:
+    int                 m_argc;
+    char**              m_argv;
+    QCoreApplication*   m_app;
+};
+#endif //FETCHWEATHER_SRC_FETCHWEATHERAPP_H_

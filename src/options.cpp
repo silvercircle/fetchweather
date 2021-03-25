@@ -35,7 +35,8 @@ ProgramOptions::ProgramOptions() :
      .output_dir = "", .location="", .timezone="Europe/Vienna",
      .offline = false, .nocache = false, .skipcache = false,
      .silent = false, .debug = false, .forecastDays = 3
-    }
+    },
+    m_Parser{}
 {
     this->_init();
 }

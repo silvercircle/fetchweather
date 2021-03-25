@@ -305,7 +305,7 @@ void DataHandler_ImplClimaCell::populateSnapshot()
 
     p.weatherSymbol = this->getCode(p.weatherCode, p.is_day);
 
-    p.cloudCover = d["cloudCover"].is_number() ? d["cloudCover"].get<double>() : 0;
+    p.cloudCover = d["cloudCover"].is_number() ? d["cloudCover  "].get<double>() : 0;
     p.cloudBase = d["cloudBase"].is_number() ? d["cloudBase"].get<double>() : 0;
     p.cloudCeiling = d["cloudCeiling"].is_number() ? d["cloudCeiling"].get<double>() : 0;
 
