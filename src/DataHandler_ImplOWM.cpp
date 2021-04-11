@@ -26,7 +26,6 @@
 
 #include <time.h>
 #include <utils.h>
-#include "DataHandler_ImplOWM.h"
 
 DataHandler_ImplOWM::DataHandler_ImplOWM() : DataHandler()
 {
@@ -137,6 +136,7 @@ bool DataHandler_ImplOWM::readFromApi()
         this->populateSnapshot();
         /**
          * validation
+         *
          */
         return this->verifyData();
     }
@@ -147,18 +147,22 @@ bool DataHandler_ImplOWM::readFromCache()
 {
     LOG_F(INFO, "Attempting to read current from cache: %s", this->m_currentCache.c_str());
     std::ifstream current(this->m_currentCache);
-    std::stringstream current_buffer, forecast_buffer;
+    std::stringstream current_buffer;
     current_buffer << current.rdbuf();
     current.close();
-    this->result_current = json::parse(current_buffer.str().c_str());
-
-    if (!this->verifyData()) {
-        LOG_F(INFO, "Cache read from %s failed.", this->m_currentCache.c_str());
+    try {
+        this->result_current = json::parse(current_buffer.str().c_str());
+        if (!this->verifyData()) {
+            LOG_F(INFO, "Cache read from %s failed.", this->m_currentCache.c_str());
+            return false;
+        } else {
+            LOG_F(INFO, "Cache read successful.");
+            this->populateSnapshot();
+            return true;
+        }
+    } catch (nlohmann::json::parse_error& e) {
+        LOG_F(INFO, "ImplOWM::readFromCache(): JSon parser exception: code = %d, reason = %s", e.id, e.what());
         return false;
-    } else {
-        LOG_F(INFO, "Cache read successful.");
-        this->populateSnapshot();
-        return true;
     }
 }
 
@@ -168,7 +172,6 @@ void DataHandler_ImplOWM::populateSnapshot()
     const CFG& cfg = this->m_options.getConfig();
     DataPoint& p = this->m_DataPoint;
     char tmp[128];
-
     p.weatherCode = d["weather"][0]["id"].is_number() ? d["weather"][0]["id"].get<int>() : 800;
 
     snprintf(p.timeZone, 127, "%s", this->result_current["timezone"].is_string() ?
@@ -177,7 +180,7 @@ void DataHandler_ImplOWM::populateSnapshot()
     p.timeRecorded = d["dt"].is_number() ? d["dt"].get<int>() : time(0);
 
     tm *now = localtime(&p.timeRecorded);
-    snprintf(p.timeRecordedAsText, 19, "%02d:%02d", now->tm_hour, now->tm_min);
+    snprintf(p.timeRecordedAsText, 19, "%02d:%02d/%s", now->tm_hour, now->tm_min, cfg.apiProviderString.c_str());
 
     p.dewPoint = d["dew_point"].is_number() ?
                  this->convertTemperature(d["dew_point"].get<double>(), cfg.temp_unit).first : 0.0f;

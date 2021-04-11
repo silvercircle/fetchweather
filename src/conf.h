@@ -5,6 +5,6 @@
 #ifndef OBJCTEST_CONF_H
 #define OBJCTEST_CONF_H
 
-//namespace po = boost::program_options;
+#define SIZEOF(foo) ((sizeof(foo) / sizeof(foo[0])) - 1)
 
 #endif //OBJCTEST_CONF_H

@@ -22,8 +22,6 @@
  * SOFTWARE.
  */
 
-#define __OPTIONS_INTERNAL
-
 #include "utils.h"
 
 ProgramOptions::ProgramOptions() :
@@ -170,19 +168,22 @@ int ProgramOptions::parse(int argc, char **argv)
     std::error_code ec;
 
     if (bool res = fs::create_directories(path, ec)) {
-        LOG_F(INFO, "ProgramOptions::parse(): create_directories result: %d : %s", ec.value(), ec.message().c_str());
+        LOG_F(INFO, "ProgramOptions::parse(): create_directories result: %d : %s",
+              ec.value(), ec.message().c_str());
         if (0 == ec.value()) {
             fs::permissions(path, fs::perms::owner_all, fs::perm_options::replace);
             fs::permissions(path.parent_path(), fs::perms::owner_all, fs::perm_options::replace);
         }
     } else {
-        LOG_F(INFO, "ProgramOptions::parse(): Could not create the data directories. Maybe no permission or they exist?");
+        LOG_F(INFO, "ProgramOptions::parse(): Could not create the data directories. "
+                    "Maybe no permission or they exist?");
         LOG_F(INFO, "ProgramOptions::parse(): Attempted to create: %s", path.c_str());
         LOG_F(INFO, "ProgramOptions::parse(): Error code: %d : %s", ec.value(), ec.message().c_str());
     }
 
     if (bool res = fs::create_directories(fs::path(m_config.config_dir_path), ec)) {
-        LOG_F(INFO, "ProgramOptions::parse(): Config directory %s created", m_config.config_dir_path.c_str());
+        LOG_F(INFO, "ProgramOptions::parse(): Config directory %s created",
+              m_config.config_dir_path.c_str());
     }
     /*
      * try to read API key from a file, when present.
@@ -218,7 +219,8 @@ int ProgramOptions::parse(int argc, char **argv)
         }
         f.close();
     } else {
-        LOG_F(INFO, "ProgramOptions::parse(): No keyfile found for API provider %s", m_config.apiProviderString.c_str());
+        LOG_F(INFO, "ProgramOptions::parse(): No keyfile found for API provider %s",
+              m_config.apiProviderString.c_str());
     }
 
     /**
@@ -231,7 +233,8 @@ int ProgramOptions::parse(int argc, char **argv)
         m_config.temp_unit = static_cast<char>(toupper(m_config.temp_unit_raw[0]));
     }
     if(m_config.temp_unit != 'F' && m_config.temp_unit != 'C') {
-        snprintf(msg, 255, "Unrecognized temperature Unit %c (allowed are C or F). Reverting default", m_config.temp_unit);
+        snprintf(msg, 255, "Unrecognized temperature Unit %c (allowed are C or F). Reverting default",
+                 m_config.temp_unit);
         m_config.temp_unit = 'C';
         if(m_config.debug) {
             printf("%s\n", msg);
@@ -241,7 +244,8 @@ int ProgramOptions::parse(int argc, char **argv)
     }
 
     if(m_config.speed_unit != "m/s" && m_config.speed_unit != "km/h" && m_config.speed_unit != "kts" && m_config.speed_unit != "mph") {
-        snprintf(msg, 255, "Unrecognized speed unit %s (m/s, km/h, mph or knots). Reverting default.", m_config.speed_unit.c_str());
+        snprintf(msg, 255, "Unrecognized speed unit %s (m/s, km/h, mph or knots). Reverting default.",
+                 m_config.speed_unit.c_str());
         m_config.speed_unit.assign("km/h");
         if(m_config.debug) {
             printf("%s\n", msg);
@@ -251,7 +255,8 @@ int ProgramOptions::parse(int argc, char **argv)
     }
 
     if(m_config.vis_unit != "km" && m_config.vis_unit != "mi") {
-        snprintf(msg, 255, "Unrecognized visbility Unit %s (allowed are km or mi). Reverting default", m_config.vis_unit.c_str());
+        snprintf(msg, 255, "Unrecognized visbility Unit %s (allowed are km or mi). Reverting default",
+                 m_config.vis_unit.c_str());
         m_config.vis_unit.assign("km");
         if(m_config.debug) {
             printf("%s\n", msg);
@@ -261,7 +266,8 @@ int ProgramOptions::parse(int argc, char **argv)
     }
 
     if(m_config.pressure_unit != "hPa" && m_config.pressure_unit != "inhg") {
-        snprintf(msg, 255, "Unrecognized pressure Unit %s (allowed are hPa or inhg). Reverting default", m_config.pressure_unit.c_str());
+        snprintf(msg, 255, "Unrecognized pressure Unit %s (allowed are hPa or inhg). Reverting default",
+                 m_config.pressure_unit.c_str());
         m_config.pressure_unit.assign("hPa");
         if(m_config.debug) {
             printf("%s\n", msg);

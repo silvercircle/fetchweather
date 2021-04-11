@@ -37,13 +37,14 @@ void FetchWeatherApp::run()
     auto result = opt.parse(this->m_argc, this->m_argv);
     LOG_F(INFO, "main(): The result from ProgramOptions::parse() was: %d", result);
     // catch the help
-    if (0 == result)
-        QCoreApplication::exit(result);
+    if (0 == result) {
+        this->m_app->exit(result);
+    }
 
     if (1 == result) {
         // --version or -V parameter was given. Print version information and exit.
         opt.print_version();
-        QCoreApplication::exit(0);
+        this->m_app->exit(0);
     }
 
     if(cfg.debug) {
@@ -57,7 +58,7 @@ void FetchWeatherApp::run()
         printf("The options --offline and --skipcache are mutually exclusive\n"
                "and cannot be used together.");
         LOG_F(INFO, "main(): The options --offline and --skipcache cannot be used together");
-        QCoreApplication::exit(-1);
+        this->m_app->exit(-1);
     }
     if(cfg.silent && cfg.output_dir.length() == 0) {
         /* --silent without a filename for dumping the output does not make sense
@@ -65,7 +66,7 @@ void FetchWeatherApp::run()
          */
         printf("The option --silent requires a filename specified with --output.");
         LOG_F(INFO, "main(): --silent option was specified without using --output");
-        QCoreApplication::exit(-1);
+        this->m_app->exit(-1);
     }
 
     if(cfg.apikey.length() == 0) {
@@ -82,8 +83,9 @@ void FetchWeatherApp::run()
 
     }
 
-    if(extended_checks_failed)
-        QCoreApplication::exit(-1);
+    if(extended_checks_failed) {
+        this->m_app->exit(-1);
+    }
 
     switch(cfg.apiProvider) {
         case ProgramOptions::API_CLIMACELL: {
@@ -101,10 +103,18 @@ void FetchWeatherApp::run()
             runresult = -1;
             break;
     }
-    QCoreApplication::exit(cfg.debug ? -1 : runresult);
+    //QString foo("Affen");
+    //emit testsignal(&foo);
+
+    this->m_app->exit(cfg.debug ? -1 : runresult);
 }
 
-void FetchWeatherApp::testSlot(std::string& msg)
+void FetchWeatherApp::testSlot(QString* msg)
 {
-    std::cout << "The message is: " << msg << std::endl;
+    qDebug() << "The message in TestSlot is: " << *msg;
+}
+
+void FetchWeatherApp::testSlot1(QString* msg)
+{
+    qDebug() << "The message in TestSlot1 is: " << *msg;
 }

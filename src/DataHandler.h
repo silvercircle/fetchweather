@@ -31,7 +31,7 @@
  * The data point collects and normalizes data from the API provider
  * it is expected that:
  * a) it is completely populated.
- * b) all values are in metric
+ * b) all values are in the metric system
  */
 struct DataPoint {
     bool            valid = false;
@@ -101,7 +101,7 @@ class DataHandler {
     virtual         bool            readFromCache() = 0;
     virtual         bool            readFromApi() = 0;
     virtual         bool            verifyData() = 0;
-    ProgramOptions                  &m_options;
+    ProgramOptions&                 m_options;
     DataPoint                       m_DataPoint;
     DailyForecast                   m_daily[3];         // 3 days, might be desireable to have this customizable
     nlohmann::json                  result_current, result_forecast;

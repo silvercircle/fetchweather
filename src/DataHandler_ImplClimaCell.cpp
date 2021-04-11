@@ -241,7 +241,7 @@ void DataHandler_ImplClimaCell::populateSnapshot()
         return; // datapoint likely not valid
 
     p.weatherCode = d["weatherCode"].is_number() ? d["weatherCode"].get<int>() : 0;
-    snprintf(p.timeZone, 127, "%s", m_options.getConfig().timezone.c_str());
+    snprintf(p.timeZone, SIZEOF(p.timeZone), "%s", m_options.getConfig().timezone.c_str());
 
     p.timeRecorded = time(0);
     tm *now = localtime(&p.timeRecorded);
@@ -305,9 +305,10 @@ void DataHandler_ImplClimaCell::populateSnapshot()
 
     p.weatherSymbol = this->getCode(p.weatherCode, p.is_day);
 
-    p.cloudCover = d["cloudCover"].is_number() ? d["cloudCover  "].get<double>() : 0;
+    p.cloudCover = d["cloudCover"].is_number() ? d["cloudCover"].get<double>() : 0;
     p.cloudBase = d["cloudBase"].is_number() ? d["cloudBase"].get<double>() : 0;
     p.cloudCeiling = d["cloudCeiling"].is_number() ? d["cloudCeiling"].get<double>() : 0;
+
 
     p.moonPhase = this->result_forecast["data"]["timelines"][0]["intervals"][0]["values"]["moonPhase"].is_number() ?
       this->result_forecast["data"]["timelines"][0]["intervals"][0]["values"]["moonPhase"].get<int>() : 0;
@@ -323,31 +324,42 @@ void DataHandler_ImplClimaCell::populateSnapshot()
     DailyForecast* daily = this->m_daily;
 
     for(int i = 0; i < 3; i++) {
-        int weatherCode = this->result_forecast["data"]["timelines"][0]["intervals"][i + 1]["values"]["weatherCode"].is_number() ?
-          this->result_forecast["data"]["timelines"][0]["intervals"][i + 1]["values"]["weatherCode"].get<int>() : 1000;
+        int weatherCode = this->result_forecast["data"]["timelines"][0]["intervals"][i
+          + 1]["values"]["weatherCode"].is_number() ?
+                          this->result_forecast["data"]["timelines"][0]["intervals"][i
+                            + 1]["values"]["weatherCode"].get<int>() : 1000;
 
-        if(DataHandler_ImplClimaCell::m_icons.find(weatherCode) != DataHandler_ImplClimaCell::m_icons.end()) {
+        if (DataHandler_ImplClimaCell::m_icons.find(weatherCode)
+          != DataHandler_ImplClimaCell::m_icons.end()) {
             daily[i].code = DataHandler_ImplClimaCell::m_icons[weatherCode][0];
         } else {
             daily[i].code = 'a';
         }
-        daily[i].temperatureMax = this->result_forecast["data"]["timelines"][0]["intervals"][i + 1]["values"]["temperatureMax"].is_number() ?
-          this->result_forecast["data"]["timelines"][0]["intervals"][i + 1]["values"]["temperatureMax"].get<double>() : 0.0f;
+        daily[i].temperatureMax = this->result_forecast["data"]["timelines"][0]["intervals"][i
+          + 1]["values"]["temperatureMax"].is_number() ?
+                                  this->result_forecast["data"]["timelines"][0]["intervals"][i
+                                    + 1]["values"]["temperatureMax"].get<double>() : 0.0f;
 
-        daily[i].temperatureMin = this->result_forecast["data"]["timelines"][0]["intervals"][i + 1]["values"]["temperatureMin"].is_number() ?
-          this->result_forecast["data"]["timelines"][0]["intervals"][i + 1]["values"]["temperatureMin"].get<double>() : 0.0f;
+        daily[i].temperatureMin = this->result_forecast["data"]["timelines"][0]["intervals"][i
+          + 1]["values"]["temperatureMin"].is_number() ?
+                                  this->result_forecast["data"]["timelines"][0]["intervals"][i
+                                    + 1]["values"]["temperatureMin"].get<double>() : 0.0f;
 
-        GDateTime *g = g_date_time_new_from_iso8601(result_forecast["data"]["timelines"][0]["intervals"][i + 1]["values"]["sunriseTime"].get<std::string>().c_str(), 0);
+        GDateTime *g =
+          g_date_time_new_from_iso8601(result_forecast["data"]["timelines"][0]["intervals"][i
+            + 1]["values"]["sunriseTime"].get<std::string>().c_str(), 0);
         gint weekday = g_date_time_get_day_of_week(g);
         g_date_time_unref(g);
 
-        if(weekday >= 1 && weekday <= 7)
+        if (weekday >= 1 && weekday <= 7) {
             snprintf(daily[i].weekDay, 5, "%s", DataHandler::weekDays[weekday - 1]);
-        else
+        } else {
             snprintf(daily[i].weekDay, 5, "%s", DataHandler::weekDays[7]);       // print "invalid"
+        }
     }
-    if(this->m_options.getConfig().debug)
+    if(this->m_options.getConfig().debug) {
         this->dumpSnapshot();
+    }
 }
 
 const char *DataHandler_ImplClimaCell::getCondition(int weatherCode)

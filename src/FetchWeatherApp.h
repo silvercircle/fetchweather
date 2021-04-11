@@ -25,24 +25,37 @@
 #ifndef FETCHWEATHER_SRC_FETCHWEATHERAPP_H_
 #define FETCHWEATHER_SRC_FETCHWEATHERAPP_H_
 
+
+Q_DECLARE_METATYPE(std::string)
+
 class FetchWeatherApp : public QObject {
-    Q_OBJECT
+  Q_OBJECT
 
   public:
-    FetchWeatherApp(QObject *parent = 0, int argc = 0, char **argv = nullptr)
-        : QObject(parent) { this->m_argc = argc; this->m_argv = argv; this->m_app = parent; }
+    FetchWeatherApp(QCoreApplication *parent = 0, int argc = 0, char **argv = nullptr)
+      : QObject(parent)
+    {
+        qRegisterMetaType<std::string>();
+        this->m_argc = argc;
+        this->m_argv = argv;
+        this->m_app = parent;
+        QObject::connect(this, &FetchWeatherApp::testsignal, this, &FetchWeatherApp::testSlot, Qt::QueuedConnection);
+        QObject::connect(this, &FetchWeatherApp::testsignal, this, &FetchWeatherApp::testSlot1);
+    }
 
   public slots:
     void run();
-    void testSlot(std::string& msg);
 
   signals:
     void finished(int rc);
-    void testsignal(std::string& msg);
+    void testsignal(QString* msg);
 
   private:
     int                 m_argc;
     char**              m_argv;
     QCoreApplication*   m_app;
+    // normal methods can be slots in Qt 5
+    void                testSlot(QString* msg);
+    void                testSlot1(QString* msg);
 };
 #endif //FETCHWEATHER_SRC_FETCHWEATHERAPP_H_

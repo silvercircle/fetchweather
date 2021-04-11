@@ -25,9 +25,6 @@
 #ifndef __OPTIONS_H_
 #define __OPTIONS_H_
 
-#ifdef __OPTIONS_INTERNAL
-#endif
-
 typedef struct _cfg {
     unsigned int apiProvider;
     int version;
