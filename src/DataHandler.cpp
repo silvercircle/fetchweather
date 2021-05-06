@@ -108,7 +108,7 @@ double DataHandler::convertPressure(double hPa) const
  * @param addUnit   add the Unit (°C or °F)
  * @param format    use this format for output. See .h for defaults.
  */
-void DataHandler::outputTemperature(double val, const bool addUnit, const char *format)
+void DataHandler::outputTemperature(FILE *stream, double val, const bool addUnit, const char *format)
 {
     char unit[5] = "\xc2\xB0X";    // UTF-8!! c2b0 is the utf8 sequence for ° (degree symbol)
     char res[129];
@@ -117,65 +117,62 @@ void DataHandler::outputTemperature(double val, const bool addUnit, const char *
 
     unit[2] = this->m_options.getConfig().temp_unit;
 
-    printf("%.1f%s\n", result, addUnit ? unit : "");
+    fprintf(stream, "%.1f%s\n", result, addUnit ? unit : "");
 }
 
-void DataHandler::doOutput()
+void DataHandler::doOutput(FILE* stream)
 {
     const CFG& cfg = this->m_options.getConfig();
 
-    if(cfg.silent)
-        return;         // no stdout output.
+    fprintf(stream, "** Begin output **\n");
 
-    std::cout << "** Begin output **" << std::endl;
-
-    printf("%c\n", m_DataPoint.weatherSymbol);
-    this->outputTemperature(m_DataPoint.temperature, true);
+    fprintf(stream, "%c\n", m_DataPoint.weatherSymbol);
+    this->outputTemperature(stream, m_DataPoint.temperature, true);
 
     /*
      * The 3 days of forecast
      */
-    this->outputDailyForecast(false);
-    this->outputTemperature(m_DataPoint.temperatureApparent, true);                 // 16
-    this->outputTemperature(m_DataPoint.dewPoint, true);                            // 17
-    printf("Humidity: %.1f\n", m_DataPoint.humidity);                               // 18
-    printf(cfg.pressure_unit == "hPa" ? "%.0f hPa\n" : "%.2f InHg\n",               // 19
+    this->outputDailyForecast(stream, false);
+    this->outputTemperature(stream, m_DataPoint.temperatureApparent, true);                 // 16
+    this->outputTemperature(stream, m_DataPoint.dewPoint, true);                            // 17
+    fprintf(stream, "Humidity: %.1f\n", m_DataPoint.humidity);                               // 18
+    fprintf(stream, cfg.pressure_unit == "hPa" ? "%.0f hPa\n" : "%.2f InHg\n",               // 19
            m_DataPoint.pressureSeaLevel);
-    printf("%.1f %s\n", m_DataPoint.windSpeed, cfg.speed_unit.c_str());             // 20
+    fprintf(stream, "%.1f %s\n", m_DataPoint.windSpeed, cfg.speed_unit.c_str());             // 20
 
     if(m_DataPoint.precipitationIntensity > 0) {
-        printf("%s (%.1fmm/1h)\n", m_DataPoint.precipitationTypeAsString,
+        fprintf(stream, "%s (%.1fmm/1h)\n", m_DataPoint.precipitationTypeAsString,
                m_DataPoint.precipitationIntensity);                                 // 21
     } else {
-        printf("PoP: %.0f%%\n", m_DataPoint.precipitationProbability);              // 21
+        fprintf(stream, "PoP: %.0f%%\n", m_DataPoint.precipitationProbability);              // 21
     }
-    printf("%.1f %s\n", m_DataPoint.visibility, cfg.vis_unit.c_str());              // 22
+    fprintf(stream, "%.1f %s\n", m_DataPoint.visibility, cfg.vis_unit.c_str());              // 22
 
-    printf("%s\n", m_DataPoint.sunriseTimeAsString);                                // 23
-    printf("%s\n", m_DataPoint.sunsetTimeAsString);                                 // 24
+    fprintf(stream, "%s\n", m_DataPoint.sunriseTimeAsString);                                // 23
+    fprintf(stream, "%s\n", m_DataPoint.sunsetTimeAsString);                                 // 24
 
-    printf("%s\n", m_DataPoint.windBearing);                                        // 25
-    printf("%s\n", m_DataPoint.timeRecordedAsText);                                 // 26
-    printf("%s", m_DataPoint.conditionAsString);                                    // 27
+    fprintf(stream, "%s\n", m_DataPoint.windBearing);                                        // 25
+    fprintf(stream, "%s\n", m_DataPoint.timeRecordedAsText);                                 // 26
+    fprintf(stream, "%s", m_DataPoint.conditionAsString);                                    // 27
     if(m_DataPoint.cloudCover > 0) {
-        printf(" (%.0f%% cov.)\n", m_DataPoint.cloudCover);
+        fprintf(stream, " (%.0f%% cov.)\n", m_DataPoint.cloudCover);
     } else {
-        printf("\n");
+        fprintf(stream, "\n");
     }
-    printf("%s\n", cfg.timezone.c_str());                                           // 28
-    outputTemperature(m_DataPoint.temperatureMin, true);		                    // 29
-    outputTemperature(m_DataPoint.temperatureMax, true);		                    // 30
+    fprintf(stream, "%s\n", cfg.timezone.c_str());                                           // 28
+    outputTemperature(stream, m_DataPoint.temperatureMin, true);		                    // 29
+    outputTemperature(stream, m_DataPoint.temperatureMax, true);		                    // 30
     // not all APIs provide the UV index
     if(m_DataPoint.haveUVI) {
-        printf("UV: %.1f\n", m_DataPoint.uvIndex);                                  // 31
+        fprintf(stream, "UV: %.1f\n", m_DataPoint.uvIndex);                                  // 31
     } else {
-        printf(" \n");                                                              // 31
+        fprintf(stream, " \n");                                                              // 31
     }
-    printf("** end data **\n");                                          		    // 32
-    printf("%.0f (Clouds)\n", m_DataPoint.cloudCover);
-    printf("%.0f (Cloudbase)\n", m_DataPoint.cloudBase);
-    printf("%.0f (Cloudceil)\n", m_DataPoint.cloudCeiling);
-    printf("%d (Moon)\n", m_DataPoint.moonPhase);
+    fprintf(stream, "** end data **\n");                                          		    // 32
+    fprintf(stream, "%.0f (Clouds)\n", m_DataPoint.cloudCover);
+    fprintf(stream, "%.0f (Cloudbase)\n", m_DataPoint.cloudBase);
+    fprintf(stream, "%.0f (Cloudceil)\n", m_DataPoint.cloudCeiling);
+    fprintf(stream, "%d (Moon)\n", m_DataPoint.moonPhase);
 }
 
 /**
@@ -185,14 +182,14 @@ void DataHandler::doOutput()
  * @param day           the JSON data for the forecast day to process
  * param  is_daylight   whether we should use the day or night weather symbol
  */
-void DataHandler::outputDailyForecast(const bool is_day)
+void DataHandler::outputDailyForecast(FILE *stream, const bool is_day)
 
 {
     for (int i = 0; i < 3; i++) {
-        printf("%c\n", this->m_daily[i].code);
-        outputTemperature(this->m_daily[i].temperatureMin, false, "%.0f%s\n");
-        outputTemperature(this->m_daily[i].temperatureMax, false, "%.0f%s\n");
-        printf("%s\n", this->m_daily[i].weekDay);
+        fprintf(stream, "%c\n", this->m_daily[i].code);
+        outputTemperature(stream, this->m_daily[i].temperatureMin, false, "%.0f%s\n");
+        outputTemperature(stream, this->m_daily[i].temperatureMax, false, "%.0f%s\n");
+        fprintf(stream, "%s\n", this->m_daily[i].weekDay);
     }
 }
 
@@ -335,7 +332,10 @@ void DataHandler::writeToDB()
  */
 int DataHandler::run()
 {
-    if(m_options.getConfig().offline) {
+    const CFG& cfg = m_options.getConfig();
+    bool  fPathValid = true;
+
+    if(cfg.offline) {
         LOG_F(INFO, "DataHandler::run(): Attempting to read from cache (--offline option present)");
         if(!this->readFromCache()) {
             LOG_F(INFO, "run() Reading from cache failed, giving up.");
@@ -344,7 +344,7 @@ int DataHandler::run()
     } else {
         LOG_F(INFO, "DataHandler::run(): --offline not specified, attemptingn to fetch from API");
         if(this->readFromApi() == false) {
-            if(!this->m_options.getConfig().skipcache) {
+            if(!cfg.skipcache) {
                 LOG_F(INFO, "DataHandler::run(): readFromApi() failed, trying cache");
                 if(this->readFromCache() == false) {
                     LOG_F(INFO, "DataHandler::run(): BOTH readFromApi() and readFromCache() failed, giving up...");
@@ -356,9 +356,43 @@ int DataHandler::run()
             }
         }
     }
-    if(!m_options.getConfig().debug) {
+    if(!cfg.debug) {
+        fs::path filename;
         LOG_F(INFO, "run() - valid data, beginning output");
-        this->doOutput();
+        if(!cfg.silent) {
+            this->doOutput(stdout);
+        }
+        // dump to a file if --output was given
+        if(cfg.output_file.length() > 0) {
+            fs::path outfile(cfg.output_file);
+            if(outfile.is_absolute()) {
+                LOG_F(INFO, "DataHandler::run(): The output file path is an absolute path."
+                            " This is not allowed.");
+                fPathValid = false;
+            } else {
+                filename.assign(cfg.data_dir_path);
+                filename.append(cfg.output_file);
+            }
+            if(fs::is_directory(filename)) {
+                LOG_F(INFO, "DataHandler::run(): The output file path is an existing directory."
+                            " This is not allowed.");
+                fPathValid = false;
+            } else if (fPathValid){
+                FILE *f = fopen(filename.c_str(), "w");
+                if(NULL != f) {
+                    this->doOutput(f);
+                    fclose(f);
+                    LOG_F(INFO, "DataHandler::run(): Dumping to: %s,", filename.c_str());
+                } else {
+                    LOG_F(INFO, "DataHandler::run(): Unable to open the specified dump file (%s)."
+                                " No data was written.",
+                          filename.c_str());
+                }
+            } else {
+                LOG_F(INFO, "DataHandler::run(): The output file was not properly specified."
+                            " No data dump was written.");
+            }
+        }
         return 0;
     } else {
         LOG_F(INFO, "run() - valid data, debug mode, no output genereated");

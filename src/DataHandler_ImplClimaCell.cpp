@@ -309,7 +309,6 @@ void DataHandler_ImplClimaCell::populateSnapshot()
     p.cloudBase = d["cloudBase"].is_number() ? d["cloudBase"].get<double>() : 0;
     p.cloudCeiling = d["cloudCeiling"].is_number() ? d["cloudCeiling"].get<double>() : 0;
 
-
     p.moonPhase = this->result_forecast["data"]["timelines"][0]["intervals"][0]["values"]["moonPhase"].is_number() ?
       this->result_forecast["data"]["timelines"][0]["intervals"][0]["values"]["moonPhase"].get<int>() : 0;
 

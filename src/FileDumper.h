@@ -20,41 +20,20 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
- * precompiled headers are produced from this file.
  */
 
+#ifndef FETCHWEATHER_SRC_FILEDUMPER_H_
+#define FETCHWEATHER_SRC_FILEDUMPER_H_
 
-#ifndef __PCH_H_
-#define __PCH_H_
+class FileDumper {
+  public:
+    FileDumper(DataPoint& p);
 
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <memory>
-#include <filesystem>
-#include <chrono>
-#include <ctime>
-#include <glib-2.0/glib-unix.h>
-#include <sqlite3.h>
-#include <curl/curl.h>
-#include "CLI/App.hpp"
-#include "CLI/Formatter.hpp"
-#include "CLI/Config.hpp"
-#include "nlohmann/json.hpp"
-#include "loguru/loguru.hpp"
-#include <QCommandLineParser>
-#include <QtCore>
-#include <QObject>
-#include "conf.h"
-#include "options.h"
-#include "DataHandler.h"
-#include "DataHandler_ImplClimaCell.h"
-#include "DataHandler_ImplOWM.h"
-#include "FetchWeatherApp.h"
-#include "FileDumper.h"
+    void        dump();
 
-namespace fs = std::filesystem;
-using namespace nlohmann;
+  private:
+    DataPoint& m_dataPoint;
+    ProgramOptions& m_Options;
+};
 
-#endif //__PCH_H_
+#endif //FETCHWEATHER_SRC_FILEDUMPER_H_

@@ -72,7 +72,7 @@ class DataHandler {
     DataHandler();
     ~DataHandler() { writeToDB(); }
 
-    void doOutput();
+    void doOutput(FILE *stream);
     void dumpSnapshot();
     int  run();
     std::pair<std::string, std::string> degToBearing        (unsigned int wind_direction) const;
@@ -82,9 +82,9 @@ class DataHandler {
     double                              convertPressure     (double hPa) const;
     const DataPoint&                    getDataPoint        () const { return m_DataPoint; }
 
-    void outputTemperature  (double val, const bool addUnit = false,
+    void outputTemperature  (FILE *stream, double val, const bool addUnit = false,
                              const char *format = "%.1f%s\n");
-    void outputDailyForecast(const bool is_day = true);
+    void outputDailyForecast(FILE *stream, const bool is_day = true);
 
     static constexpr const char *wind_directions[] =
       {"N", "NNE", "NE",

@@ -60,7 +60,7 @@ void FetchWeatherApp::run()
         LOG_F(INFO, "main(): The options --offline and --skipcache cannot be used together");
         this->m_app->exit(-1);
     }
-    if(cfg.silent && cfg.output_dir.length() == 0) {
+    if(cfg.silent && cfg.output_file.length() == 0) {
         /* --silent without a filename for dumping the output does not make sense
          * either
          */

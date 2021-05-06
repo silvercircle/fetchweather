@@ -39,11 +39,16 @@ typedef struct _cfg {
     std::string vis_unit;
     std::string speed_unit;
     std::string pressure_unit;
-    std::string output_dir;
+    std::string output_file;
     std::string location;
     std::string lat, lon;
     std::string timezone;
-    bool offline, nocache, skipcache, silent, debug;
+    bool offline;       // use cache, do not go online
+    bool nocache;       // do not refresh cache
+    bool skipcache;     // do not use cache
+    bool silent;        // don't write to stdout
+    bool debug;         // print debugging information, do not produce any output
+    bool dumptofile;    // also write result to file, note that output_dir must be set and valid.
     int  forecastDays = 3;
 } CFG;
 

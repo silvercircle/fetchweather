@@ -20,41 +20,15 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
- * precompiled headers are produced from this file.
  */
 
+FileDumper::FileDumper(DataPoint& p) : m_dataPoint(p),
+    m_Options(ProgramOptions::getInstance())
+{
+    const CFG& opt = m_Options.getConfig();
+}
 
-#ifndef __PCH_H_
-#define __PCH_H_
+void FileDumper::dump()
+{
 
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <memory>
-#include <filesystem>
-#include <chrono>
-#include <ctime>
-#include <glib-2.0/glib-unix.h>
-#include <sqlite3.h>
-#include <curl/curl.h>
-#include "CLI/App.hpp"
-#include "CLI/Formatter.hpp"
-#include "CLI/Config.hpp"
-#include "nlohmann/json.hpp"
-#include "loguru/loguru.hpp"
-#include <QCommandLineParser>
-#include <QtCore>
-#include <QObject>
-#include "conf.h"
-#include "options.h"
-#include "DataHandler.h"
-#include "DataHandler_ImplClimaCell.h"
-#include "DataHandler_ImplOWM.h"
-#include "FetchWeatherApp.h"
-#include "FileDumper.h"
-
-namespace fs = std::filesystem;
-using namespace nlohmann;
-
-#endif //__PCH_H_
+}

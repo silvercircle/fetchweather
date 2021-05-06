@@ -30,9 +30,10 @@ ProgramOptions::ProgramOptions() :
      .apiProvider = 0, .temp_unit = 'C', .temp_unit_raw = "C",
      .config_dir_path = "", .apikeyFile = "", .apikey = "", .apiProviderString = "",
      .vis_unit = "km", .speed_unit = "km/h", .pressure_unit = "hPa",
-     .output_dir = "", .location="", .timezone="Europe/Vienna",
+     .output_file = "", .location="", .timezone="Europe/Vienna",
      .offline = false, .nocache = false, .skipcache = false,
-     .silent = false, .debug = false, .forecastDays = 3
+     .silent = false, .debug = false, .dumptofile = false,
+     .forecastDays = 3
     },
     m_Parser{}
 {
@@ -80,8 +81,8 @@ void ProgramOptions::_init()
                           "Set the longitude part of the location for API providers who need separate\n"
                           "latitude and longitude parameters. Format example: --lon=16.1222795");
     m_oCommand.add_option("--tz", this->m_config.timezone, "Set the time zone, e.g. Europe/Berlin");
-    m_oCommand.add_option("--ouput,-o", this->m_config.output_dir,
-                          "Also write result to this file.");
+    m_oCommand.add_option("--output,-o", this->m_config.output_file,
+                          "Also write result to this file. Does not imply --silent.");
 
     m_oCommand.add_option("--tempUnit", this->m_config.temp_unit_raw,
                           "Unit to output the temperature: C or F, default is C.");
