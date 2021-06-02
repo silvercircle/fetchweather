@@ -27,13 +27,14 @@
 
 class FileDumper {
   public:
-    FileDumper(DataPoint& p);
+    FileDumper(DataHandler* p);
 
     void        dump();
 
   private:
-    DataPoint& m_dataPoint;
-    ProgramOptions& m_Options;
+    const DataPoint&    m_dataPoint;
+    ProgramOptions&     m_Options;
+    DataHandler*        m_Handler;
 };
 
 #endif //FETCHWEATHER_SRC_FILEDUMPER_H_

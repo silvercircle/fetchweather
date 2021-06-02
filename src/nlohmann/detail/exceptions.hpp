@@ -47,11 +47,6 @@ class exception : public std::exception
 {
   public:
     /// returns the explanatory string
-    JSON_HEDLEY_RETURNS_NON_NULL
-    const char* what() const noexcept override
-    {
-        return m.what();
-    }
 
     /// the id of the exception
     const int id;

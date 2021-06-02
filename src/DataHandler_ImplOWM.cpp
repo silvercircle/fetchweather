@@ -27,9 +27,6 @@
 #include <time.h>
 #include <utils.h>
 
-DataHandler_ImplOWM::DataHandler_ImplOWM() : DataHandler()
-{
-}
 
 /**
  * get the charcter code for the current condition.

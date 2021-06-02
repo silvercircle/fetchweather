@@ -22,13 +22,45 @@
  * SOFTWARE.
  */
 
-FileDumper::FileDumper(DataPoint& p) : m_dataPoint(p),
+FileDumper::FileDumper(DataHandler* h) : m_dataPoint(h->getDataPoint()),
+    m_Handler(h),
     m_Options(ProgramOptions::getInstance())
 {
-    const CFG& opt = m_Options.getConfig();
+
 }
 
 void FileDumper::dump()
 {
+    const CFG& cfg = m_Options.getConfig();
+    bool  fPathValid = true;
+    fs::path filename;
 
+    fs::path outfile(cfg.output_file);
+    if(outfile.is_absolute()) {
+        LOG_F(INFO, "DataHandler::run(): The output file path is an absolute path."
+                    " This is not allowed.");
+        fPathValid = false;
+    } else {
+        filename.assign(cfg.data_dir_path);
+        filename.append(cfg.output_file);
+    }
+    if(fs::is_directory(filename)) {
+        LOG_F(INFO, "DataHandler::run(): The output file path is an existing directory."
+                    " This is not allowed.");
+        fPathValid = false;
+    } else if (fPathValid){
+        FILE *f = fopen(filename.c_str(), "w");
+        if(NULL != f) {
+            m_Handler->doOutput(f);
+            fclose(f);
+            LOG_F(INFO, "DataHandler::run(): Dumping to: %s,", filename.c_str());
+        } else {
+            LOG_F(INFO, "DataHandler::run(): Unable to open the specified dump file (%s)."
+                        " No data was written.",
+                  filename.c_str());
+        }
+    } else {
+        LOG_F(INFO, "DataHandler::run(): The output file was not properly specified."
+                    " No data dump was written.");
+    }
 }

@@ -333,7 +333,6 @@ void DataHandler::writeToDB()
 int DataHandler::run()
 {
     const CFG& cfg = m_options.getConfig();
-    bool  fPathValid = true;
 
     if(cfg.offline) {
         LOG_F(INFO, "DataHandler::run(): Attempting to read from cache (--offline option present)");
@@ -357,41 +356,14 @@ int DataHandler::run()
         }
     }
     if(!cfg.debug) {
-        fs::path filename;
         LOG_F(INFO, "run() - valid data, beginning output");
         if(!cfg.silent) {
             this->doOutput(stdout);
         }
         // dump to a file if --output was given
         if(cfg.output_file.length() > 0) {
-            fs::path outfile(cfg.output_file);
-            if(outfile.is_absolute()) {
-                LOG_F(INFO, "DataHandler::run(): The output file path is an absolute path."
-                            " This is not allowed.");
-                fPathValid = false;
-            } else {
-                filename.assign(cfg.data_dir_path);
-                filename.append(cfg.output_file);
-            }
-            if(fs::is_directory(filename)) {
-                LOG_F(INFO, "DataHandler::run(): The output file path is an existing directory."
-                            " This is not allowed.");
-                fPathValid = false;
-            } else if (fPathValid){
-                FILE *f = fopen(filename.c_str(), "w");
-                if(NULL != f) {
-                    this->doOutput(f);
-                    fclose(f);
-                    LOG_F(INFO, "DataHandler::run(): Dumping to: %s,", filename.c_str());
-                } else {
-                    LOG_F(INFO, "DataHandler::run(): Unable to open the specified dump file (%s)."
-                                " No data was written.",
-                          filename.c_str());
-                }
-            } else {
-                LOG_F(INFO, "DataHandler::run(): The output file was not properly specified."
-                            " No data dump was written.");
-            }
+            FileDumper dumper(this);
+            dumper.dump();
         }
         return 0;
     } else {

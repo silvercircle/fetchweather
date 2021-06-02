@@ -27,7 +27,7 @@
 
 class DataHandler_ImplOWM : public DataHandler {
   public:
-    DataHandler_ImplOWM();
+    DataHandler_ImplOWM() : DataHandler() { }
 
     virtual bool    readFromCache();
     virtual bool    readFromApi();
