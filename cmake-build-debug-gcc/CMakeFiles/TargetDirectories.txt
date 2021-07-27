@@ -1,3 +1,0 @@
-/mnt/shared/data/code/fetchweather/cmake-build-debug-gcc/CMakeFiles/rebuild_cache.dir
-/mnt/shared/data/code/fetchweather/cmake-build-debug-gcc/CMakeFiles/edit_cache.dir
-/mnt/shared/data/code/fetchweather/cmake-build-debug-gcc/CMakeFiles/fetchweather.dir

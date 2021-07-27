@@ -1,4 +1,0 @@
-/home/opt/clion2021/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/clang-12 -DCMAKE_CXX_COMPILER=/usr/bin/clang++-12 -G "CodeBlocks - Unix Makefiles" /mnt/shared/data/code/fetchweather
--- Configuring done
--- Generating done
--- Build files have been written to: /mnt/shared/data/code/fetchweather/cmake-build-debug-clang
