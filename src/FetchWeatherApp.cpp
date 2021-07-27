@@ -44,7 +44,7 @@ void FetchWeatherApp::run()
     if (1 == result) {
         // --version or -V parameter was given. Print version information and exit.
         opt.print_version();
-        this->m_app->exit(0);
+        this->m_app->exit(0);        
     }
 
     if(cfg.debug) {

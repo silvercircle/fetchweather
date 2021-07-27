@@ -1,0 +1,4 @@
+/mnt/shared/data/code/fetchweather/build/CMakeFiles/rebuild_cache.dir
+/mnt/shared/data/code/fetchweather/build/CMakeFiles/edit_cache.dir
+/mnt/shared/data/code/fetchweather/build/CMakeFiles/fetchweather.dir
+/mnt/shared/data/code/fetchweather/build/CMakeFiles/fetchweather_autogen.dir

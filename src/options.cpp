@@ -284,7 +284,7 @@ void ProgramOptions::print_version()
     std::cout << "This is fetchweather version " << ProgramOptions::_version_number << std::endl;
     std::cout << "(C) 2021 by Alex Vie <silvercircle at gmail dot com>" << std::endl << std::endl;
     std::cout << "This software is free software governed by the MIT License." << std::endl;
-    std::cout << "Please visit https://github.com/silvercircle/myconkysetup/tree/master/cpp" << std::endl;
+    std::cout << "Please visit https://github.com/silvercircle/fetchweather" << std::endl;
     std::cout << "for more information about this software and copyright information." << std::endl;
 }
 

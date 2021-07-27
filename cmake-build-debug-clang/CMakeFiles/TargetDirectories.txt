@@ -1,0 +1,4 @@
+/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/CMakeFiles/rebuild_cache.dir
+/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/CMakeFiles/edit_cache.dir
+/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/CMakeFiles/fetchweather.dir
+/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/CMakeFiles/fetchweather_autogen.dir

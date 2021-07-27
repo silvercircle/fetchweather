@@ -125,7 +125,6 @@ bool DataHandler_ImplClimaCell::readFromApi()
     const CFG& cfg = m_options.getConfig();
     bool fSuccess_current = true;
     bool fSuccess_forecast = true;
-
     std::string baseurl("https://data.climacell.co/v4/timelines?&apikey=");
     baseurl.append(cfg.apikey);
     baseurl.append("&location=");

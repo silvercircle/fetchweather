@@ -104,6 +104,9 @@ double DataHandler::convertPressure(double hPa) const
 /**
  * Output a single temperature value.
  *
+ *
+ *
+ *
  * @param val       temperature always in metric (Celsius)
  * @param addUnit   add the Unit (°C or °F)
  * @param format    use this format for output. See .h for defaults.

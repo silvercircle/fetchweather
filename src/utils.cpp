@@ -123,4 +123,4 @@ namespace utils {
 
       return result;
   }
-}
+} // namespace utils

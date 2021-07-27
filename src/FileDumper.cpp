@@ -22,19 +22,17 @@
  * SOFTWARE.
  */
 
-FileDumper::FileDumper(DataHandler* h) : m_dataPoint(h->getDataPoint()),
+FileDumper::FileDumper(DataHandler* h) :
+    m_dataPoint(h->getDataPoint()),
     m_Handler(h),
     m_Options(ProgramOptions::getInstance())
-{
-
-}
+{ }
 
 void FileDumper::dump()
 {
     const CFG& cfg = m_Options.getConfig();
     bool  fPathValid = true;
     fs::path filename;
-
     fs::path outfile(cfg.output_file);
     if(outfile.is_absolute()) {
         LOG_F(INFO, "DataHandler::run(): The output file path is an absolute path."

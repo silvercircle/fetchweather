@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="fetchweather"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\usr\;CMake Files\..\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\;CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="fetchweather">
+				<Option output="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/fetchweather" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/fetchweather_autogen/include"/>
+					<Add directory="/usr/include/glib-2.0"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/glib-2.0/include"/>
+					<Add directory="/mnt/shared/data/code/fetchweather/src"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtCore"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/backward"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/llvm-12/lib/clang/12.0.0/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 fetchweather"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="fetchweather/fast">
+				<Option output="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/fetchweather" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add directory="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/fetchweather_autogen/include"/>
+					<Add directory="/usr/include/glib-2.0"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/glib-2.0/include"/>
+					<Add directory="/mnt/shared/data/code/fetchweather/src"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/qt5/QtCore"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/x86_64-linux-gnu/c++/10"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/10/../../../../include/c++/10/backward"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/llvm-12/lib/clang/12.0.0/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 fetchweather/fast"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="fetchweather_autogen">
+				<Option working_dir="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 fetchweather_autogen"/>
+					<CompileFile command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j3 -f &quot;/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/CMakeFiles/fetchweather.dir/cmake_pch.hxx">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/CMakeFiles/fetchweather.dir/cmake_pch.hxx.cxx">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/cmake-build-debug-clang/fetchweather_autogen/mocs_compilation.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/DataHandler.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/DataHandler.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/DataHandler_ImplOWM.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/DataHandler_ImplOWM.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/DataHandler_ImplVC.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/DataHandler_ImplVC.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/FetchWeatherApp.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/FetchWeatherApp.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/FileDumper.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/FileDumper.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/conf.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/loguru/loguru.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/loguru/loguru.hpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/main.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/options.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/options.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/pch.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/utils.cpp">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/src/utils.h">
+			<Option target="fetchweather"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/../../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/../../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/../../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/../../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/mnt/shared/data/code/fetchweather/../../../../../usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\usr\lib\x86_64-linux-gnu\cmake\Qt5Core\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -68,7 +68,7 @@ class ProgramOptions {
     void dumpOptions();
     void flush();
     void print_version();
-
+    QString q;
     void setAppObject(QCoreApplication *the_app) { this->m_app = the_app; }
 
     const CFG &getConfig()

@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include/x86_64-linux-gnu/qt5/**"
+            ],
+            "forcedInclude": [
+                "${workspaceFolder}/src/pch.h"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang-12",
+            "intelliSenseMode": "linux-clang-x64",
+            "cppStandard": "c++20",
+            "cStandard": "c11",
+            "browse": {
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+            }
+        }
+    ],
+    "version": 4
+}

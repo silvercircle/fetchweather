@@ -44,6 +44,7 @@ class DataHandler_ImplClimaCell : public DataHandler {
   private:
     std::map<int, const char *>     m_conditions;
     std::map<int, const char *>     m_icons;
+
 };
 
 #endif //__DATAHANDLER_IMPL_CLIMACELL_H_

@@ -1,0 +1,231 @@
+{
+	"BUILD_DIR" : "/mnt/shared/data/code/fetchweather/build/fetchweather_autogen",
+	"CMAKE_BINARY_DIR" : "/mnt/shared/data/code/fetchweather/build",
+	"CMAKE_CURRENT_BINARY_DIR" : "/mnt/shared/data/code/fetchweather/build",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/mnt/shared/data/code/fetchweather",
+	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
+	"CMAKE_LIST_FILES" : 
+	[
+		"/mnt/shared/data/code/fetchweather/CMakeLists.txt",
+		"/mnt/shared/data/code/fetchweather/build/CMakeFiles/3.21.0/CMakeSystem.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake",
+		"/mnt/shared/data/code/fetchweather/build/CMakeFiles/3.21.0/CMakeCCompiler.cmake",
+		"/mnt/shared/data/code/fetchweather/build/CMakeFiles/3.21.0/CMakeCXXCompiler.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeGenericSystem.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake",
+		"/usr/share/cmake-3.21/Modules/Platform/Linux.cmake",
+		"/usr/share/cmake-3.21/Modules/Platform/UnixPaths.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeCInformation.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake",
+		"/usr/share/cmake-3.21/Modules/Compiler/Clang-C.cmake",
+		"/usr/share/cmake-3.21/Modules/Compiler/Clang.cmake",
+		"/usr/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
+		"/usr/share/cmake-3.21/Modules/Compiler/GNU.cmake",
+		"/usr/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
+		"/usr/share/cmake-3.21/Modules/Platform/Linux-Clang-C.cmake",
+		"/usr/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake",
+		"/usr/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeCXXInformation.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake",
+		"/usr/share/cmake-3.21/Modules/Compiler/Clang-CXX.cmake",
+		"/usr/share/cmake-3.21/Modules/Compiler/Clang.cmake",
+		"/usr/share/cmake-3.21/Modules/Platform/Linux-Clang-CXX.cmake",
+		"/usr/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake",
+		"/usr/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPkgConfig.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageMessage.cmake",
+		"/usr/share/cmake-3.21/Modules/FindSQLite3.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageMessage.cmake",
+		"/usr/share/cmake-3.21/Modules/FindThreads.cmake",
+		"/usr/share/cmake-3.21/Modules/CheckLibraryExists.cmake",
+		"/usr/share/cmake-3.21/Modules/CheckIncludeFile.cmake",
+		"/usr/share/cmake-3.21/Modules/CheckCSourceCompiles.cmake",
+		"/usr/share/cmake-3.21/Modules/Internal/CheckSourceCompiles.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageMessage.cmake",
+		"/usr/share/cmake-3.21/Modules/FindCURL.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageMessage.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPkgConfig.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake",
+		"/usr/share/cmake-3.21/Modules/FindPackageMessage.cmake",
+		"/usr/share/cmake-3.21/Modules/SelectLibraryConfigurations.cmake",
+		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake",
+		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake",
+		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake",
+		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake",
+		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreMacros.cmake",
+		"/usr/share/cmake-3.21/Modules/CMakeParseArguments.cmake"
+	],
+	"CMAKE_SOURCE_DIR" : "/mnt/shared/data/code/fetchweather",
+	"DEP_FILE" : "",
+	"DEP_FILE_RULE_NAME" : "",
+	"HEADERS" : 
+	[
+		[
+			"/mnt/shared/data/code/fetchweather/build/CMakeFiles/fetchweather.dir/cmake_pch.hxx",
+			"Mu",
+			"4YSZAUS4GY/moc_cmake_pch.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/DataHandler.h",
+			"Mu",
+			"UVLADIE3JM/moc_DataHandler.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.h",
+			"Mu",
+			"UVLADIE3JM/moc_DataHandler_ImplClimaCell.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplOWM.h",
+			"Mu",
+			"UVLADIE3JM/moc_DataHandler_ImplOWM.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplVC.h",
+			"Mu",
+			"UVLADIE3JM/moc_DataHandler_ImplVC.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/FetchWeatherApp.h",
+			"Mu",
+			"UVLADIE3JM/moc_FetchWeatherApp.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/FileDumper.h",
+			"Mu",
+			"UVLADIE3JM/moc_FileDumper.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/conf.h",
+			"Mu",
+			"UVLADIE3JM/moc_conf.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/loguru/loguru.hpp",
+			"Mu",
+			"N4DUKPSYDW/moc_loguru.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/options.h",
+			"Mu",
+			"UVLADIE3JM/moc_options.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/pch.h",
+			"Mu",
+			"UVLADIE3JM/moc_pch.cpp",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/utils.h",
+			"Mu",
+			"UVLADIE3JM/moc_utils.cpp",
+			null
+		]
+	],
+	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
+	"INCLUDE_DIR" : "/mnt/shared/data/code/fetchweather/build/fetchweather_autogen/include",
+	"MOC_COMPILATION_FILE" : "/mnt/shared/data/code/fetchweather/build/fetchweather_autogen/mocs_compilation.cpp",
+	"MOC_DEFINITIONS" : [ "QT_CORE_LIB" ],
+	"MOC_DEPEND_FILTERS" : 
+	[
+		[
+			"Q_PLUGIN_METADATA",
+			"[\n][ \t]*Q_PLUGIN_METADATA[ \t]*\\([^\\)]*FILE[ \t]*\"([^\"]+)\""
+		]
+	],
+	"MOC_INCLUDES" : 
+	[
+		"/usr/include/glib-2.0",
+		"/usr/lib/x86_64-linux-gnu/glib-2.0/include",
+		"/mnt/shared/data/code/fetchweather/src",
+		"/usr/include/x86_64-linux-gnu/qt5",
+		"/usr/include/x86_64-linux-gnu/qt5/QtCore",
+		"/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++",
+		"/usr/include",
+		"/usr/include/x86_64-linux-gnu",
+		"/include/c++/10",
+		"/include/x86_64-linux-gnu/c++/10",
+		"/include/c++/10/backward",
+		"/usr/local/include",
+		"/usr/lib/llvm-12/lib/clang/12.0.1/include"
+	],
+	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE", "Q_NAMESPACE_EXPORT" ],
+	"MOC_OPTIONS" : [],
+	"MOC_PATH_PREFIX" : false,
+	"MOC_PREDEFS_CMD" : 
+	[
+		"/bin/clang++-12",
+		"-dM",
+		"-E",
+		"-c",
+		"/usr/share/cmake-3.21/Modules/CMakeCXXCompilerABI.cpp"
+	],
+	"MOC_PREDEFS_FILE" : "/mnt/shared/data/code/fetchweather/build/fetchweather_autogen/moc_predefs.h",
+	"MOC_RELAXED_MODE" : false,
+	"MOC_SKIP" : [],
+	"MULTI_CONFIG" : false,
+	"PARALLEL" : 3,
+	"PARSE_CACHE_FILE" : "/mnt/shared/data/code/fetchweather/build/CMakeFiles/fetchweather_autogen.dir/ParseCache.txt",
+	"QT_MOC_EXECUTABLE" : "/usr/lib/qt5/bin/moc",
+	"QT_UIC_EXECUTABLE" : "",
+	"QT_VERSION_MAJOR" : 5,
+	"QT_VERSION_MINOR" : 12,
+	"SETTINGS_FILE" : "/mnt/shared/data/code/fetchweather/build/CMakeFiles/fetchweather_autogen.dir/AutogenUsed.txt",
+	"SOURCES" : 
+	[
+		[
+			"/mnt/shared/data/code/fetchweather/build/CMakeFiles/fetchweather.dir/cmake_pch.hxx.cxx",
+			"Mu",
+			null
+		],
+		[ "/mnt/shared/data/code/fetchweather/src/DataHandler.cpp", "Mu", null ],
+		[
+			"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.cpp",
+			"Mu",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplOWM.cpp",
+			"Mu",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplVC.cpp",
+			"Mu",
+			null
+		],
+		[
+			"/mnt/shared/data/code/fetchweather/src/FetchWeatherApp.cpp",
+			"Mu",
+			null
+		],
+		[ "/mnt/shared/data/code/fetchweather/src/FileDumper.cpp", "Mu", null ],
+		[
+			"/mnt/shared/data/code/fetchweather/src/loguru/loguru.cpp",
+			"Mu",
+			null
+		],
+		[ "/mnt/shared/data/code/fetchweather/src/main.cpp", "Mu", null ],
+		[ "/mnt/shared/data/code/fetchweather/src/options.cpp", "Mu", null ],
+		[ "/mnt/shared/data/code/fetchweather/src/utils.cpp", "Mu", null ]
+	],
+	"VERBOSITY" : 0
+}
