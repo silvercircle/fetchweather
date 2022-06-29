@@ -24,16 +24,16 @@
 
 int main(int argc, char **argv)
 {
+    QString foo;
     QCoreApplication a(argc, argv);
     a.setApplicationName("fetchweather");
-    a.setApplicationVersion("0.1");
+    a.setApplicationVersion("0.2");
 
     ProgramOptions& opt = ProgramOptions::getInstance();
     opt.setAppObject(&a);
-
     FetchWeatherApp w(&a, argc, argv);
-
     QObject::connect(&w, &FetchWeatherApp::finished, &a, &QCoreApplication::quit);
     QTimer::singleShot(0, &w, SLOT(run()));
+
     return a.exec();
 }

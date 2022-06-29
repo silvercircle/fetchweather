@@ -23,6 +23,8 @@
 cmake_minimum_required(VERSION 3.17)
 option(USE_CLANG "build application with clang" ON)
 project(fetchweather LANGUAGES C CXX)
+set(CMAKE_C_COMPILER clang-14)
+set(CMAKE_CXX_COMPILER clang-14)
 
 set(CMAKE_CXX_STANDARD 17)
 set(JSON_BuildTests OFF CACHE INTERNAL "")
@@ -34,7 +36,8 @@ find_package(PkgConfig REQUIRED)
 find_package(SQLite3 REQUIRED)
 find_package(Threads REQUIRED)
 find_package(CURL REQUIRED)
-find_package(Qt5Core)
+find_package(Qt5 COMPONENTS Core REQUIRED)
+
 pkg_check_modules (GLIB2 REQUIRED glib-2.0)
 
 
@@ -51,7 +54,7 @@ add_executable(${PROJECT_NAME} src/pch.h src/loguru/loguru.cpp src/main.cpp
         src/conf.h src/options.h src/options.cpp src/DataHandler_ImplClimaCell.cpp src/DataHandler_ImplClimaCell.h src/utils.cpp src/utils.h src/DataHandler.cpp src/DataHandler.h src/DataHandler_ImplOWM.cpp src/DataHandler_ImplOWM.h src/DataHandler_ImplVC.cpp src/DataHandler_ImplVC.h src/FetchWeatherApp.h src/FetchWeatherApp.cpp src/FileDumper.cpp src/FileDumper.h)
 
 target_precompile_headers(${PROJECT_NAME} PRIVATE src/pch.h)
-target_link_libraries(${PROJECT_NAME} -ldl ${GLIB2_LIBRARIES} ${SQLite3_LIBRARIES} ${CURL_LIBRARIES} Qt5::Core)
+target_link_libraries(${PROJECT_NAME} -ldl -lstdc++ ${GLIB2_LIBRARIES} ${SQLite3_LIBRARIES} ${CURL_LIBRARIES} Qt5::Core)
 
 if(THREADS_HAVE_PTHREAD_ARG)
     target_compile_options(${PROJECT_NAME} PUBLIC "-pthread")

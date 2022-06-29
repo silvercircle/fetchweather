@@ -38,13 +38,15 @@ void FetchWeatherApp::run()
     LOG_F(INFO, "main(): The result from ProgramOptions::parse() was: %d", result);
     // catch the help
     if (0 == result) {
-        this->m_app->exit(result);
+        exit(0);
+        //this->m_app->exit(result);
     }
 
     if (1 == result) {
         // --version or -V parameter was given. Print version information and exit.
         opt.print_version();
-        this->m_app->exit(0);        
+        exit(0);
+        //this->m_app->exit(0);
     }
 
     if(cfg.debug) {

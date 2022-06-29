@@ -32,6 +32,7 @@ void FileDumper::dump()
 {
     const CFG& cfg = m_Options.getConfig();
     bool  fPathValid = true;
+
     fs::path filename;
     fs::path outfile(cfg.output_file);
     if(outfile.is_absolute()) {

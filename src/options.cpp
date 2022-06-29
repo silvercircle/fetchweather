@@ -119,7 +119,12 @@ int ProgramOptions::parse(int argc, char **argv)
 {
     char msg[256];
 
-    CLI11_PARSE(this->m_oCommand, argc, argv);
+    try {
+        this->m_oCommand.parse(argc, argv);
+        //CLI11_PARSE(this->m_oCommand, argc, argv);
+    } catch(CLI::ParseError &p) {
+        return(0);
+    }
 
     const gchar *datadir = g_get_user_data_dir();
     const gchar *homedir = g_get_home_dir();
@@ -131,7 +136,7 @@ int ProgramOptions::parse(int argc, char **argv)
         for(const auto& it : ProgramOptions::api_shortcodes) {
             if(this->m_config.apiProviderString == it) {
                 found = true;
-                m_config.apiProvider = pIndex;
+                this->m_config.apiProvider = pIndex;
                 break;
             }
             pIndex++;
@@ -142,7 +147,7 @@ int ProgramOptions::parse(int argc, char **argv)
             m_config.apiProvider = 0;
         }
     } else {
-        m_config.apiProviderString.assign("CC");
+        this->m_config.apiProviderString.assign("CC");
         LOG_F(INFO, "ProgramOptions::parse(): API Provider set to default (CC)");
         m_config.apiProvider = 0;
     }
@@ -276,6 +281,11 @@ int ProgramOptions::parse(int argc, char **argv)
             LOG_F(INFO, "%s", msg);
         }
     }
+    if(this->m_oCommand.get_option("--help")->count()) {
+        printf("help was requested from CLI");
+        return 0;
+    }
+
     return this->m_oCommand.get_option("--version")->count() ? 1 : 2;
 }
 
@@ -294,6 +304,7 @@ void ProgramOptions::print_version()
  */
 void ProgramOptions::dumpOptions()
 {
+
     printf("*** DEBUG / DRY RUN output ***\n");
     printf("This is fetchweather version %s\n\n", ProgramOptions::_version_number.c_str());
     printf("* Configuration: *\n");

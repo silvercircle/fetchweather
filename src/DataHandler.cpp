@@ -43,7 +43,6 @@ DataHandler::DataHandler() : m_options{ProgramOptions::getInstance()},
     LOG_F(INFO, "Current Cache: %s", this->m_currentCache.c_str());
     LOG_F(INFO, "Forecast Cache: %s", this->m_ForecastCache.c_str());
 }
-
 /**
  * convert a wind bearing in degrees into a human-readable form (i.e. "SW" for
  * a south-westerly wind).
@@ -71,8 +70,9 @@ std::pair<double, char> DataHandler::convertTemperature(double temp, char unit) 
 {
     double converted_temp = temp;
     unit = (unit == 'C' || unit == 'F') ? unit : 'C';
-    if (unit == 'F')
+    if (unit == 'F') {
         converted_temp = (temp * (9.0 / 5.0)) + 32.0;
+    }
 
     return std::pair<double, char>(converted_temp, unit);
 }
@@ -104,9 +104,6 @@ double DataHandler::convertPressure(double hPa) const
 /**
  * Output a single temperature value.
  *
- *
- *
- *
  * @param val       temperature always in metric (Celsius)
  * @param addUnit   add the Unit (°C or °F)
  * @param format    use this format for output. See .h for defaults.
@@ -123,8 +120,16 @@ void DataHandler::outputTemperature(FILE *stream, double val, const bool addUnit
     fprintf(stream, "%.1f%s\n", result, addUnit ? unit : "");
 }
 
+/**
+ * @brief DataHandler::doOutput - generate output
+ * @param stream: target stream for the ouput
+ *
+ * This generates all the output - it can either print to the console
+ * or to a given FILE.
+ */
 void DataHandler::doOutput(FILE* stream)
 {
+
     const CFG& cfg = this->m_options.getConfig();
 
     fprintf(stream, "** Begin output **\n");
@@ -209,7 +214,6 @@ void DataHandler::dumpSnapshot()
 
 /**
  * Write the database entry, unless database recording is disabled
- *
  * @author alex (25.02.21)
  */
 void DataHandler::writeToDB()
@@ -314,10 +318,10 @@ void DataHandler::writeToDB()
         rc = sqlite3_step(stmt);
         if(SQLITE_OK == rc) {
             LOG_F(INFO, "DataHandler::writeToDB(): sqlite3_step() succeeded. Insert done.");
-            rc = sqlite3_finalize(stmt);
+            sqlite3_finalize(stmt);
         } else {
             LOG_F(INFO, "DataHandler::writeToDB(): sqlite3_step error: %s", sqlite3_errmsg(the_db));
-            rc = sqlite3_finalize(stmt);
+            sqlite3_finalize(stmt);
         }
 
     }

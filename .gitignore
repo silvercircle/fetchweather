@@ -1,5 +1,5 @@
-.vscode/browse.vc.db-wal
-.vscode/browse.vc.db
-.vscode/browse.vc.db-shm
+.vscode/browse*
 build/
 cmake-build-*/
+compile_commands.json
+.cache/

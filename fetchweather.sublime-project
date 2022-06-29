@@ -1,0 +1,18 @@
+{
+	"settings": {
+		"draw_white_space": ["trailing"]
+	},
+	"folders":
+	[	
+		{
+			"folder_exclude_patterns": [
+				"build",
+				"cmake-build*",
+				".vscode",
+				".cache",
+				".idea"
+			],
+			"path": "."
+		}
+	]
+}

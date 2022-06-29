@@ -23,10 +23,8 @@
  *
  * The implementation for the OpenWeatherMap API.
  */
-
 #include <time.h>
 #include <utils.h>
-
 
 /**
  * get the charcter code for the current condition.
@@ -95,7 +93,6 @@ char DataHandler_ImplOWM::getCode(const int weatherCode, const bool daylight)
                 return daylight ? 'c' : 'C';
         }
     }
-
     return 'a';
 }
 
@@ -108,6 +105,7 @@ char DataHandler_ImplOWM::getCode(const int weatherCode, const bool daylight)
 bool DataHandler_ImplOWM::readFromApi()
 {
     const CFG& cfg = m_options.getConfig();
+    // TODO: this needs to be an option for it might be subject to change.
     std::string baseurl("http://api.openweathermap.org/data/2.5/onecall?appid=");
     baseurl.append(cfg.apikey);
     baseurl.append("&lat=").append(cfg.lat).append("&lon=").append(cfg.lon);
@@ -163,6 +161,10 @@ bool DataHandler_ImplOWM::readFromCache()
     }
 }
 
+/**
+ * this populates our common datastructures representing a
+ * single weather snapshot, possibly including a daily forecast
+ */
 void DataHandler_ImplOWM::populateSnapshot()
 {
     nlohmann::json& d = this->result_current["current"];

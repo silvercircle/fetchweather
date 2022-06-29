@@ -3,20 +3,12 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**",
-                "/usr/include/x86_64-linux-gnu/qt5/**"
-            ],
-            "forcedInclude": [
-                "${workspaceFolder}/src/pch.h"
+                "${workspaceFolder}/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang-12",
+            "compilerPath": "/usr/bin/clang",
             "intelliSenseMode": "linux-clang-x64",
-            "cppStandard": "c++20",
-            "cStandard": "c11",
-            "browse": {
-                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
-            }
+            "compileCommands": "${workspaceFolder}/compile_commands.json"
         }
     ],
     "version": 4

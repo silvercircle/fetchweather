@@ -93,10 +93,8 @@ bool DataHandler_ImplClimaCell::readFromCache()
     std::ifstream current(this->m_currentCache);
     std::stringstream current_buffer, forecast_buffer;
     current_buffer << current.rdbuf();
-    //current_buffer.seekg(0, std::ios::end);
     current.close();
     this->result_current = json::parse(current_buffer.str().c_str());
-
     LOG_F(INFO, "Attempting to read forecast from cache: %s", this->m_currentCache.c_str());
     std::ifstream forecast(this->m_currentCache);
     forecast_buffer << forecast.rdbuf();
@@ -106,7 +104,9 @@ bool DataHandler_ImplClimaCell::readFromCache()
 
     if(!result_current["data"].empty() && !result_forecast["data"].empty()) {
         LOG_F(INFO, "Cache read successful.");
+        printf("Trying to populate snapshot\n");
         this->populateSnapshot();
+        printf("Snapshot populated\n");
         return true;
     }
     return false;
@@ -214,6 +214,7 @@ bool DataHandler_ImplClimaCell::readFromApi()
         fSuccess_forecast = false;
     }
     if (fSuccess_forecast && fSuccess_current) {
+        LOG_F(INFO, "CC:readFromApi(): read successful, populating snapshot");
         this->populateSnapshot();
         return true;
     }
@@ -322,6 +323,7 @@ void DataHandler_ImplClimaCell::populateSnapshot()
     DailyForecast* daily = this->m_daily;
 
     for(int i = 0; i < 3; i++) {
+        printf("forecasting day: %d\n", i+1);
         int weatherCode = this->result_forecast["data"]["timelines"][0]["intervals"][i
           + 1]["values"]["weatherCode"].is_number() ?
                           this->result_forecast["data"]["timelines"][0]["intervals"][i
@@ -342,6 +344,8 @@ void DataHandler_ImplClimaCell::populateSnapshot()
           + 1]["values"]["temperatureMin"].is_number() ?
                                   this->result_forecast["data"]["timelines"][0]["intervals"][i
                                     + 1]["values"]["temperatureMin"].get<double>() : 0.0f;
+
+        printf("forecasting day: %d, sunrise time\n", i+1);
 
         GDateTime *g =
           g_date_time_new_from_iso8601(result_forecast["data"]["timelines"][0]["intervals"][i

@@ -25,24 +25,25 @@
 #ifndef __DATAHANDLER_H_
 #define __DATAHANDLER_H_
 
-#include <nlohmann/json.hpp>
 
 /*
- * The data point collects and normalizes data from the API provider
+ * The data point collects and normalizes data from an API provider
  * it is expected that:
  * a) it is completely populated.
- * b) all values are in the metric system
+ * b) all values are using the metric system (conversion is done for output
+ *    purposes only.)
  */
+
 struct DataPoint {
     bool            valid = false;
-    bool            is_day;
+    bool            is_day = true;
     time_t          timeRecorded, sunsetTime, sunriseTime;
     char            timeRecordedAsText[30];
     char            timeZone[128];
     int             weatherCode;
     char            weatherSymbol;
     double          temperature, temperatureApparent, temperatureMin, temperatureMax;
-    double          visibility;         // this must be in km (some providers use meters)
+    double          visibility;     // this must be in km (some providers use meters)
     double          windSpeed, windGust;
     double          cloudCover;     // in percent
     double          cloudBase, cloudCeiling;
@@ -55,8 +56,8 @@ struct DataPoint {
     double          pressureSeaLevel, humidity, dewPoint;
     char            sunsetTimeAsString[20], sunriseTimeAsString[20], windBearing[10], windUnit[10];
     char            conditionAsString[100];
-    double          uvIndex;
-    bool            haveUVI;
+    double          uvIndex;        // the UVI value
+    bool            haveUVI;        // the weather provider offers UV index
 };
 
 struct DailyForecast {
@@ -67,7 +68,6 @@ struct DailyForecast {
 };
 
 class DataHandler {
-
   public:
     DataHandler();
     ~DataHandler() { writeToDB(); }
@@ -95,6 +95,7 @@ class DataHandler {
        "NNW"};
 
     static constexpr const char *speed_units[] = {"m/s", "kts", "km/h"};
+    // TODO: things like should be covered by localization
     static constexpr const char *weekDays[] = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
                                                "Sun", "_invalid"};
   protected:

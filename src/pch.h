@@ -41,7 +41,7 @@
 #include "CLI/App.hpp"
 #include "CLI/Formatter.hpp"
 #include "CLI/Config.hpp"
-#include "nlohmann/json.hpp"
+#include "nlohmann/json/single_include/nlohmann/json.hpp"
 #include "loguru/loguru.hpp"
 #include <QCommandLineParser>
 #include <QtCore>

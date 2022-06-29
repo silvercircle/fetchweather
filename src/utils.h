@@ -31,7 +31,6 @@
 #include <time.h>
 #include <glib-2.0/glib.h>
 #include <ctime>
-#include <nlohmann/json.hpp>
 
 namespace utils {
   time_t ISOToUnixtime(const char *iso_string, GTimeZone *tz = 0);
@@ -84,5 +83,4 @@ namespace utils {
       return s;
   }
 }
-
 #endif //__UTILS_H_

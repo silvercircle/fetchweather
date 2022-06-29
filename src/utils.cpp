@@ -20,12 +20,14 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
- * DataHandler does the majority of the work. It reads data, builds the json and
- * generates the formatted output.
+ */
+
+/**
+ * some utility functions for time conversion and CURL handling
  */
 
 #include "utils.h"
+#include <vector>
 
 namespace utils {
 
@@ -62,6 +64,7 @@ namespace utils {
       s->append((char *)contents);
       return size * nmemb;
   }
+  
 
   int sqlite_callback(void *NotUsed, int argc, char **argv, char **azColName)
   {
