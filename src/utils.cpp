@@ -105,7 +105,10 @@ namespace utils {
               LOG_F(INFO, "curl_easy_perform() failed, return = %s", curl_easy_strerror(rc));
               result = 0;
           } else {
+              //printf("%s\n-----\n", response.c_str());
               parse_result = json::parse(response.c_str());
+              //std::cout << parse_result << std::endl;
+              //std::cout << "-----" << std::endl;
               if(parse_result.empty()) {
                   LOG_F(INFO, "Current forecast: Request failed, no valid data received");
                   result = 0;

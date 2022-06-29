@@ -95,18 +95,14 @@ bool DataHandler_ImplClimaCell::readFromCache()
     current_buffer << current.rdbuf();
     current.close();
     this->result_current = json::parse(current_buffer.str().c_str());
-    LOG_F(INFO, "Attempting to read forecast from cache: %s", this->m_currentCache.c_str());
-    std::ifstream forecast(this->m_currentCache);
+    LOG_F(INFO, "Attempting to read forecast from cache: %s", this->m_ForecastCache.c_str());
+    std::ifstream forecast(this->m_ForecastCache);
     forecast_buffer << forecast.rdbuf();
-    //forecast_buffer.seekg(0, std::ios::end);
     forecast.close();
-    this->result_forecast = json::parse(forecast_buffer.str());
-
+    this->result_forecast = json::parse(forecast_buffer.str().c_str());
     if(!result_current["data"].empty() && !result_forecast["data"].empty()) {
         LOG_F(INFO, "Cache read successful.");
-        printf("Trying to populate snapshot\n");
         this->populateSnapshot();
-        printf("Snapshot populated\n");
         return true;
     }
     return false;
@@ -188,7 +184,7 @@ bool DataHandler_ImplClimaCell::readFromApi()
             return false;
         }
         /**
-         * validation
+         * validatio
          */
         fSuccess_current = !this->result_current["data"].empty();
     } else {
@@ -323,7 +319,6 @@ void DataHandler_ImplClimaCell::populateSnapshot()
     DailyForecast* daily = this->m_daily;
 
     for(int i = 0; i < 3; i++) {
-        printf("forecasting day: %d\n", i+1);
         int weatherCode = this->result_forecast["data"]["timelines"][0]["intervals"][i
           + 1]["values"]["weatherCode"].is_number() ?
                           this->result_forecast["data"]["timelines"][0]["intervals"][i
@@ -345,11 +340,11 @@ void DataHandler_ImplClimaCell::populateSnapshot()
                                   this->result_forecast["data"]["timelines"][0]["intervals"][i
                                     + 1]["values"]["temperatureMin"].get<double>() : 0.0f;
 
-        printf("forecasting day: %d, sunrise time\n", i+1);
-
         GDateTime *g =
           g_date_time_new_from_iso8601(result_forecast["data"]["timelines"][0]["intervals"][i
-            + 1]["values"]["sunriseTime"].get<std::string>().c_str(), 0);
+            + 1]["values"]["sunriseTime"].is_string() ? 
+            result_forecast["data"]["timelines"][0]["intervals"][i +1 ]["values"]["sunriseTime"].get<std::string>().c_str() : 0, 0);
+        
         gint weekday = g_date_time_get_day_of_week(g);
         g_date_time_unref(g);
 
