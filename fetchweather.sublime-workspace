@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"DA",
+				"DataHandler_ImplClimaCell.h\""
+			],
+			[
+				"Da",
+				"DataHandler_ImplOWM.h\""
+			],
+			[
+				"forecast",
+				"forecast_buffer"
+			],
+			[
+				"end",
+				"endl"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"re",
+				"result_forecast"
+			],
+			[
 				"b",
 				"background-color"
 			],
@@ -120,280 +144,86 @@
 	"buffers":
 	[
 		{
-			"file": "src/DataHandler_ImplOWM.cpp",
+			"file": "src/utils.cpp",
 			"settings":
 			{
-				"buffer_size": 11116,
-				"line_ending": "Unix"
-			},
-			"undo_stack":
-			[
-			]
-		},
-		{
-			"file": "src/DataHandler_ImplVC.cpp",
-			"settings":
-			{
-				"buffer_size": 1407,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/DataHandler_ImplClimaCell.cpp",
-			"settings":
-			{
-				"buffer_size": 15912,
-				"line_ending": "Unix"
-			},
-			"undo_stack":
-			[
-				[
-					32,
-					1,
-					"revert",
-					null,
-					"AgAAAAAAAAAAAAAAAAAAAAAAAADZPQAALyoKICogTUlUIExpY2Vuc2UKICoKICogQ29weXJpZ2h0IChjKSAyMDIxIEFsZXggVmllIChzaWx2ZXJjaXJjbGVAZ21haWwuY29tKQogKgogKiBQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8gYW55IHBlcnNvbiBvYnRhaW5pbmcgYSBjb3B5CiAqIG9mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxlcyAodGhlICJTb2Z0d2FyZSIpLCB0byBkZWFsCiAqIGluIHRoZSBTb2Z0d2FyZSB3aXRob3V0IHJlc3RyaWN0aW9uLCBpbmNsdWRpbmcgd2l0aG91dCBsaW1pdGF0aW9uIHRoZSByaWdodHMKICogdG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBkaXN0cmlidXRlLCBzdWJsaWNlbnNlLCBhbmQvb3Igc2VsbAogKiBjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNvbnMgdG8gd2hvbSB0aGUgU29mdHdhcmUgaXMKICogZnVybmlzaGVkIHRvIGRvIHNvLCBzdWJqZWN0IHRvIHRoZSBmb2xsb3dpbmcgY29uZGl0aW9uczoKICoKICogVGhlIGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hhbGwgYmUgaW5jbHVkZWQgaW4gYWxsCiAqIGNvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuCiAqCiAqIFRIRSBTT0ZUV0FSRSBJUyBQUk9WSURFRCAiQVMgSVMiLCBXSVRIT1VUIFdBUlJBTlRZIE9GIEFOWSBLSU5ELCBFWFBSRVNTIE9SCiAqIElNUExJRUQsIElOQ0xVRElORyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVSQ0hBTlRBQklMSVRZLAogKiBGSVRORVNTIEZPUiBBIFBBUlRJQ1VMQVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiBJTiBOTyBFVkVOVCBTSEFMTCBUSEUKICogQVVUSE9SUyBPUiBDT1BZUklHSFQgSE9MREVSUyBCRSBMSUFCTEUgRk9SIEFOWSBDTEFJTSwgREFNQUdFUyBPUiBPVEhFUgogKiBMSUFCSUxJVFksIFdIRVRIRVIgSU4gQU4gQUNUSU9OIE9GIENPTlRSQUNULCBUT1JUIE9SIE9USEVSV0lTRSwgQVJJU0lORyBGUk9NLAogKiBPVVQgT0YgT1IgSU4gQ09OTkVDVElPTiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SIE9USEVSIERFQUxJTkdTIElOIFRIRQogKiBTT0ZUV0FSRS4KICoKICogVGhpcyBjbGFzcyBoYW5kbGVzIEFQSSBzcGVjaWZpYyBzdHVmZiBmb3IgdGhlIENsaW1hQ2VsbCBXZWF0aGVyIEFQSS4KICovCgojaW5jbHVkZSA8dGltZS5oPgojaW5jbHVkZSA8dXRpbHMuaD4KI2luY2x1ZGUgIkRhdGFIYW5kbGVyX0ltcGxDbGltYUNlbGwuaCIKCi8qKgogKiBjJ3RvciBmb3IgRGF0YUhhbmRsZXIuIFNldHMgdXAgZGF0YWJhc2UgcGF0aCBhbmQgZGlzcGF0Y2hlcwogKiBkYXRhIHJlYWRpbmcsIGVpdGhlciBmcm9tIGNhY2hlIG9yIGZyb20gdGhlIG5ldHdvcmsuCiAqLwpEYXRhSGFuZGxlcl9JbXBsQ2xpbWFDZWxsOjpEYXRhSGFuZGxlcl9JbXBsQ2xpbWFDZWxsKCkgOiBEYXRhSGFuZGxlcigpLAogICAgLyoKICAgICAqIG1hcCB3ZWF0aGVyQ29kZXMgdG8gd2VhdGhlciBjb25kaXRpb25zLgogICAgICovCiAgICBtX2NvbmRpdGlvbnMgewogICAgICB7MTAwMCwgIkNsZWFyIn0sICAgICAgICAgICAgICB7MTAwMSwgIkNsb3VkeSJ9LAogICAgICB7MTEwMCwgIk1vc3RseSBDbGVhciJ9LCAgICAgICB7MTEwMSwgIlBhcnRseSBDbG91ZHkifSwKICAgICAgezExMDIsICJNb3N0bHkgQ2xvdWR5In0sICAgICAgezIwMDAsICJGb2cifSwKICAgICAgezIxMDAsICJMaWdodCBGb2cifSwgICAgICAgICAgezMwMDAsICJMaWdodCBXaW5kIn0sCiAgICAgIHszMDAxLCAiV2luZCJ9LCAgICAgICAgICAgICAgIHszMDAyLCAiU3Ryb25nIFdpbmQifSwKICAgICAgezQwMDAsICJEcml6emxlIn0sICAgICAgICAgICAgezQwMDEsICJSYWluIn0sCiAgICAgIHs0MjAwLCAiTGlnaHQgUmFpbiJ9LCAgICAgICAgIHs0MjAxLCAiSGVhdnkgUmFpbiJ9LAogICAgICB7NTAwMCwgIlNub3cifSwgICAgICAgICAgICAgICB7NTAwMSwgIkZsdXJyaWVzIn0sCiAgICAgIHs1MTAwLCAiTGlnaHQgU25vdyJ9LCAgICAgICAgIHs1MTAxLCAiSGVhdnkgU25vdyJ9LAogICAgICB7NjAwMCwgIkZyZWV6aW5nIERyaXp6bGUifSwgICB7NjAwMSwgIkZyZWV6aW5nIFJhaW4ifSwKICAgICAgezYyMDAsICJMaWdodCBGcmVlemluZyBSYWluIn0sezYyMDEsICJIZWF2eSBGcmVlemluZyBSYWluIn0sCiAgICAgIHs3MDAwLCAiSWNlIFBlbGxldHMifSwgICAgICAgIHs3MDAxLCAiSGVhdnkgSWNlIFBlbGxldHMifSwKICAgICAgezcxMDIsICJMaWdodCBJY2UgUGVsbGV0cyJ9LCAgezgwMDAsICJUaHVuZGVyc3Rvcm0ifSB9LAogICAvKgogICAgKiBUaGUgZm9sbG93aW5nIHRhYmxlIG1hcHMgd2VhdGhlckNvZGVzIGZyb20gdGhlIEFQSSB0byBjaGFyYWN0ZXJzIHVzZWQgYnkKICAgICogdGhlIGNvbmt5d2VhdGhlciBmb250IHRvIGRpc3BsYXkgd2VhdGhlciBpY29ucy4gVGhlIHN0cmluZyBpcyBhbHdheXMgMgogICAgKiBjaGFyYWN0ZXJzLCB0aGUgZmlyc3Qgb25lIGZvciB0aGUgZGF5IGljb24sIHRoZSAybmQgZm9yIHRoZSBuaWdodCBpY29uLgogICAgKi8KICAgIG1faWNvbnMgewogICAgICB7MTAwMCwgImFBIn0sICAgICAgICAgICAgICAgICB7MTAwMSwgImVmIn0sCiAgICAgIHsxMTAwLCAiYkIifSwgICAgICAgICAgICAgICAgIHsxMTAxLCAiY0MifSwKICAgICAgezExMDIsICJkRCJ9LCAgICAgICAgICAgICAgICAgezIwMDAsICIwMCJ9LAogICAgICB7MjEwMCwgIjc3In0sICAgICAgICAgICAgICAgICB7MzAwMCwgIjk5In0sCiAgICAgIHszMDAxLCAiOTkifSwgICAgICAgICAgICAgICAgIHszMDAyLCAiMjMifSwKICAgICAgezQwMDAsICJ4eCJ9LCAgICAgICAgICAgICAgICAgezQwMDEsICJnRyJ9LAogICAgICB7NDIwMCwgImdnIn0sICAgICAgICAgICAgICAgICB7NDIwMSwgImpqIn0sCiAgICAgIHs1MDAwLCAib08ifSwgICAgICAgICAgICAgICAgIHs1MDAxLCAieHgifSwKICAgICAgezUxMDAsICJvTyJ9LCAgICAgICAgICAgICAgICAgezUxMDEsICJ3dyJ9LAogICAgICB7NjAwMCwgInh4In0sICAgICAgICAgICAgICAgICB7NjAwMSwgInl5In0sCiAgICAgIHs2MjAwLCAic3MifSwgICAgICAgICAgICAgICAgIHs2MjAxLCAieXkifSwKICAgICAgezcwMDAsICJ1dSJ9LCAgICAgICAgICAgICAgICAgezcwMDEsICJ1dSJ9LAogICAgICB7NzEwMiwgInV1In0sICAgICAgICAgICAgICAgICB7ODAwMCwgImtLIn0gfQp7Cgp9CgpjaGFyIERhdGFIYW5kbGVyX0ltcGxDbGltYUNlbGw6OmdldENvZGUoY29uc3QgaW50IHdlYXRoZXJDb2RlLCBjb25zdCBib29sIGRheWxpZ2h0KQp7CiAgICBpZiAoRGF0YUhhbmRsZXJfSW1wbENsaW1hQ2VsbDo6bV9pY29ucy5maW5kKHdlYXRoZXJDb2RlKQogICAgICAhPSBEYXRhSGFuZGxlcl9JbXBsQ2xpbWFDZWxsOjptX2ljb25zLmVuZCgpKSB7CiAgICAgICAgcmV0dXJuIERhdGFIYW5kbGVyX0ltcGxDbGltYUNlbGw6Om1faWNvbnNbd2VhdGhlckNvZGVdW2RheWxpZ2h0ID8gMCA6IDFdOwogICAgfQogICAgcmV0dXJuICdhJzsKfQoKLyoqCiAqIGF0dGVtcHQgdG8gcmVhZCBjdXJyZW50IGFuZCBmb3JlY2FzdCBkYXRhIGZyb20gY2FjaGVkIEpTT04KICoKICogQHJldHVybiAgdHJ1ZSBpZiBzdWNjZXNzZnVsLCBmYWxzZSBvdGhlcndpc2UuCiAqLwpib29sIERhdGFIYW5kbGVyX0ltcGxDbGltYUNlbGw6OnJlYWRGcm9tQ2FjaGUoKQp7CiAgICBMT0dfRihJTkZPLCAiQXR0ZW1wdGluZyB0byByZWFkIGN1cnJlbnQgZnJvbSBjYWNoZTogJXMiLCB0aGlzLT5tX2N1cnJlbnRDYWNoZS5jX3N0cigpKTsKICAgIHN0ZDo6aWZzdHJlYW0gY3VycmVudCh0aGlzLT5tX2N1cnJlbnRDYWNoZSk7CiAgICBzdGQ6OnN0cmluZ3N0cmVhbSBjdXJyZW50X2J1ZmZlciwgZm9yZWNhc3RfYnVmZmVyOwogICAgY3VycmVudF9idWZmZXIgPDwgY3VycmVudC5yZGJ1ZigpOwogICAgY3VycmVudC5jbG9zZSgpOwogICAgdGhpcy0+cmVzdWx0X2N1cnJlbnQgPSBqc29uOjpwYXJzZShjdXJyZW50X2J1ZmZlci5zdHIoKS5jX3N0cigpKTsKICAgIExPR19GKElORk8sICJBdHRlbXB0aW5nIHRvIHJlYWQgZm9yZWNhc3QgZnJvbSBjYWNoZTogJXMiLCB0aGlzLT5tX2N1cnJlbnRDYWNoZS5jX3N0cigpKTsKICAgIHN0ZDo6aWZzdHJlYW0gZm9yZWNhc3QodGhpcy0+bV9jdXJyZW50Q2FjaGUpOwogICAgZm9yZWNhc3RfYnVmZmVyIDw8IGZvcmVjYXN0LnJkYnVmKCk7CiAgICAvL2ZvcmVjYXN0X2J1ZmZlci5zZWVrZygwLCBzdGQ6Omlvczo6ZW5kKTsKICAgIGZvcmVjYXN0LmNsb3NlKCk7CiAgICB0aGlzLT5yZXN1bHRfZm9yZWNhc3QgPSBqc29uOjpwYXJzZShmb3JlY2FzdF9idWZmZXIuc3RyKCkpOwoKICAgIGlmKCFyZXN1bHRfY3VycmVudFsiZGF0YSJdLmVtcHR5KCkgJiYgIXJlc3VsdF9mb3JlY2FzdFsiZGF0YSJdLmVtcHR5KCkpIHsKICAgICAgICBMT0dfRihJTkZPLCAiQ2FjaGUgcmVhZCBzdWNjZXNzZnVsLiIpOwogICAgICAgIHRoaXMtPnBvcHVsYXRlU25hcHNob3QoKTsKICAgICAgICByZXR1cm4gdHJ1ZTsKICAgIH0KICAgIHJldHVybiBmYWxzZTsKfQoKLyoqCiAqIGZldGNoIGRhdGEgZnJvbSBuZXR3b3JrIEFQSSBhbmQgcG9wdWxhdGUgdGhlIGpzb24gb2JqZWN0CiAqIHVubGlrZSBkYXJrc2t5LCB3aGljaCBhbGxvd2VkIGZvciBhIHNpbmdsZS1jYWxsIHJlcXVlc3Qgd2l0aCBhbGwgZGF0YSwKICogQ2xpbWFDZWxsIGRvZXMgbm90LiBXZSBuZWVkIHRvIHBlcmZvcm0gdHdvIHJlcXVlc3RzLiBPbmUgZGV0YWlsIHJlcXVlc3QgZm9yIHRoZQogKiBjdXJyZW50IHdlYXRoZXIsIGFuZCBvbmUgZm9yZWNhc3QgcmVxdWVzdCB0byBnZXQgZGF0YSBmb3IgdGhlIG5leHQgMy01IGRheXMuCiAqCiAqIEByZXR1cm4gICAgICAtIHRydWUgaWYgc3VjY2Vzc2Z1bC4KICovCmJvb2wgRGF0YUhhbmRsZXJfSW1wbENsaW1hQ2VsbDo6cmVhZEZyb21BcGkoKQp7CiAgICBjb25zdCBDRkcmIGNmZyA9IG1fb3B0aW9ucy5nZXRDb25maWcoKTsKICAgIGJvb2wgZlN1Y2Nlc3NfY3VycmVudCA9IHRydWU7CiAgICBib29sIGZTdWNjZXNzX2ZvcmVjYXN0ID0gdHJ1ZTsKICAgIHN0ZDo6c3RyaW5nIGJhc2V1cmwoImh0dHBzOi8vZGF0YS5jbGltYWNlbGwuY28vdjQvdGltZWxpbmVzPyZhcGlrZXk9Iik7CiAgICBiYXNldXJsLmFwcGVuZChjZmcuYXBpa2V5KTsKICAgIGJhc2V1cmwuYXBwZW5kKCImbG9jYXRpb249Iik7CiAgICBiYXNldXJsLmFwcGVuZChjZmcubG9jYXRpb24pOwogICAgaWYoY2ZnLnRpbWV6b25lLmxlbmd0aCgpID4gMCkgewogICAgICAgIGJhc2V1cmwuYXBwZW5kKCImdGltZXpvbmU9Iik7CiAgICAgICAgYmFzZXVybC5hcHBlbmQoY2ZnLnRpbWV6b25lKTsKICAgIH0KICAgIHN0ZDo6c3RyaW5nIGN1cnJlbnQoYmFzZXVybCk7CiAgICBjdXJyZW50LmFwcGVuZCgiJmZpZWxkcz13ZWF0aGVyQ29kZSx0ZW1wZXJhdHVyZSx0ZW1wZXJhdHVyZUFwcGFyZW50LHZpc2liaWxpdHksd2luZFNwZWVkLHdpbmREaXJlY3Rpb24sIik7CiAgICBjdXJyZW50LmFwcGVuZCgicHJlY2lwaXRhdGlvblR5cGUscHJlY2lwaXRhdGlvblByb2JhYmlsaXR5LHByZXNzdXJlU2VhTGV2ZWwsd2luZEd1c3QsY2xvdWRDb3ZlcixjbG91ZEJhc2UsIik7CiAgICBjdXJyZW50LmFwcGVuZCgiY2xvdWRDZWlsaW5nLGh1bWlkaXR5LHByZWNpcGl0YXRpb25JbnRlbnNpdHksZGV3UG9pbnQmdGltZXN0ZXBzPWN1cnJlbnQmdW5pdHM9bWV0cmljIik7CiAgICAvL3N0ZDo6Y291dCA8PCBjdXJyZW50IDw8IHN0ZDo6ZW5kbDsKCiAgICBzdGQ6OnN0cmluZyBkYWlseShiYXNldXJsKTsKICAgIGRhaWx5LmFwcGVuZCgiJmZpZWxkcz13ZWF0aGVyQ29kZSx0ZW1wZXJhdHVyZU1heCx0ZW1wZXJhdHVyZU1pbixzdW5yaXNlVGltZSxzdW5zZXRUaW1lLG1vb25QaGFzZSwiKTsKICAgIGRhaWx5LmFwcGVuZCgicHJlY2lwaXRhdGlvblR5cGUscHJlY2lwaXRhdGlvblByb2JhYmlsaXR5JnRpbWVzdGVwcz0xZCZzdGFydFRpbWU9Iik7CgogICAgaWYoY2ZnLmRlYnVnKSB7CiAgICAgICAgcHJpbnRmKCJEZWJ1ZyBNb2RlOiBBdHRlbXB0aW5nIHRvIGZldGNoIHdlYXRoZXIgZnJvbSAlc1xuIiwgUHJvZ3JhbU9wdGlvbnM6OmFwaV9yZWFkYWJsZV9uYW1lc1tjZmcuYXBpUHJvdmlkZXJdKTsKICAgIH0KCiAgICAvKgogICAgICogZmlndXJlIG91dCB0aGUgc3RhcnRUaW1lIHBhcmFtZXRlciBmb3IgdGhlIGZvcmNhc3QuIEl0IG5lZWRzIHRvIGJlIFVUQyBhbmQgdG9tb3Jyb3cKICAgICAqLwoKICAgIEdEYXRlVGltZSAqZyA9IGdfZGF0ZV90aW1lX25ld19ub3dfbG9jYWwoKTsgICAgICAgICAgICAgICAgICAvLyBub3cKCiAgICBjaGFyIGNsWzEyOF07CiAgICBzbnByaW50ZihjbCwgNDAsICIlMDRkLSUwMmQtJTAyZFQyMzowMDowMFoiLAogICAgICAgICAgICAgZ19kYXRlX3RpbWVfZ2V0X3llYXIoZyksCiAgICAgICAgICAgICBnX2RhdGVfdGltZV9nZXRfbW9udGgoZyksIGdfZGF0ZV90aW1lX2dldF9kYXlfb2ZfbW9udGgoZykpOwoKICAgIHN0ZDo6c3RyaW5nIF90bXAoY2wpOwogICAgZGFpbHkuYXBwZW5kKF90bXApOwoKICAgIC8qCiAgICAgKiBjYWxjdWxhdGUgdGhlIGVuZCBkYXRlLCB3ZSBuZWVkIDUgZGF5cyBhdCBtYXggZm9yIG91ciBmb3JlY2FzdAogICAgICovCiAgICBHRGF0ZVRpbWUgKmdfZW5kID0gZ19kYXRlX3RpbWVfYWRkX2RheXMoZywgNSk7ICAgICAvLyA1IGRheXMgZm9yZWNhc3QKICAgIHNucHJpbnRmKGNsLCA0MCwgIiUwNGQtJTAyZC0lMDJkVDA2OjAwOjAwWiIsCiAgICAgICAgICAgICBnX2RhdGVfdGltZV9nZXRfeWVhcihnX2VuZCksCiAgICAgICAgICAgICBnX2RhdGVfdGltZV9nZXRfbW9udGgoZ19lbmQpLCBnX2RhdGVfdGltZV9nZXRfZGF5X29mX21vbnRoKGdfZW5kKSk7CgogICAgZ19kYXRlX3RpbWVfdW5yZWYoZ19lbmQpOwogICAgZ19kYXRlX3RpbWVfdW5yZWYoZyk7CgogICAgZGFpbHkuYXBwZW5kKCImZW5kVGltZT0iKTsKICAgIF90bXAuYXNzaWduKGNsKTsKICAgIGRhaWx5LmFwcGVuZChfdG1wKTsKICAgIGNvbnN0IGNoYXIgKnVybCA9IGN1cnJlbnQuY19zdHIoKTsKCiAgICBhdXRvIHJlc3VsdCA9IHV0aWxzOjpjdXJsX2ZldGNoKGN1cnJlbnQuY19zdHIoKSwgdGhpcy0+cmVzdWx0X2N1cnJlbnQsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXMtPm1fY3VycmVudENhY2hlLCBtX29wdGlvbnMuZ2V0Q29uZmlnKCkuc2tpcGNhY2hlKTsKICAgIGlmKHJlc3VsdCkgewogICAgICAgIGlmICghdGhpcy0+cmVzdWx0X2N1cnJlbnRbImNvZCJdLmVtcHR5KCkpIHsgICAgICAgICAvLyBmaWVsZCAiY29kIiBtZWFucyBlcnJvcgogICAgICAgICAgICBMT0dfRihJTkZPLAogICAgICAgICAgICAgICAgICAicmVhZEZyb21BcGkoKTogRmFpbHVyZSwgZXJyb3IgY29kZSA9ICVkLCBlcnJvciBtZXNzYWdlID0gJXMiLAogICAgICAgICAgICAgICAgICB0aGlzLT5yZXN1bHRfY3VycmVudFsiY29kIl0uZ2V0PGludD4oKSwKICAgICAgICAgICAgICAgICAgdGhpcy0+cmVzdWx0X2N1cnJlbnRbIm1lc3NhZ2UiXS5nZXQ8c3RkOjpzdHJpbmc+KCkuY19zdHIoKSk7CiAgICAgICAgICAgIHJldHVybiBmYWxzZTsKICAgICAgICB9CiAgICAgICAgLyoqCiAgICAgICAgICogdmFsaWRhdGlvbgogICAgICAgICAqLwogICAgICAgIGZTdWNjZXNzX2N1cnJlbnQgPSAhdGhpcy0+cmVzdWx0X2N1cnJlbnRbImRhdGEiXS5lbXB0eSgpOwogICAgfSBlbHNlIHsKICAgICAgICBmU3VjY2Vzc19jdXJyZW50ID0gZmFsc2U7CiAgICB9CiAgICAvLyBub3cgdGhlIGRhaWx5IGZvcmVjYXN0CgogICAgcmVzdWx0ID0gdXRpbHM6OmN1cmxfZmV0Y2goZGFpbHkuY19zdHIoKSwgdGhpcy0+cmVzdWx0X2ZvcmVjYXN0LAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlzLT5tX0ZvcmVjYXN0Q2FjaGUsIG1fb3B0aW9ucy5nZXRDb25maWcoKS5za2lwY2FjaGUpOwogICAgaWYocmVzdWx0KSB7CiAgICAgICAgaWYgKCF0aGlzLT5yZXN1bHRfY3VycmVudFsiY29kIl0uZW1wdHkoKSkgeyAgICAgICAgIC8vIGZpZWxkICJjb2QiIG1lYW5zIGVycm9yCiAgICAgICAgICAgIExPR19GKElORk8sCiAgICAgICAgICAgICAgICAgICJyZWFkRnJvbUFwaSgpOiBGYWlsdXJlLCBlcnJvciBjb2RlID0gJWQsIGVycm9yIG1lc3NhZ2UgPSAlcyIsCiAgICAgICAgICAgICAgICAgIHRoaXMtPnJlc3VsdF9jdXJyZW50WyJjb2QiXS5nZXQ8aW50PigpLAogICAgICAgICAgICAgICAgICB0aGlzLT5yZXN1bHRfY3VycmVudFsibWVzc2FnZSJdLmdldDxzdGQ6OnN0cmluZz4oKS5jX3N0cigpKTsKICAgICAgICAgICAgcmV0dXJuIGZhbHNlOwogICAgICAgIH0KICAgICAgICAvKioKICAgICAgICAgKiB2YWxpZGF0aW9uCiAgICAgICAgICovCiAgICAgICAgZlN1Y2Nlc3NfZm9yZWNhc3QgPSAhdGhpcy0+cmVzdWx0X2N1cnJlbnRbImRhdGEiXS5lbXB0eSgpOwogICAgfSBlbHNlIHsKICAgICAgICBmU3VjY2Vzc19mb3JlY2FzdCA9IGZhbHNlOwogICAgfQogICAgaWYgKGZTdWNjZXNzX2ZvcmVjYXN0ICYmIGZTdWNjZXNzX2N1cnJlbnQpIHsKICAgICAgICB0aGlzLT5wb3B1bGF0ZVNuYXBzaG90KCk7CiAgICAgICAgcmV0dXJuIHRydWU7CiAgICB9CiAgICByZXR1cm4gZmFsc2U7Cn0KCi8qKgogKiB0aGlzIHJlY29yZHMgdGhlIEpTT04gZGF0YSBpbiBhIHN0cnVjdCBhbmQgZG9lcyBzb21lIHNhbml0eSBjaGVja3MuCiAqIEl0IGFsc28gZG9lcyB1bml0IGNvbnZlcnNpb25zCiAqCiAqIG1fRGF0YVBvaW50IGlzIHRoZW4gdXNlZCBmb3Igb3V0cHV0LCBkYXRhYmFzZSByZWNvcmRpbmcgYW5kIGR1bXBpbmcgdGhlCiAqIGRhdGEgdG8gYSBmaWxlIChvcHRpb25hbCkKICovCnZvaWQgRGF0YUhhbmRsZXJfSW1wbENsaW1hQ2VsbDo6cG9wdWxhdGVTbmFwc2hvdCgpCnsKICAgIC8vIHNob3J0Y3V0cwogICAgbmxvaG1hbm46Ompzb24mIGQgPSAgICAgdGhpcy0+cmVzdWx0X2N1cnJlbnRbImRhdGEiXVsidGltZWxpbmVzIl1bMF1bImludGVydmFscyJdWzBdWyJ2YWx1ZXMiXTsKICAgIG5sb2htYW5uOjpqc29uJiBkZiA9ICAgIHRoaXMtPnJlc3VsdF9mb3JlY2FzdFsiZGF0YSJdWyJ0aW1lbGluZXMiXVswXVsiaW50ZXJ2YWxzIl1bMF1bInZhbHVlcyJdOwogICAgRGF0YVBvaW50JiBwID0gdGhpcy0+bV9EYXRhUG9pbnQ7CiAgICBjb25zdCBDRkcmIGNmZyA9IHRoaXMtPm1fb3B0aW9ucy5nZXRDb25maWcoKTsKICAgIGNoYXIgdG1wWzEyOF07CgogICAgaWYoZFsid2VhdGhlckNvZGUiXS5lbXB0eSgpKQogICAgICAgIHJldHVybjsgLy8gZGF0YXBvaW50IGxpa2VseSBub3QgdmFsaWQKCiAgICBwLndlYXRoZXJDb2RlID0gZFsid2VhdGhlckNvZGUiXS5pc19udW1iZXIoKSA/IGRbIndlYXRoZXJDb2RlIl0uZ2V0PGludD4oKSA6IDA7CiAgICBzbnByaW50ZihwLnRpbWVab25lLCBTSVpFT0YocC50aW1lWm9uZSksICIlcyIsIG1fb3B0aW9ucy5nZXRDb25maWcoKS50aW1lem9uZS5jX3N0cigpKTsKCiAgICBwLnRpbWVSZWNvcmRlZCA9IHRpbWUoMCk7CiAgICB0bSAqbm93ID0gbG9jYWx0aW1lKCZwLnRpbWVSZWNvcmRlZCk7CiAgICBzbnByaW50ZihwLnRpbWVSZWNvcmRlZEFzVGV4dCwgMTksICIlMDJkOiUwMmQiLCBub3ctPnRtX2hvdXIsIG5vdy0+dG1fbWluKTsKCiAgICBwLmRld1BvaW50ID0gZFsiZGV3UG9pbnQiXS5pc19udW1iZXIoKSA/CiAgICAgIHRoaXMtPmNvbnZlcnRUZW1wZXJhdHVyZShkWyJkZXdQb2ludCJdLmdldDxkb3VibGU+KCksIGNmZy50ZW1wX3VuaXQpLmZpcnN0IDogMC4wZjsKCiAgICBwLmh1bWlkaXR5ID0gZFsiaHVtaWRpdHkiXS5pc19udW1iZXIoKSA/CiAgICAgIGRbImh1bWlkaXR5Il0uZ2V0PGRvdWJsZT4oKSA6IDAuMGY7CgogICAgcC5wcmVjaXBpdGF0aW9uUHJvYmFiaWxpdHkgPSBkWyJwcmVjaXBpdGF0aW9uUHJvYmFiaWxpdHkiXS5pc19udW1iZXIoKSA/CiAgICAgIGRbInByZWNpcGl0YXRpb25Qcm9iYWJpbGl0eSJdLmdldDxkb3VibGU+KCkgOiAwLjBmOwoKICAgIHAucHJlY2lwaXRhdGlvbkludGVuc2l0eSA9IGRbInByZWNpcGl0YXRpb25JbnRlbnNpdHkiXS5pc19udW1iZXIoKSA/CiAgICAgIGRbInByZWNpcGl0YXRpb25JbnRlbnNpdHkiXS5nZXQ8ZG91YmxlPigpIDogMC4wZjsKCiAgICBwLnRlbXBlcmF0dXJlID0gZFsidGVtcGVyYXR1cmUiXS5pc19udW1iZXIoKSA/CiAgICAgIHRoaXMtPmNvbnZlcnRUZW1wZXJhdHVyZShkWyJ0ZW1wZXJhdHVyZSJdLmdldDxkb3VibGU+KCksIGNmZy50ZW1wX3VuaXQpLmZpcnN0IDogMC4wZjsKCiAgICBwLnRlbXBlcmF0dXJlQXBwYXJlbnQgPSBkWyJ0ZW1wZXJhdHVyZUFwcGFyZW50Il0uaXNfbnVtYmVyKCkgPwogICAgICB0aGlzLT5jb252ZXJ0VGVtcGVyYXR1cmUoZFsidGVtcGVyYXR1cmVBcHBhcmVudCJdLmdldDxkb3VibGU+KCksIGNmZy50ZW1wX3VuaXQpLmZpcnN0IDogMDsKCiAgICBwLnRlbXBlcmF0dXJlTWluID0gZGZbInRlbXBlcmF0dXJlTWluIl0uaXNfbnVtYmVyKCkgPwogICAgICB0aGlzLT5jb252ZXJ0VGVtcGVyYXR1cmUoZGZbInRlbXBlcmF0dXJlTWluIl0uZ2V0PGRvdWJsZT4oKSwKICAgICAgICBjZmcudGVtcF91bml0KS5maXJzdCA6IDA7CgogICAgcC50ZW1wZXJhdHVyZU1heCA9IGRmWyJ0ZW1wZXJhdHVyZU1heCJdLmlzX251bWJlcigpID8KICAgICAgdGhpcy0+Y29udmVydFRlbXBlcmF0dXJlKGRmWyJ0ZW1wZXJhdHVyZU1heCJdLmdldDxkb3VibGU+KCksCiAgICAgICAgY2ZnLnRlbXBfdW5pdCkuZmlyc3QgOiAwOwoKICAgIHAudmlzaWJpbGl0eSA9IGRbInZpc2liaWxpdHkiXS5pc19udW1iZXIoKSA/IHRoaXMtPmNvbnZlcnRWaXMoZFsidmlzaWJpbGl0eSJdLmdldDxkb3VibGU+KCkpIDogMC4wZjsKICAgIHAucHJlc3N1cmVTZWFMZXZlbCA9IGRbInByZXNzdXJlU2VhTGV2ZWwiXS5pc19udW1iZXIoKSA/CiAgICAgIHRoaXMtPmNvbnZlcnRQcmVzc3VyZShkWyJwcmVzc3VyZVNlYUxldmVsIl0uZ2V0PGRvdWJsZT4oKSkgOiAwLjBmOwoKICAgIHAud2luZFNwZWVkID0gZFsid2luZFNwZWVkIl0uaXNfbnVtYmVyKCkgPyB0aGlzLT5jb252ZXJ0V2luZHNwZWVkKGRbIndpbmRTcGVlZCJdLmdldDxkb3VibGU+KCkpIDogMC4wZjsKICAgIHAud2luZERpcmVjdGlvbiA9IGRbIndpbmREaXJlY3Rpb24iXS5pc19udW1iZXIoKSA/IGRbIndpbmREaXJlY3Rpb24iXS5nZXQ8aW50PigpIDogMDsKICAgIHAud2luZEd1c3QgPSBkWyJ3aW5kR3VzdCJdLmlzX251bWJlcigpID8gdGhpcy0+Y29udmVydFdpbmRzcGVlZChkWyJ3aW5kR3VzdCJdLmdldDxkb3VibGU+KCkpIDogMC4wZjsKCiAgICBhdXRvIHdpbmQgPSB0aGlzLT5kZWdUb0JlYXJpbmcocC53aW5kRGlyZWN0aW9uKTsKICAgIHNucHJpbnRmKHAud2luZEJlYXJpbmcsIDksICIlcyIsIHdpbmQuZmlyc3QuY19zdHIoKSk7CiAgICBzbnByaW50ZihwLndpbmRVbml0LCA5LCAiJXMiLCB3aW5kLnNlY29uZC5jX3N0cigpKTsKCiAgICBwLnN1bnNldFRpbWUgPSBkZlsic3Vuc2V0VGltZSJdLmlzX3N0cmluZygpID8KICAgICAgdXRpbHM6OklTT1RvVW5peHRpbWUoZGZbInN1bnNldFRpbWUiXS5nZXQ8c3RkOjpzdHJpbmc+KCksIDApIDogMDsKICAgIHAuc3VucmlzZVRpbWU9IGRmWyJzdW5yaXNlVGltZSJdLmlzX3N0cmluZygpID8KICAgICAgdXRpbHM6OklTT1RvVW5peHRpbWUoZGZbInN1bnJpc2VUaW1lIl0uZ2V0PHN0ZDo6c3RyaW5nPigpLCAwKSA6IDA7CgogICAgcC5pc19kYXkgPSAocC5zdW5yaXNlVGltZSA8IHAudGltZVJlY29yZGVkIDwgcC5zdW5zZXRUaW1lKTsKCiAgICB0bSAqc3Vuc2V0ID0gbG9jYWx0aW1lKCZwLnN1bnNldFRpbWUpOwogICAgc25wcmludGYodG1wLCAxMDAsICIlMDJkOiUwMmQiLCBzdW5zZXQtPnRtX2hvdXIsIHN1bnNldC0+dG1fbWluKTsKICAgIHNucHJpbnRmKHAuc3Vuc2V0VGltZUFzU3RyaW5nLCAxOSwgIiVzIiwgdG1wKTsKICAgIHRtICpzdW5yaXNlID0gbG9jYWx0aW1lKCZwLnN1bnJpc2VUaW1lKTsKICAgIHNucHJpbnRmKHRtcCwgMTAwLCAiJTAyZDolMDJkIiwgc3VucmlzZS0+dG1faG91ciwgc3VucmlzZS0+dG1fbWluKTsKICAgIHNucHJpbnRmKHAuc3VucmlzZVRpbWVBc1N0cmluZywgMTksICIlcyIsIHRtcCk7CgogICAgcC5wcmVjaXBpdGF0aW9uVHlwZSA9IGRbInByZWNpcGl0YXRpb25UeXBlIl0uaXNfbnVtYmVyKCkgPyBkWyJwcmVjaXBpdGF0aW9uVHlwZSJdLmdldDxpbnQ+KCkgOiAwOwogICAgc25wcmludGYocC5wcmVjaXBpdGF0aW9uVHlwZUFzU3RyaW5nLCAxOSwgIiVzIiwgdGhpcy0+Z2V0UHJlY2lwVHlwZShwLnByZWNpcGl0YXRpb25UeXBlKSk7CiAgICBzbnByaW50ZihwLmNvbmRpdGlvbkFzU3RyaW5nLCA5OSwgIiVzIiwgdGhpcy0+Z2V0Q29uZGl0aW9uKHAud2VhdGhlckNvZGUpKTsKCiAgICBwLndlYXRoZXJTeW1ib2wgPSB0aGlzLT5nZXRDb2RlKHAud2VhdGhlckNvZGUsIHAuaXNfZGF5KTsKCiAgICBwLmNsb3VkQ292ZXIgPSBkWyJjbG91ZENvdmVyIl0uaXNfbnVtYmVyKCkgPyBkWyJjbG91ZENvdmVyIl0uZ2V0PGRvdWJsZT4oKSA6IDA7CiAgICBwLmNsb3VkQmFzZSA9IGRbImNsb3VkQmFzZSJdLmlzX251bWJlcigpID8gZFsiY2xvdWRCYXNlIl0uZ2V0PGRvdWJsZT4oKSA6IDA7CiAgICBwLmNsb3VkQ2VpbGluZyA9IGRbImNsb3VkQ2VpbGluZyJdLmlzX251bWJlcigpID8gZFsiY2xvdWRDZWlsaW5nIl0uZ2V0PGRvdWJsZT4oKSA6IDA7CgogICAgcC5tb29uUGhhc2UgPSB0aGlzLT5yZXN1bHRfZm9yZWNhc3RbImRhdGEiXVsidGltZWxpbmVzIl1bMF1bImludGVydmFscyJdWzBdWyJ2YWx1ZXMiXVsibW9vblBoYXNlIl0uaXNfbnVtYmVyKCkgPwogICAgICB0aGlzLT5yZXN1bHRfZm9yZWNhc3RbImRhdGEiXVsidGltZWxpbmVzIl1bMF1bImludGVydmFscyJdWzBdWyJ2YWx1ZXMiXVsibW9vblBoYXNlIl0uZ2V0PGludD4oKSA6IDA7CgogICAgcC52YWxpZCA9IHRydWU7CiAgICBMT0dfRihJTkZPLCAiRGF0YUhhbmRsZXI6OnBvcHVsYXRlU25hcHNob3QoKTogc25hcHNob3QgcG9wdWxhdGVkIHN1Y2Nlc3NmdWxseS4iKTsKI2lmIF9fY2xhbmdfbWFqb3JfXyA+PSA4CiAgICAvL19fYnVpbHRpbl9kdW1wX3N0cnVjdCgmbV9EYXRhUG9pbnQsICZwcmludGYpOwojZW5kaWYKCiAgICAvLyBwb3B1bGF0ZSB0aGUgMyBkYXkgZm9yZWNhc3QKICAgIHAuaGF2ZVVWSSA9IGZhbHNlOwogICAgRGFpbHlGb3JlY2FzdCogZGFpbHkgPSB0aGlzLT5tX2RhaWx5OwoKICAgIGZvcihpbnQgaSA9IDA7IGkgPCAzOyBpKyspIHsKICAgICAgICBpbnQgd2VhdGhlckNvZGUgPSB0aGlzLT5yZXN1bHRfZm9yZWNhc3RbImRhdGEiXVsidGltZWxpbmVzIl1bMF1bImludGVydmFscyJdW2kKICAgICAgICAgICsgMV1bInZhbHVlcyJdWyJ3ZWF0aGVyQ29kZSJdLmlzX251bWJlcigpID8KICAgICAgICAgICAgICAgICAgICAgICAgICB0aGlzLT5yZXN1bHRfZm9yZWNhc3RbImRhdGEiXVsidGltZWxpbmVzIl1bMF1bImludGVydmFscyJdW2kKICAgICAgICAgICAgICAgICAgICAgICAgICAgICsgMV1bInZhbHVlcyJdWyJ3ZWF0aGVyQ29kZSJdLmdldDxpbnQ+KCkgOiAxMDAwOwoKICAgICAgICBpZiAoRGF0YUhhbmRsZXJfSW1wbENsaW1hQ2VsbDo6bV9pY29ucy5maW5kKHdlYXRoZXJDb2RlKQogICAgICAgICAgIT0gRGF0YUhhbmRsZXJfSW1wbENsaW1hQ2VsbDo6bV9pY29ucy5lbmQoKSkgewogICAgICAgICAgICBkYWlseVtpXS5jb2RlID0gRGF0YUhhbmRsZXJfSW1wbENsaW1hQ2VsbDo6bV9pY29uc1t3ZWF0aGVyQ29kZV1bMF07CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgZGFpbHlbaV0uY29kZSA9ICdhJzsKICAgICAgICB9CiAgICAgICAgZGFpbHlbaV0udGVtcGVyYXR1cmVNYXggPSB0aGlzLT5yZXN1bHRfZm9yZWNhc3RbImRhdGEiXVsidGltZWxpbmVzIl1bMF1bImludGVydmFscyJdW2kKICAgICAgICAgICsgMV1bInZhbHVlcyJdWyJ0ZW1wZXJhdHVyZU1heCJdLmlzX251bWJlcigpID8KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXMtPnJlc3VsdF9mb3JlY2FzdFsiZGF0YSJdWyJ0aW1lbGluZXMiXVswXVsiaW50ZXJ2YWxzIl1baQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICArIDFdWyJ2YWx1ZXMiXVsidGVtcGVyYXR1cmVNYXgiXS5nZXQ8ZG91YmxlPigpIDogMC4wZjsKCiAgICAgICAgZGFpbHlbaV0udGVtcGVyYXR1cmVNaW4gPSB0aGlzLT5yZXN1bHRfZm9yZWNhc3RbImRhdGEiXVsidGltZWxpbmVzIl1bMF1bImludGVydmFscyJdW2kKICAgICAgICAgICsgMV1bInZhbHVlcyJdWyJ0ZW1wZXJhdHVyZU1pbiJdLmlzX251bWJlcigpID8KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRoaXMtPnJlc3VsdF9mb3JlY2FzdFsiZGF0YSJdWyJ0aW1lbGluZXMiXVswXVsiaW50ZXJ2YWxzIl1baQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICArIDFdWyJ2YWx1ZXMiXVsidGVtcGVyYXR1cmVNaW4iXS5nZXQ8ZG91YmxlPigpIDogMC4wZjsKCiAgICAgICAgR0RhdGVUaW1lICpnID0KICAgICAgICAgIGdfZGF0ZV90aW1lX25ld19mcm9tX2lzbzg2MDEocmVzdWx0X2ZvcmVjYXN0WyJkYXRhIl1bInRpbWVsaW5lcyJdWzBdWyJpbnRlcnZhbHMiXVtpCiAgICAgICAgICAgICsgMV1bInZhbHVlcyJdWyJzdW5yaXNlVGltZSJdLmdldDxzdGQ6OnN0cmluZz4oKS5jX3N0cigpLCAwKTsKICAgICAgICBnaW50IHdlZWtkYXkgPSBnX2RhdGVfdGltZV9nZXRfZGF5X29mX3dlZWsoZyk7CiAgICAgICAgZ19kYXRlX3RpbWVfdW5yZWYoZyk7CgogICAgICAgIGlmICh3ZWVrZGF5ID49IDEgJiYgd2Vla2RheSA8PSA3KSB7CiAgICAgICAgICAgIHNucHJpbnRmKGRhaWx5W2ldLndlZWtEYXksIDUsICIlcyIsIERhdGFIYW5kbGVyOjp3ZWVrRGF5c1t3ZWVrZGF5IC0gMV0pOwogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIHNucHJpbnRmKGRhaWx5W2ldLndlZWtEYXksIDUsICIlcyIsIERhdGFIYW5kbGVyOjp3ZWVrRGF5c1s3XSk7ICAgICAgIC8vIHByaW50ICJpbnZhbGlkIgogICAgICAgIH0KICAgIH0KICAgIGlmKHRoaXMtPm1fb3B0aW9ucy5nZXRDb25maWcoKS5kZWJ1ZykgewogICAgICAgIHRoaXMtPmR1bXBTbmFwc2hvdCgpOwogICAgfQp9Cgpjb25zdCBjaGFyICpEYXRhSGFuZGxlcl9JbXBsQ2xpbWFDZWxsOjpnZXRDb25kaXRpb24oaW50IHdlYXRoZXJDb2RlKQp7CiAgICBpZihEYXRhSGFuZGxlcl9JbXBsQ2xpbWFDZWxsOjptX2NvbmRpdGlvbnMuZmluZCh3ZWF0aGVyQ29kZSkgIT0gRGF0YUhhbmRsZXJfSW1wbENsaW1hQ2VsbDo6bV9pY29ucy5lbmQoKSkgewogICAgICAgIHJldHVybiBEYXRhSGFuZGxlcl9JbXBsQ2xpbWFDZWxsOjptX2NvbmRpdGlvbnNbd2VhdGhlckNvZGVdOwogICAgfQogICAgcmV0dXJuICJVTkRFRklORUQiOwp9Cgpjb25zdCBjaGFyICpEYXRhSGFuZGxlcl9JbXBsQ2xpbWFDZWxsOjpnZXRQcmVjaXBUeXBlKGludCBjb2RlKSBjb25zdAp7CiAgICBjb2RlID0gKGNvZGUgPiA0IHx8IGNvZGUgPCAwKSA/IDAgOiBjb2RlOwogICAgcmV0dXJuIERhdGFIYW5kbGVyX0ltcGxDbGltYUNlbGw6OnByZWNpcFR5cGVbY29kZV07Cn0KCi8qKgogKiB0aGlzIHZlcmlmeSB0aGUganNvbiBkYXRhIHJlY2VpdmVkIGZvciBwbGF1c2FiaWxpdHkKICogVE9ETyBpbXBsZW1lbnQgdGhpcwogKiBAcmV0dXJuICB0cnVlLCBpZiBjaGVja3MgcGFzc2VkCiAqLwpib29sIERhdGFIYW5kbGVyX0ltcGxDbGltYUNlbGw6OnZlcmlmeURhdGEoKQp7CiAgICByZXR1cm4gdHJ1ZTsKfQoAAAAAAAAAACg+AAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA8SIAAAAAAADxIgAAAAAAAAAAAAAAAPC/"
-				]
-			]
-		},
-		{
-			"file": "/data/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.cpp",
-			"settings":
-			{
-				"buffer_size": 15912,
+				"buffer_size": 4757,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			},
 			"undo_stack":
 			[
 				[
-					19,
+					10,
 					1,
-					"paste",
+					"right_delete",
 					null,
-					"AQAAAJwhAAAAAAAABSIAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAnCEAAAAAAACcIQAAAAAAAAAAAAAAAAAA"
+					"AQAAALcOAAAAAAAAtw4AAAAAAAAQAAAAICAgICAgICAgICAgICAgIA",
+					"AQAAAAAAAAABAAAAxw4AAAAAAAC3DgAAAAAAAAAAAAAAAAAA"
+				],
+				[
+					11,
+					1,
+					"insert",
+					{
+						"characters": "\t\t\t\t\t\t"
+					},
+					"BgAAALcOAAAAAAAAuQ4AAAAAAAAAAAAAuQ4AAAAAAAC7DgAAAAAAAAAAAAC7DgAAAAAAAL0OAAAAAAAAAAAAAL0OAAAAAAAAvw4AAAAAAAAAAAAAvw4AAAAAAADBDgAAAAAAAAAAAADBDgAAAAAAAMMOAAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAtw4AAAAAAAC3DgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					12,
+					1,
+					"insert",
+					{
+						"characters": "\t"
+					},
+					"AQAAAMMOAAAAAAAAxQ4AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAww4AAAAAAADDDgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					14,
+					6,
+					"right_delete",
+					null,
+					"BgAAANkOAAAAAAAA2Q4AAAAAAAABAAAAINkOAAAAAAAA2Q4AAAAAAAABAAAAINkOAAAAAAAA2Q4AAAAAAAABAAAAINkOAAAAAAAA2Q4AAAAAAAABAAAAINkOAAAAAAAA2Q4AAAAAAAABAAAAINkOAAAAAAAA2Q4AAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAA2Q4AAAAAAADZDgAAAAAAAAAAAAAAgF9A"
+				],
+				[
+					15,
+					1,
+					"insert",
+					{
+						"characters": "\t\t"
+					},
+					"AgAAANkOAAAAAAAA2w4AAAAAAAAAAAAA2w4AAAAAAADdDgAAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAA2Q4AAAAAAADZDgAAAAAAAAAAAAAAAPC/"
+				],
+				[
+					20,
+					1,
+					"insert",
+					{
+						"characters": "\t"
+					},
+					"AQAAAFYPAAAAAAAAWA8AAAAAAAAAAAAA",
+					"AQAAAAAAAAABAAAAVg8AAAAAAABWDwAAAAAAAAAAAAAAAPC/"
 				],
 				[
 					21,
-					4,
-					"right_delete",
-					null,
-					"BAAAAJwhAAAAAAAAnCEAAAAAAAABAAAAIJwhAAAAAAAAnCEAAAAAAAABAAAAIJwhAAAAAAAAnCEAAAAAAAABAAAAIJwhAAAAAAAAnCEAAAAAAAABAAAAIA",
-					"AQAAAAAAAAABAAAAnCEAAAAAAACcIQAAAAAAAAAAAAAAAAAA"
-				],
-				[
-					23,
-					20,
-					"right_delete",
-					null,
-					"FAAAAK8hAAAAAAAAryEAAAAAAAABAAAACq8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIK8hAAAAAAAAryEAAAAAAAABAAAAIg",
-					"AQAAAAAAAAABAAAAryEAAAAAAACvIQAAAAAAAP///////+9/"
-				],
-				[
-					24,
-					1,
-					"insert",
-					{
-						"characters": " \""
-					},
-					"AgAAAK8hAAAAAAAAsCEAAAAAAAAAAAAAsCEAAAAAAACxIQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAryEAAAAAAACvIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					29,
-					1,
-					"insert",
-					{
-						"characters": "Imüö"
-					},
-					"BAAAALEhAAAAAAAAsiEAAAAAAAAAAAAAsiEAAAAAAACzIQAAAAAAAAAAAACzIQAAAAAAALQhAAAAAAAAAAAAALQhAAAAAAAAtSEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAsSEAAAAAAACxIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					30,
-					2,
-					"left_delete",
-					null,
-					"AgAAALQhAAAAAAAAtCEAAAAAAAACAAAAw7azIQAAAAAAALMhAAAAAAAAAgAAAMO8",
-					"AQAAAAAAAAABAAAAtSEAAAAAAAC1IQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					31,
-					1,
-					"insert",
-					{
-						"characters": "plCC"
-					},
-					"BAAAALMhAAAAAAAAtCEAAAAAAAAAAAAAtCEAAAAAAAC1IQAAAAAAAAAAAAC1IQAAAAAAALYhAAAAAAAAAAAAALYhAAAAAAAAtyEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAsyEAAAAAAACzIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					32,
-					6,
-					"left_delete",
-					null,
-					"BgAAALYhAAAAAAAAtiEAAAAAAAABAAAAQ7UhAAAAAAAAtSEAAAAAAAABAAAAQ7QhAAAAAAAAtCEAAAAAAAABAAAAbLMhAAAAAAAAsyEAAAAAAAABAAAAcLIhAAAAAAAAsiEAAAAAAAABAAAAbbEhAAAAAAAAsSEAAAAAAAABAAAASQ",
-					"AQAAAAAAAAABAAAAtyEAAAAAAAC3IQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					33,
-					1,
-					"insert",
-					{
-						"characters": "CC:"
-					},
-					"AwAAALEhAAAAAAAAsiEAAAAAAAAAAAAAsiEAAAAAAACzIQAAAAAAAAAAAACzIQAAAAAAALQhAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAsSEAAAAAAACxIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					36,
-					7,
-					"right_delete",
-					null,
-					"BwAAAMMhAAAAAAAAwyEAAAAAAAABAAAARsMhAAAAAAAAwyEAAAAAAAABAAAAYcMhAAAAAAAAwyEAAAAAAAABAAAAacMhAAAAAAAAwyEAAAAAAAABAAAAbMMhAAAAAAAAwyEAAAAAAAABAAAAdcMhAAAAAAAAwyEAAAAAAAABAAAAcsMhAAAAAAAAwyEAAAAAAAABAAAAZQ",
-					"AQAAAAAAAAABAAAAwyEAAAAAAADDIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					38,
-					1,
-					"right_delete",
-					null,
-					"AQAAAMMhAAAAAAAAwyEAAAAAAAAnAAAALCBlcnJvciBjb2RlID0gJWQsIGVycm9yIG1lc3NhZ2UgPSAlcyIs",
-					"AQAAAAAAAAABAAAAwyEAAAAAAADqIQAAAAAAAP///////+9/"
-				],
-				[
-					39,
-					1,
-					"insert",
-					{
-						"characters": "ra"
-					},
-					"AgAAAMMhAAAAAAAAxCEAAAAAAAAAAAAAxCEAAAAAAADFIQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAwyEAAAAAAADDIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					40,
 					1,
 					"left_delete",
 					null,
-					"AQAAAMQhAAAAAAAAxCEAAAAAAAABAAAAYQ",
-					"AQAAAAAAAAABAAAAxSEAAAAAAADFIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					41,
-					1,
-					"insert",
-					{
-						"characters": "ead"
-					},
-					"AwAAAMQhAAAAAAAAxSEAAAAAAAAAAAAAxSEAAAAAAADGIQAAAAAAAAAAAADGIQAAAAAAAMchAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAxCEAAAAAAADEIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					42,
-					1,
-					"insert",
-					{
-						"characters": " successful"
-					},
-					"CwAAAMchAAAAAAAAyCEAAAAAAAAAAAAAyCEAAAAAAADJIQAAAAAAAAAAAADJIQAAAAAAAMohAAAAAAAAAAAAAMohAAAAAAAAyyEAAAAAAAAAAAAAyyEAAAAAAADMIQAAAAAAAAAAAADMIQAAAAAAAM0hAAAAAAAAAAAAAM0hAAAAAAAAziEAAAAAAAAAAAAAziEAAAAAAADPIQAAAAAAAAAAAADPIQAAAAAAANAhAAAAAAAAAAAAANAhAAAAAAAA0SEAAAAAAAAAAAAA0SEAAAAAAADSIQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAAxyEAAAAAAADHIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					43,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAANIhAAAAAAAA0yEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA0iEAAAAAAADSIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					44,
-					1,
-					"left_delete",
-					null,
-					"AQAAANIhAAAAAAAA0iEAAAAAAAABAAAAIA",
-					"AQAAAAAAAAABAAAA0yEAAAAAAADTIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					45,
-					1,
-					"insert",
-					{
-						"characters": ","
-					},
-					"AQAAANIhAAAAAAAA0yEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA0iEAAAAAAADSIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					46,
-					1,
-					"insert",
-					{
-						"characters": " populating"
-					},
-					"CwAAANMhAAAAAAAA1CEAAAAAAAAAAAAA1CEAAAAAAADVIQAAAAAAAAAAAADVIQAAAAAAANYhAAAAAAAAAAAAANYhAAAAAAAA1yEAAAAAAAAAAAAA1yEAAAAAAADYIQAAAAAAAAAAAADYIQAAAAAAANkhAAAAAAAAAAAAANkhAAAAAAAA2iEAAAAAAAAAAAAA2iEAAAAAAADbIQAAAAAAAAAAAADbIQAAAAAAANwhAAAAAAAAAAAAANwhAAAAAAAA3SEAAAAAAAAAAAAA3SEAAAAAAADeIQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA0yEAAAAAAADTIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					47,
-					1,
-					"insert",
-					{
-						"characters": " snap"
-					},
-					"BQAAAN4hAAAAAAAA3yEAAAAAAAAAAAAA3yEAAAAAAADgIQAAAAAAAAAAAADgIQAAAAAAAOEhAAAAAAAAAAAAAOEhAAAAAAAA4iEAAAAAAAAAAAAA4iEAAAAAAADjIQAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA3iEAAAAAAADeIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					48,
-					1,
-					"insert",
-					{
-						"characters": " "
-					},
-					"AQAAAOMhAAAAAAAA5CEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA4yEAAAAAAADjIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					49,
-					1,
-					"left_delete",
-					null,
-					"AQAAAOMhAAAAAAAA4yEAAAAAAAABAAAAIA",
-					"AQAAAAAAAAABAAAA5CEAAAAAAADkIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					50,
-					1,
-					"insert",
-					{
-						"characters": "shot\")"
-					},
-					"BgAAAOMhAAAAAAAA5CEAAAAAAAAAAAAA5CEAAAAAAADlIQAAAAAAAAAAAADlIQAAAAAAAOYhAAAAAAAAAAAAAOYhAAAAAAAA5yEAAAAAAAAAAAAA5yEAAAAAAADoIQAAAAAAAAAAAADoIQAAAAAAAOkhAAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA4yEAAAAAAADjIQAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					51,
-					1,
-					"insert",
-					{
-						"characters": ";"
-					},
-					"AQAAAOkhAAAAAAAA6iEAAAAAAAAAAAAA",
-					"AQAAAAAAAAABAAAA6SEAAAAAAADpIQAAAAAAAAAAAAAAAPC/"
+					"AQAAAFcPAAAAAAAAVw8AAAAAAAABAAAAIA",
+					"AQAAAAAAAAABAAAAWA8AAAAAAABYDwAAAAAAAAAAAAAAAPC/"
 				]
 			]
 		},
 		{
-			"file": "src/utils.cpp",
+			"file": "src/DataHandler_ImplClimaCell.cpp",
 			"settings":
 			{
-				"buffer_size": 4464,
+				"buffer_size": 16040,
 				"line_ending": "Unix"
 			}
 		},
@@ -401,51 +231,27 @@
 			"file": "src/options.h",
 			"settings":
 			{
-				"buffer_size": 4024,
-				"line_ending": "Unix"
-			},
-			"undo_stack":
-			[
-			]
-		},
-		{
-			"contents": "/*\n * MIT License\n *\n * Copyright (c) 2021 Alex Vie (silvercircle@gmail.com)\n *\n * Permission is hereby granted, free of charge, to any person obtaining a copy\n * of this software and associated documentation files (the \"Software\"), to deal\n * in the Software without restriction, including without limitation the rights\n * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n * copies of the Software, and to permit persons to whom the Software is\n * furnished to do so, subject to the following conditions:\n *\n * The above copyright notice and this permission notice shall be included in all\n * copies or substantial portions of the Software.\n \n * THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n * SOFTWARE.\n */\n\n#include \"utils.h\"\n\nDataHandler::DataHandler() : m_options{ProgramOptions::getInstance()},\n                             m_DataPoint { .valid = false }\n{\n    const CFG& cfg = m_options.getConfig();\n\n    this->db_path.assign(cfg.data_dir_path);\n    this->db_path.append(\"/history.sqlite3\");\n    LOG_F(INFO, \"Database path: %s\", this->db_path.c_str());\n\n    this->m_currentCache.assign(cfg.data_dir_path);\n    this->m_currentCache.append(\"/cache/\");\n    this->m_currentCache.append(cfg.apiProviderString).append(\".\");\n\n    this->m_ForecastCache.assign(this->m_currentCache);\n    this->m_ForecastCache.append(\"forecast.json\");\n    this->m_currentCache.append(\"current.json\");\n    LOG_F(INFO, \"Current Cache: %s\", this->m_currentCache.c_str());\n    LOG_F(INFO, \"Forecast Cache: %s\", this->m_ForecastCache.c_str());\n}\n/**\n * convert a wind bearing in degrees into a human-readable form (i.e. \"SW\" for\n * a south-westerly wind).\n *\n * @param wind_direction    - wind bearing in degrees\n * @return                  - wind direction and speed unit as a std::pair\n */\nstd::pair<std::string, std::string> DataHandler::degToBearing(unsigned int wind_direction) const\n{\n    wind_direction = (wind_direction > 360) ? 0 : wind_direction;\n    size_t _val = (size_t) (((double) wind_direction / 22.5) + 0.5);\n    std::string retval;\n    retval.assign(DataHandler::wind_directions[_val % 16]);\n    return std::pair<std::string, std::string>(retval, this->m_options.getConfig().speed_unit);\n}\n\n/**\n * Convert a temperature from metric to imperial, depending on the user's preference.\n *\n * @param temp      - temperature in Celsius\n * @param unit      - destination unit (F or C are allowed)\n * @return          - temperature and its unit as a std::pair\n */\nstd::pair<double, char> DataHandler::convertTemperature(double temp, char unit) const\n{\n    double converted_temp = temp;\n    unit = (unit == 'C' || unit == 'F') ? unit : 'C';\n    if (unit == 'F') {\n        converted_temp = (temp * (9.0 / 5.0)) + 32.0;\n    }\n\n    return std::pair<double, char>(converted_temp, unit);\n}\n\ndouble DataHandler::convertVis(const double vis) const\n{\n    return this->m_options.getConfig().vis_unit == \"mi\" ? vis / 1.609 : vis;\n}\n\ndouble DataHandler::convertWindspeed(double speed) const\n{\n    const std::string& _unit = m_options.getConfig().speed_unit;\n    if(_unit == \"km/h\")\n        return speed * 3.6;\n    else if(_unit == \"mph\")\n        return speed * 2.237;\n    else if(_unit == \"kts\")\n        return speed * 1.944;\n    else\n        return speed;\n}\n\n// hPa > InHg\ndouble DataHandler::convertPressure(double hPa) const\n{\n    return m_options.getConfig().pressure_unit == \"inhg\" ? hPa / 33.863886666667 : hPa;\n}\n\n/**\n * Output a single temperature value.\n *\n * @param val       temperature always in metric (Celsius)\n * @param addUnit   add the Unit (°C or °F)\n * @param format    use this format for output. See .h for defaults.\n */\nvoid DataHandler::outputTemperature(FILE *stream, double val, const bool addUnit, const char *format)\n{\n    char unit[5] = \"\\xc2\\xB0X\";    // UTF-8!! c2b0 is the utf8 sequence for ° (degree symbol)\n    char res[129];\n\n    auto result = this->convertTemperature(val, this->m_options.getConfig().temp_unit).first;\n\n    unit[2] = this->m_options.getConfig().temp_unit;\n\n    fprintf(stream, \"%.1f%s\\n\", result, addUnit ? unit : \"\");\n}\n\n/**\n * @brief DataHandler::doOutput - generate output\n * @param stream: target stream for the ouput\n *\n * This generates all the output - it can either print to the console\n * or to a given FILE.\n */\nvoid DataHandler::doOutput(FILE* stream)\n{\n\n    const CFG& cfg = this->m_options.getConfig();\n\n    fprintf(stream, \"** Begin output **\\n\");\n\n    fprintf(stream, \"%c\\n\", m_DataPoint.weatherSymbol);\n    this->outputTemperature(stream, m_DataPoint.temperature, true);\n\n    /*\n     * The 3 days of forecast\n     */\n    this->outputDailyForecast(stream, false);\n    this->outputTemperature(stream, m_DataPoint.temperatureApparent, true);                 // 16\n    this->outputTemperature(stream, m_DataPoint.dewPoint, true);                            // 17\n    fprintf(stream, \"Humidity: %.1f\\n\", m_DataPoint.humidity);                               // 18\n    fprintf(stream, cfg.pressure_unit == \"hPa\" ? \"%.0f hPa\\n\" : \"%.2f InHg\\n\",               // 19\n           m_DataPoint.pressureSeaLevel);\n    fprintf(stream, \"%.1f %s\\n\", m_DataPoint.windSpeed, cfg.speed_unit.c_str());             // 20\n\n    if(m_DataPoint.precipitationIntensity > 0) {\n        fprintf(stream, \"%s (%.1fmm/1h)\\n\", m_DataPoint.precipitationTypeAsString,\n               m_DataPoint.precipitationIntensity);                                 // 21\n    } else {\n        fprintf(stream, \"PoP: %.0f%%\\n\", m_DataPoint.precipitationProbability);              // 21\n    }\n    fprintf(stream, \"%.1f %s\\n\", m_DataPoint.visibility, cfg.vis_unit.c_str());              // 22\n\n    fprintf(stream, \"%s\\n\", m_DataPoint.sunriseTimeAsString);                                // 23\n    fprintf(stream, \"%s\\n\", m_DataPoint.sunsetTimeAsString);                                 // 24\n\n    fprintf(stream, \"%s\\n\", m_DataPoint.windBearing);                                        // 25\n    fprintf(stream, \"%s\\n\", m_DataPoint.timeRecordedAsText);                                 // 26\n    fprintf(stream, \"%s\", m_DataPoint.conditionAsString);                                    // 27\n    if(m_DataPoint.cloudCover > 0) {\n        fprintf(stream, \" (%.0f%% cov.)\\n\", m_DataPoint.cloudCover);\n    } else {\n        fprintf(stream, \"\\n\");\n    }\n    fprintf(stream, \"%s\\n\", cfg.timezone.c_str());                                           // 28\n    outputTemperature(stream, m_DataPoint.temperatureMin, true);\t\t                    // 29\n    outputTemperature(stream, m_DataPoint.temperatureMax, true);\t\t                    // 30\n    // not all APIs provide the UV index\n    if(m_DataPoint.haveUVI) {\n        fprintf(stream, \"UV: %.1f\\n\", m_DataPoint.uvIndex);                                  // 31\n    } else {\n        fprintf(stream, \" \\n\");                                                              // 31\n    }\n    fprintf(stream, \"** end data **\\n\");                                          \t\t    // 32\n    fprintf(stream, \"%.0f (Clouds)\\n\", m_DataPoint.cloudCover);\n    fprintf(stream, \"%.0f (Cloudbase)\\n\", m_DataPoint.cloudBase);\n    fprintf(stream, \"%.0f (Cloudceil)\\n\", m_DataPoint.cloudCeiling);\n    fprintf(stream, \"%d (Moon)\\n\", m_DataPoint.moonPhase);\n}\n\n/**\n * output low/high temperature and condition \"icon\" for one day in the\n * forecast\n *\n * @param day           the JSON data for the forecast day to process\n * param  is_daylight   whether we should use the day or night weather symbol\n */\nvoid DataHandler::outputDailyForecast(FILE *stream, const bool is_day)\n\n{\n    for (int i = 0; i < 3; i++) {\n        fprintf(stream, \"%c\\n\", this->m_daily[i].code);\n        outputTemperature(stream, this->m_daily[i].temperatureMin, false, \"%.0f%s\\n\");\n        outputTemperature(stream, this->m_daily[i].temperatureMax, false, \"%.0f%s\\n\");\n        fprintf(stream, \"%s\\n\", this->m_daily[i].weekDay);\n    }\n}\n\n// TODO - this is incomplete\nvoid DataHandler::dumpSnapshot()\n{\n    DataPoint& p = this->m_DataPoint;\n\n    printf(\"Temp: %f - Feels: %f\\n\", p.temperature, p.temperatureApparent);\n    printf(\"Sunrise: %s - Sunset: %s\\n\", p.sunriseTimeAsString, p.sunsetTimeAsString);\n    printf(\"Pressure: %f - Humidity: %f\\n\", p.pressureSeaLevel, p.humidity);\n    printf(\"Code: %d, Symbol: %c, Condition: %s\\n\", p.weatherCode, p.weatherSymbol, p.conditionAsString);\n}\n\n/**\n * Write the database entry, unless database recording is disabled\n * @author alex (25.02.21)\n */\nvoid DataHandler::writeToDB()\n{\n    sqlite3         *the_db = 0;\n    sqlite3_stmt    *stmt = 0;\n    char            *err = 0;\n    DataPoint&      d = this->m_DataPoint;\n\n    if(!d.valid)\n        return;\n\n    // don't modify db in debug mode\n    if(m_options.getConfig().debug) {\n        LOG_F(INFO, \"DataHandler::writeToDB(): skipping DB recording (debug mode is on)\");\n        return;\n    }\n\n    LOG_F(INFO, \"Flushing DB, attemptint to open: %s\", this->db_path.c_str());\n    auto rc = sqlite3_open(this->db_path.c_str(), &the_db);\n    if(rc) {\n        LOG_F(INFO, \"Unable to open the SQLite Database at %s. The error message was %s.\",\n              this->db_path.c_str(), sqlite3_errmsg(the_db));\n        return;\n    }\n    LOG_F(INFO, \"Database openend successfully\");\n\n    auto sql = R\"(CREATE TABLE IF NOT EXISTS history\n      (\n          id INTEGER PRIMARY KEY AUTOINCREMENT,\n          timestamp INTEGER DEFAULT 0,\n          summary TEXT NOT NULL DEFAULT 'unknown',\n          icon TEXT NOT NULL DEFAULT 'unknown',\n          temperature REAL NOT NULL DEFAULT 0.0,\n          feelslike REAL NOT NULL DEFAULT 0.0,\n          dewpoint REAL DEFAULT 0.0,\n          windbearing INTEGER DEFAULT 0,\n          windspeed REAL DEFAULT 0.0,\n          windgust REAL DEFAULT 0.0,\n          humidity REAL DEFAULT 0.0,\n          visibility REAL DEFAULT 0.0,\n          pressure REAL DEFAULT 1013.0,\n          precip_probability REAL DEFAULT 0.0,\n          precip_intensity REAL DEFAULT 0.0,\n          precip_type TEXT DEFAULT 'none',\n          cloudCover REAL DEFAULT 0.0,\n          cloudBase REAL DEFAULT 0.0,\n          cloudCeiling REAL DEFAULT 0.0,\n          moonPhase INTEGER DEFAULT 0,\n          uvindex INTEGER DEFAULT 0,\n          sunrise INTEGER DEFAULT 0,\n          sunset INTEGER DEFAULT 0,\n          tempMax REAL DEFAULT 0.0,\n          tempMin REAL DEFAULT 0.0\n      )\n    )\";\n\n    rc = sqlite3_exec(the_db, sql, utils::sqlite_callback, 0, &err);\n    if(rc != SQLITE_OK) {\n        LOG_F(INFO, \"DB error when creating the table: %s\", err);\n        sqlite3_free(err);\n    }\n\n    rc = sqlite3_prepare_v2(the_db,\n                            \"INSERT INTO history(timestamp, summary, icon, temperature,\"\n                            \"feelslike, dewpoint, windbearing, windspeed,\"\n                            \"windgust, humidity, visibility, pressure,\"\n                            \"precip_probability, precip_intensity, precip_type,\"\n                            \"uvindex, sunrise, sunset, cloudBase, cloudCover, cloudCeiling, moonPhase,\"\n                            \"tempMin, tempMax)\"\n                            \"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)\", -1, &stmt, 0);\n\n    if(SQLITE_OK == rc) {\n        char    tmp[10];\n        LOG_F(INFO, \"DataHandler::writeToDB(): sqlite3_prepare_v2() succeeded. Statement compiled\");\n        sqlite3_bind_int(stmt, 1, static_cast<int>(d.timeRecorded));\n        sqlite3_bind_text(stmt, 2, d.conditionAsString, -1, 0);\n        tmp[0] = d.weatherSymbol;\n        sqlite3_bind_text(stmt, 3, tmp, -1, 0);\n        sqlite3_bind_double(stmt, 4, d.temperature);\n        sqlite3_bind_double(stmt, 5, d.temperatureApparent);\n        sqlite3_bind_double(stmt, 6, d.dewPoint);\n        sqlite3_bind_int(stmt, 7, d.windDirection);\n        sqlite3_bind_double(stmt, 8, d.windSpeed);\n        sqlite3_bind_double(stmt, 9, d.windGust);\n        sqlite3_bind_double(stmt, 10, d.humidity);\n        sqlite3_bind_double(stmt, 11, d.visibility);\n        sqlite3_bind_double(stmt, 12, d.pressureSeaLevel);\n        sqlite3_bind_double(stmt, 13, d.precipitationProbability);\n        sqlite3_bind_double(stmt, 14, d.precipitationIntensity);\n        sqlite3_bind_text(stmt, 15, d.precipitationTypeAsString, -1, 0);\n        sqlite3_bind_int(stmt, 16, static_cast<int>(d.uvIndex));\n        sqlite3_bind_int(stmt, 17, static_cast<int>(d.sunriseTime));\n        sqlite3_bind_int(stmt, 18, static_cast<int>(d.sunsetTime));\n        sqlite3_bind_double(stmt, 19, d.cloudBase);\n        sqlite3_bind_double(stmt, 20, d.cloudCover);\n        sqlite3_bind_double(stmt, 21, d.cloudCeiling);\n        sqlite3_bind_int(stmt, 22, d.moonPhase);\n        sqlite3_bind_double(stmt, 23, d.temperatureMin);\n        sqlite3_bind_double(stmt, 24, d.temperatureMax);\n\n        rc = sqlite3_step(stmt);\n        if(SQLITE_OK == rc) {\n            LOG_F(INFO, \"DataHandler::writeToDB(): sqlite3_step() succeeded. Insert done.\");\n            sqlite3_finalize(stmt);\n        } else {\n            LOG_F(INFO, \"DataHandler::writeToDB(): sqlite3_step error: %s\", sqlite3_errmsg(the_db));\n            sqlite3_finalize(stmt);\n        }\n\n    }\n    else {\n        LOG_F(INFO, \"DataHandler::writeToDB(): prepare stmt, error: %s\", sqlite3_errmsg(the_db));\n    }\n    sqlite3_close(the_db);\n}\n\n/**\n * This performs all the work.\n * returns 0 if everything ok, -1 otherwise (used as exit code in main())\n *\n * @author alex (25.02.21)\n */\nint DataHandler::run()\n{\n    const CFG& cfg = m_options.getConfig();\n\n    if(cfg.offline) {\n        LOG_F(INFO, \"DataHandler::run(): Attempting to read from cache (--offline option present)\");\n        if(!this->readFromCache()) {\n            LOG_F(INFO, \"run() Reading from cache failed, giving up.\");\n            return -1;\n        }\n    } else {\n        LOG_F(INFO, \"DataHandler::run(): --offline not specified, attemptingn to fetch from API\");\n        if(this->readFromApi() == false) {\n            if(!cfg.skipcache) {\n                LOG_F(INFO, \"DataHandler::run(): readFromApi() failed, trying cache\");\n                if(this->readFromCache() == false) {\n                    LOG_F(INFO, \"DataHandler::run(): BOTH readFromApi() and readFromCache() failed, giving up...\");\n                    return -1;\n                }\n            } else {\n                LOG_F(INFO, \"DataHandler::run(): readFromApi() failed, cache opted-out, giving up...\");\n                return -1;\n            }\n        }\n    }\n    if(!cfg.debug) {\n        LOG_F(INFO, \"run() - valid data, beginning output\");\n        if(!cfg.silent) {\n            this->doOutput(stdout);\n        }\n        // dump to a file if --output was given\n        if(cfg.output_file.length() > 0) {\n            FileDumper dumper(this);\n            dumper.dump();\n        }\n        return 0;\n    } else {\n        LOG_F(INFO, \"run() - valid data, debug mode, no output genereated\");\n    }\n    return -1;\n}\n",
-			"file": "src/DataHandler.cpp",
-			"file_size": 15175,
-			"file_write_time": 132990730468107614,
-			"settings":
-			{
-				"buffer_size": 15171,
+				"buffer_size": 4042,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
-			},
-			"undo_stack":
-			[
-				[
-					3,
-					1,
-					"transpose",
-					null,
-					"AgAAAJ0CAAAAAAAAngIAAAAAAAABAAAACpwCAAAAAAAAnQIAAAAAAAABAAAAKg",
-					"AQAAAAAAAAABAAAAnQIAAAAAAACdAgAAAAAAAAAAAAAAAPC/"
-				],
-				[
-					4,
-					1,
-					"left_delete",
-					null,
-					"AQAAAJ0CAAAAAAAAnQIAAAAAAAABAAAAKg",
-					"AQAAAAAAAAABAAAAngIAAAAAAACeAgAAAAAAAAAAAAAAAPC/"
-				]
-			]
+			}
 		},
 		{
-			"contents": " ____________________________________________________________________________\n/ I'll give you my opinion of the human race in a nutshell ... their heart's \\\n| in the right place, but their head is a thoroughly inefficient organ.      |\n|                                                                            |\n\\ -- W. Somerset Maugham, \"The Summing Up\"                                   /\n ----------------------------------------------------------------------------\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||\n[15:09:35::alex@warpcore:code/fetchweather]$>                                                                                    \n[15:09:45::alex@warpcore:code/fetchweather]$>dir                                                                                 \ntotal 192\ndrwxrwxr-x 11 alex alex  4096 14. Feb 06:35 .\ndrwxr-xr-x 25 alex alex  4096 25. Mär 10:52 ..\ndrwxr-xr-x  4 alex alex  4096 17. Mär 03:26 build\ndrwxr-x---  3 alex alex  4096 14. Feb 06:35 .cache\ndrwxrwxr-x  4 alex alex  4096 10. Dez 10:55 cmake-build-debug-clang\ndrwxrwxr-x  6 alex alex  4096 24. Feb 18:09 cmake-build-release-clang\n-rw-rw-r--  1 alex alex  2845  1. Dez 04:28 CMakeLists.txt\n-rw-r--r--  1 alex alex 22061  3. Dez 05:00 CMakeLists.txt.user\n-rw-rw-r--  1 alex alex 11403  1. Dez 04:18 compile_commands.json\n-rw-------  1 alex alex    80 13. Feb 12:47 fetchweather.kdev4\n-rw-rw-r--  1 alex alex   212 28. Okt 04:48 fetchweather.sublime-project\n-rw-rw-r--  1 alex alex 52734 30. Mär 14:25 fetchweather.sublime-workspace\ndrwxrwxr-x  8 alex alex  4096 17. Mär 03:26 .git\n-rw-rw-r--  1 alex alex    68 26. Okt 02:37 .gitignore\ndrwxrwxr-x  6 alex alex  4096  2. Mär 2021  .idea\ndrwxr-xr-x  2 alex alex  4096 20. Feb 05:37 .kdev4\n-rw-rw-r--  1 alex alex  1065  2. Mär 2021  LICENSE\n-rw-rw-r--  1 alex alex  1791  4. Mär 2021  README.md\ndrwxrwxr-x  5 alex alex  4096  9. Mär 00:46 src\n-rw-rw-r--  1 alex alex 32997 11. Nov 06:54 untitled.sublime-workspace\ndrwxrwxr-x  2 alex alex  4096 20. Feb 06:20 .vscode\n[18:00:59::alex@warpcore:code/fetchweather]$>\n _______________________________________________________________________\n/ To converse at the distance of the Indes by means of sympathetic      \\\n| contrivances may be as natural to future times as to us is a literary |\n| correspondence.                                                       |\n|                                                                       |\n\\ -- Joseph Glanvill, 1661                                              /\n -----------------------------------------------------------------------\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||\n[4:33:23::alex@warpcore:code/fetchweather]$>\n _________________________________\n/ MATH AND ALCOHOL DON'T MIX!     \\\n|                                 |\n| Please, don't drink and derive. |\n|                                 |\n| Mathematicians                  |\n|                                 |\n| Against                         |\n|                                 |\n| Drunk                           |\n|                                 |\n\\ Deriving                        /\n ---------------------------------\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||\n[1:54:03::alex@warpcore:code/fetchweather]$>\n _______________________________________________________\n/ \"In matrimony, to hesitate is sometimes to be saved.\" \\\n|                                                       |\n\\ -- Butler                                             /\n -------------------------------------------------------\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||\n[2:11:47::alex@warpcore:code/fetchweather]$>\n ____________________________________________________________________________\n/ I'm a lucky guy, and I'm happy to be with the Yankees. And I want to thank \\\n| everyone for making this night necessary.                                  |\n|                                                                            |\n\\ -- Yogi Berra at a dinner in his honor                                     /\n ----------------------------------------------------------------------------\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||\n[16:34:55::alex@warpcore:code/fetchweather]$>",
+			"file": "src/DataHandler.cpp",
 			"settings":
 			{
-				"buffer_size": 4539,
+				"buffer_size": 15270,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": " ___________________________________________ \n< He who laughs last is probably your boss. >\n ------------------------------------------- \n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||\n[1:16:43::alex@warpcore:code/fetchweather]$>",
+			"settings":
+			{
+				"buffer_size": 305,
 				"line_ending": "Unix",
-				"name": "ZSH",
+				"name": "zsh",
 				"scratch": true
 			}
 		}
@@ -462,16 +268,28 @@
 		"selected_items":
 		[
 			[
+				"terminus tab",
+				"Terminus: Open Default Shell in Tab (View)"
+			],
+			[
+				"upgrad",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"prett",
+				"Pretty JSON: Format JSON"
+			],
+			[
+				"pretty",
+				"Pretty JSON: Format JSON"
+			],
+			[
 				"upgr",
 				"Package Control: Upgrade Package"
 			],
 			[
 				"terminus de",
 				"Terminus: Open Default Shell in Tab (View)"
-			],
-			[
-				"upgrad",
-				"Package Control: Upgrade Package"
 			],
 			[
 				"up",
@@ -740,8 +558,34 @@
 	],
 	"file_history":
 	[
+		"/data/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.cpp",
+		"/data/mnt/shared/data/code/fetchweather/src/utils.cpp",
+		"/mnt/shared/data/code/fetchweather/src/options.h",
+		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplOWM.h",
+		"/mnt/shared/data/code/fetchweather/src/conf.h",
+		"/mnt/shared/data/code/fetchweather/compile_commands.json",
+		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.h",
+		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplVC.cpp",
+		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplOWM.cpp",
+		"/mnt/shared/data/code/fetchweather/src/FetchWeatherApp.cpp",
+		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplVC.h",
+		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.cpp",
+		"/mnt/shared/data/code/fetchweather/src/DataHandler.h",
 		"/mnt/shared/data/code/fetchweather/src/DataHandler.cpp",
+		"/mnt/shared/data/code/fetchweather/src/FetchWeatherApp.h",
+		"/mnt/shared/data/code/fetchweather/src/FileDumper.h",
+		"/mnt/shared/data/code/fetchweather/src/FileDumper.cpp",
+		"/mnt/shared/data/code/fetchweather/src/utils.h",
 		"/mnt/shared/data/code/fetchweather/src/options.cpp",
+		"/mnt/shared/data/code/fetchweather/src/main.cpp",
+		"/mnt/shared/data/code/fetchweather/CMakeLists.txt",
+		"/mnt/shared/data/code/fetchweather/src/pch.h",
+		"/mnt/shared/data/code/fetchweather/src/utils.cpp",
+		"/home/alex/.local/share/fetchweather/cache/CC.forecast.json",
+		"/data/mnt/shared/data/code/fetchweather/src/DataHandler.cpp",
+		"/home/alex/.local/share/fetchweather/cache/CC.current.json",
+		"/mnt/shared/data/code/fetchweather/CMakeLists.txt.user",
+		"/mnt/shared/data/code/fetchweather/src/CLI/App.hpp",
 		"/home/alex/.config/autostart/org.gnome.Evolution-alarm-notify.desktop",
 		"/etc/dovecot/dovecot.conf",
 		"/home/alex/.config/neomutt/neomuttrc",
@@ -761,7 +605,6 @@
 		"/home/alex/.config/plasma-locale-settings.sh",
 		"/home/alex/.config/plasma-workspace/env/qpa.sh",
 		"/etc/leafnode/config",
-		"/mnt/shared/data/code/fetchweather/src/main.cpp",
 		"/home/alex/.local/share/applications/sublime_text.desktop",
 		"/opt/Joplin/AppRun",
 		"/home/alex/.local/share/applications/joplin.desktop",
@@ -771,34 +614,22 @@
 		"/spare/SteamLibrary/steamapps/common/Portal/portal/videoconfig_linux.cfg",
 		"/etc/systemd/resolved.conf",
 		"/home/alex/.local/share/applications/Scrivener.desktop",
-		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplVC.cpp",
 		"/home/alex/.mozilla/firefox/8b9yhi6l.default/chrome/userChrome.css",
 		"/usr/include/qt5/QtCore/qcoreapplication.h",
 		"/home/alex/.config/mpv/mpv.conf",
 		"/home/alex/.mozilla/firefox/Test Profile/chrome/userChrome.css",
-		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.cpp",
-		"/mnt/shared/data/code/fetchweather/src/FileDumper.cpp",
-		"/mnt/shared/data/code/fetchweather/src/DataHandler.h",
-		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplOWM.cpp",
-		"/mnt/shared/data/code/fetchweather/src/FetchWeatherApp.cpp",
-		"/mnt/shared/data/code/fetchweather/CMakeLists.txt",
 		"/tmp/crontab.RzXpAR",
 		"/tmp/crontab.CRj2Rq",
 		"/tmp/crontab.Lwblxt",
 		"/tmp/crontab.5JeFLc",
 		"/UBUNTU/HOME/mnt/shared/data/code/fetchweather/src/main.cpp",
-		"/mnt/shared/data/code/fetchweather/src/FetchWeatherApp.h",
 		"/home/mnt/shared/data/code/fetchweather/src/options.h",
 		"/home/mnt/shared/data/code/fetchweather/src/FetchWeatherApp.cpp",
-		"/mnt/shared/data/code/fetchweather/src/utils.cpp",
 		"/home/alex/Dropbox/Docs/scratchpad.md",
-		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.h",
 		"/home/mnt/shared/data/code/fetchweather/src/DataHandler.h",
 		"/home/alex/.config/sublime-text-3/Packages/User/Terminus.hidden-color-scheme",
 		"/home/mnt/shared/data/code/fetchweather/src/FileDumper.cpp",
 		"/tmp/mc-alex/extfsU1K8B1DefaultDark.sublime-theme",
-		"/mnt/shared/data/code/fetchweather/compile_commands.json",
-		"/mnt/shared/data/code/fetchweather/src/DataHandler_ImplOWM.h",
 		"/seagate/volatile/.cache/sublime-text-3/Cache/Favorites/Favorites",
 		"/home/mnt/shared/data/code/fetchweather/src/DataHandler.cpp",
 		"/mnt/shared/data/code/fetchweather/src/CLI/StringTools.hpp",
@@ -809,7 +640,6 @@
 		"/mnt/shared/data/code/fetchweather/src/CLI/CLI.hpp",
 		"/mnt/shared/data/code/fetchweather/src/CLI/Config.hpp",
 		"/mnt/shared/data/code/fetchweather/src/CLI/Formatter.hpp",
-		"/mnt/shared/data/code/fetchweather/src/CLI/App.hpp",
 		"/home/mnt/shared/data/code/fetchweather/src/CLI/App.hpp",
 		"/mnt/shared/data/code/fetchweather/src/nlohmann/adl_serializer.hpp",
 		"/mnt/shared/data/code/fetchweather/src/nlohmann/detail/json_ref.hpp",
@@ -820,7 +650,6 @@
 		"/usr/include/x86_64-linux-gnu/qt5/QtCore/qcoreapplication.h",
 		"/home/mnt/shared/data/code/fetchweather/src/nlohmann/json_fwd.hpp",
 		"/mnt/shared/data/code/fetchweather/src/nlohmann/json.hpp",
-		"/mnt/shared/data/code/fetchweather/src/FileDumper.h",
 		"/mnt/shared/data/code/fetchweather/src/nlohmann/json_fwd.hpp",
 		"/mnt/shared/data/code/fetchweather/src/nlohmann/ordered_map.hpp",
 		"/mnt/shared/data/code/fetchweather/src/nlohmann/byte_container_with_subtype.hpp",
@@ -831,7 +660,6 @@
 		"/home/alex/.config/sublime-text-3/Packages/MyBookmarks/sublimebookmark.py",
 		"/home/alex/.config/sublime-text-3/Packages/User/nagremove.py",
 		"/home/alex/.config/sublime-text-3/Packages/MyBookmarks/common.py",
-		"/mnt/shared/data/code/fetchweather/src/utils.h",
 		"/opt/sublime_text/sublime_text.desktop",
 		"/opt/st4/sublime_text.desktop",
 		"/mnt/shared/data/testpage/_posts/de/2021-08-13-klimawandel.md",
@@ -839,7 +667,6 @@
 		"/usr/include/c++/10/bits/fs_dir.h",
 		"/home/alex/.config/sublime-text-3/Packages/MyBookmarks/Commands.sublime-commands",
 		"/home/alex/.config/sublime-text-3/Packages/User/Default.sublime-keymap",
-		"/mnt/shared/data/code/fetchweather/src/options.h",
 		"/home/alex/.config/sublime-text-3/Packages/MySublimeBookmarks/sublimebookmark.py",
 		"/usr/include/c++/10/bits/fs_path.h",
 		"/home/mnt/shared/data/code/fetchweather/src/main.cpp",
@@ -858,20 +685,11 @@
 		"/home/mnt/shared/data/code/fetchweather/src/nlohmann/json.hpp",
 		"/home/mnt/shared/data/code/fetchweather/CMakeLists.txt",
 		"/home/mnt/shared/data/code/fetchweather/README.md",
-		"/home/mnt/shared/data/testpage/_data/logos.yaml",
-		"/home/mnt/shared/data/testpage/_config.yml",
-		"/opt/sublime_merge/sublime_merge_serial.txt",
-		"/home/alex/Downloads/sublime_merge_path.sh",
-		"/home/alex/.local/share/applications/sublime_merge.desktop",
-		"/mnt/shared/data/testpage/_posts/de/2021-10-07-bastinator.md",
-		"/mnt/shared/data/testpage/_sass/content.scss",
-		"/mnt/shared/data/testpage/subspace.sublime-project",
-		"/mnt/shared/data/testpage/_plugins/img.rb",
-		"/home/alex/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap"
+		"/home/mnt/shared/data/testpage/_data/logos.yaml"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 25.0
 	},
 	"find_in_files":
 	{
@@ -885,6 +703,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"-x",
+			"gch",
+			"-h",
+			"help",
 			"populate",
 			"mailboxes",
 			"user",
@@ -937,84 +759,20 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/DataHandler_ImplOWM.cpp",
+					"file": "src/utils.cpp",
+					"selected": true,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11116,
+						"buffer_size": 4757,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3606,
-								3606
-							]
-						],
-						"settings":
-						{
-							"WordCount":
-							{
-								"changes": -1,
-								"modified": false,
-								"selection": true,
-								"status": -1,
-								"syntax": "plain text"
-							},
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".<>:\"/*",
-									"selector": "punctuation.accessor | (meta.preprocessor.include string - punctuation.definition.string.end)",
-									"server": "clangd"
-								}
-							],
-							"bs_sintax": "c++",
-							"buffer_scroll_name": "0500dcb7",
-							"incomplete_sync": null,
-							"lsp_active": true,
-							"lsp_hover_provider_count": 48,
-							"lsp_uri": "file:///mnt/shared/data/code/fetchweather/src/DataHandler_ImplOWM.cpp",
-							"remote_loading": false,
-							"show_definitions": false,
-							"spell_check": false,
-							"synced": false,
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1263.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "src/DataHandler_ImplVC.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1407,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								342,
-								342
+								3973,
+								3973
 							]
 						],
 						"settings":
@@ -1044,42 +802,42 @@
 								}
 							],
 							"bs_sintax": "c++",
-							"buffer_scroll_name": "831723cc",
+							"buffer_scroll_name": "1d1ab7db",
 							"incomplete_sync": null,
 							"lsp_active": true,
-							"lsp_hover_provider_count": 14,
-							"lsp_uri": "file:///mnt/shared/data/code/fetchweather/src/DataHandler_ImplVC.cpp",
+							"lsp_hover_provider_count": 7,
+							"lsp_uri": "file:///mnt/shared/data/code/fetchweather/src/utils.cpp",
 							"remote_loading": false,
 							"show_definitions": false,
 							"spell_check": false,
 							"synced": false,
 							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1296.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"stack_multiselect": false,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 1,
 					"file": "src/DataHandler_ImplClimaCell.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15912,
+						"buffer_size": 16040,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8945,
-								8945
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1087,8 +845,8 @@
 							"WordCount":
 							{
 								"changes": -1,
-								"modified": true,
-								"selection": true,
+								"modified": false,
+								"selection": false,
 								"status": -1,
 								"syntax": "plain text"
 							},
@@ -1112,7 +870,7 @@
 							"buffer_scroll_name": "28d6d459",
 							"incomplete_sync": null,
 							"lsp_active": true,
-							"lsp_hover_provider_count": 1,
+							"lsp_hover_provider_count": 8,
 							"lsp_uri": "file:///mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.cpp",
 							"remote_loading": false,
 							"show_definitions": false,
@@ -1123,150 +881,28 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3243.0,
+						"translation.y": 2907.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"stack_multiselect": false,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/data/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.cpp",
-					"selected": true,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15912,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8251,
-								8251
-							]
-						],
-						"settings":
-						{
-							"WordCount":
-							{
-								"changes": -1,
-								"modified": false,
-								"selection": false,
-								"status": -1,
-								"syntax": "plain text"
-							},
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".<>:\"/*",
-									"selector": "punctuation.accessor | (meta.preprocessor.include string - punctuation.definition.string.end)",
-									"server": "clangd"
-								}
-							],
-							"bs_sintax": "c++",
-							"buffer_scroll_name": "c08b8d58",
-							"incomplete_sync": null,
-							"lsp_active": true,
-							"lsp_hover_provider_count": 1,
-							"lsp_uri": "file:///data/mnt/shared/data/code/fetchweather/src/DataHandler_ImplClimaCell.cpp",
-							"remote_loading": false,
-							"show_definitions": false,
-							"synced": false,
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2715.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "src/utils.cpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4464,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2507,
-								2507
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								},
-								{
-									"characters": ".<>:\"/*",
-									"selector": "punctuation.accessor | (meta.preprocessor.include string - punctuation.definition.string.end)",
-									"server": "clangd"
-								}
-							],
-							"bs_sintax": "c++",
-							"buffer_scroll_name": "1d1ab7db",
-							"incomplete_sync": null,
-							"lsp_active": true,
-							"lsp_hover_provider_count": 15,
-							"lsp_uri": "file:///mnt/shared/data/code/fetchweather/src/utils.cpp",
-							"remote_loading": false,
-							"show_definitions": false,
-							"spell_check": false,
-							"synced": false,
-							"syntax": "Packages/C++/C++.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 702.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"stack_multiselect": false,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
+					"buffer": 2,
 					"file": "src/options.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4024,
+						"buffer_size": 4042,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								552,
-								552
+								1200,
+								1200
 							]
 						],
 						"settings":
@@ -1310,28 +946,28 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 48.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"stack_multiselect": false,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 3,
 					"file": "src/DataHandler.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15171,
+						"buffer_size": 15270,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								14183,
-								14183
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1364,7 +1000,7 @@
 							"buffer_scroll_name": "e0e8d145",
 							"incomplete_sync": null,
 							"lsp_active": true,
-							"lsp_hover_provider_count": 1,
+							"lsp_hover_provider_count": 8,
 							"lsp_uri": "file:///mnt/shared/data/code/fetchweather/src/DataHandler.cpp",
 							"remote_loading": false,
 							"show_definitions": false,
@@ -1375,7 +1011,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5101.0,
+						"translation.y": 4320.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -1388,20 +1024,20 @@
 			"sheets":
 			[
 				{
-					"buffer": 7,
+					"buffer": 4,
 					"selected": true,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4539,
+						"buffer_size": 305,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4539,
-								4539
+								305,
+								305
 							]
 						],
 						"settings":
@@ -1417,17 +1053,6 @@
 							"__vi_external_disable": true,
 							"auto_complete": false,
 							"auto_complete_commit_on_tab": false,
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html, text.xml"
-								},
-								{
-									"rhs_empty": true,
-									"selector": "punctuation.accessor"
-								}
-							],
 							"bracket_highlighter.clone_locations":
 							{
 							},
@@ -1442,7 +1067,7 @@
 							"highlight_line": false,
 							"incomplete_sync": null,
 							"is_widget": true,
-							"lsp_uri": "buffer://sublime/51",
+							"lsp_uri": "buffer://sublime/56",
 							"result_base_dir": "/mnt/shared/data/code/fetchweather",
 							"result_file_regex": null,
 							"result_line_regex": null,
@@ -1468,7 +1093,7 @@
 									"-l"
 								],
 								"cwd": "/mnt/shared/data/code/fetchweather",
-								"default_title": "ZSH",
+								"default_title": "zsh",
 								"env":
 								{
 									"LANG": "en_US.UTF-8",
@@ -1478,7 +1103,8 @@
 								},
 								"file_regex": null,
 								"line_regex": null,
-								"panel_name": null,
+								"panel_name": "Terminus",
+								"show_in_panel": null,
 								"tag": null,
 								"timeit": false,
 								"title": null
@@ -1487,13 +1113,12 @@
 							"terminus_view.key.ctrl+k": true,
 							"terminus_view.key.ctrl+p": true,
 							"terminus_view.natural_keyboard": false,
-							"terminus_view.panel_name": null,
 							"terminus_view.tag": null,
-							"terminus_view.viewport_y": 1264.0,
+							"terminus_view.viewport_y": 0.0,
 							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1264.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

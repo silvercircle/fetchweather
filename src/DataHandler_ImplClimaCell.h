@@ -22,6 +22,10 @@
  * SOFTWARE.
  */
 
+#include "pch.h"
+#include "options.h"
+#include "DataHandler.h"
+
 #ifndef __DATAHANDLER_IMPL_CLIMACELL_H_
 #define __DATAHANDLER_IMPL_CLIMACELL_H_
 

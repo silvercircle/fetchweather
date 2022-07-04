@@ -24,7 +24,8 @@
  * This class handles API specific stuff for the ClimaCell Weather API.
  */
 
-#include <time.h>
+//#include "pch.h"
+//#include <time.h>
 #include <utils.h>
 #include "DataHandler_ImplClimaCell.h"
 
@@ -70,7 +71,7 @@ DataHandler_ImplClimaCell::DataHandler_ImplClimaCell() : DataHandler(),
       {7000, "uu"},                 {7001, "uu"},
       {7102, "uu"},                 {8000, "kK"} }
 {
-
+  // no code here
 }
 
 char DataHandler_ImplClimaCell::getCode(const int weatherCode, const bool daylight)
@@ -100,7 +101,7 @@ bool DataHandler_ImplClimaCell::readFromCache()
     forecast_buffer << forecast.rdbuf();
     forecast.close();
     this->result_forecast = json::parse(forecast_buffer.str().c_str());
-    if(!result_current["data"].empty() && !result_forecast["data"].empty()) {
+    if(!this->result_current["data"].empty() && !this->result_forecast["data"].empty()) {
         LOG_F(INFO, "Cache read successful.");
         this->populateSnapshot();
         return true;
@@ -184,7 +185,7 @@ bool DataHandler_ImplClimaCell::readFromApi()
             return false;
         }
         /**
-         * validatio
+         * validation
          */
         fSuccess_current = !this->result_current["data"].empty();
     } else {
@@ -342,9 +343,9 @@ void DataHandler_ImplClimaCell::populateSnapshot()
 
         GDateTime *g =
           g_date_time_new_from_iso8601(result_forecast["data"]["timelines"][0]["intervals"][i
-            + 1]["values"]["sunriseTime"].is_string() ? 
+            + 1]["values"]["sunriseTime"].is_string() ?
             result_forecast["data"]["timelines"][0]["intervals"][i +1 ]["values"]["sunriseTime"].get<std::string>().c_str() : 0, 0);
-        
+
         gint weekday = g_date_time_get_day_of_week(g);
         g_date_time_unref(g);
 

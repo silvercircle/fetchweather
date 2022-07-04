@@ -22,6 +22,11 @@
  * SOFTWARE.
  */
 
+#include "FetchWeatherApp.h"
+#include "options.h"
+#include "DataHandler_ImplOWM.h"
+#include "DataHandler_ImplClimaCell.h"
+
 void FetchWeatherApp::run()
 {
     bool    extended_checks_failed = false;

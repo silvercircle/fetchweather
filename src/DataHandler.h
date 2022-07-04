@@ -25,6 +25,10 @@
 #ifndef __DATAHANDLER_H_
 #define __DATAHANDLER_H_
 
+#include "pch.h"
+#include <time.h>
+#include "options.h"
+
 
 /*
  * The data point collects and normalizes data from an API provider

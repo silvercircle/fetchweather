@@ -25,12 +25,16 @@
 #ifndef _DATAHANDLER_IMPLOWM_H_
 #define _DATAHANDLER_IMPLOWM_H_
 
+#include "pch.h"
+#include "options.h"
+#include "DataHandler.h"
+
 class DataHandler_ImplOWM : public DataHandler {
   public:
     DataHandler_ImplOWM() : DataHandler() { }
 
-    virtual bool    readFromCache();
-    virtual bool    readFromApi();
+    virtual bool    readFromCache() override;
+    virtual bool    readFromApi() override;
     virtual bool    verifyData() override;
 
     void    populateSnapshot();

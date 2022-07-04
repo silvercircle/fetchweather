@@ -22,9 +22,11 @@
  * SOFTWARE.
  */
 
+#include "options.h"
+#include "FetchWeatherApp.h"
+
 int main(int argc, char **argv)
 {
-    QString foo;
     QCoreApplication a(argc, argv);
     a.setApplicationName("fetchweather");
     a.setApplicationVersion("0.2");

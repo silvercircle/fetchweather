@@ -31,6 +31,7 @@
 #include <time.h>
 #include <glib-2.0/glib.h>
 #include <ctime>
+#include "pch.h"
 
 namespace utils {
   time_t ISOToUnixtime(const char *iso_string, GTimeZone *tz = 0);

@@ -22,6 +22,8 @@
  * SOFTWARE.
  */
 
+#include "FileDumper.h"
+
 FileDumper::FileDumper(DataHandler* h) :
     m_dataPoint(h->getDataPoint()),
     m_Handler(h),

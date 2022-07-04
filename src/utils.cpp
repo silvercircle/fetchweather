@@ -27,6 +27,7 @@
  */
 
 #include "utils.h"
+#include "nlohmann/json/single_include/nlohmann/json.hpp"
 #include <vector>
 
 namespace utils {
@@ -105,10 +106,12 @@ namespace utils {
               LOG_F(INFO, "curl_easy_perform() failed, return = %s", curl_easy_strerror(rc));
               result = 0;
           } else {
-              //printf("%s\n-----\n", response.c_str());
-              parse_result = json::parse(response.c_str());
-              //std::cout << parse_result << std::endl;
-              //std::cout << "-----" << std::endl;
+              try {
+                  parse_result = json::parse(response.c_str());
+              } catch(nlohmann::detail::parse_error &p) {
+                  LOG_F(INFO, "curl_fetch: JSON parse_error (%s)", p.what());
+                  result = 0;
+              }
               if(parse_result.empty()) {
                   LOG_F(INFO, "Current forecast: Request failed, no valid data received");
                   result = 0;

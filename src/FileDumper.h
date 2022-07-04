@@ -25,6 +25,9 @@
 #ifndef FETCHWEATHER_SRC_FILEDUMPER_H_
 #define FETCHWEATHER_SRC_FILEDUMPER_H_
 
+#include "DataHandler.h"
+#include "options.h"
+
 class FileDumper {
   public:
     FileDumper(DataHandler* p);

@@ -47,12 +47,6 @@
 #include <QtCore>
 #include <QObject>
 #include "conf.h"
-#include "options.h"
-#include "DataHandler.h"
-#include "DataHandler_ImplClimaCell.h"
-#include "DataHandler_ImplOWM.h"
-#include "FetchWeatherApp.h"
-#include "FileDumper.h"
 
 namespace fs = std::filesystem;
 using namespace nlohmann;

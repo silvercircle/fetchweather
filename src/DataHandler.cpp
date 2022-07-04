@@ -22,7 +22,11 @@
  * SOFTWARE.
  */
 
+//#include "pch.h"
 #include "utils.h"
+#include "options.h"
+#include "DataHandler.h"
+#include "FileDumper.h"
 
 DataHandler::DataHandler() : m_options{ProgramOptions::getInstance()},
                              m_DataPoint { .valid = false }
@@ -120,6 +124,7 @@ void DataHandler::outputTemperature(FILE *stream, double val, const bool addUnit
     fprintf(stream, "%.1f%s\n", result, addUnit ? unit : "");
 }
 
+
 /**
  * @brief DataHandler::doOutput - generate output
  * @param stream: target stream for the ouput
@@ -129,11 +134,10 @@ void DataHandler::outputTemperature(FILE *stream, double val, const bool addUnit
  */
 void DataHandler::doOutput(FILE* stream)
 {
-
     const CFG& cfg = this->m_options.getConfig();
 
     fprintf(stream, "** Begin output **\n");
-
+    std::
     fprintf(stream, "%c\n", m_DataPoint.weatherSymbol);
     this->outputTemperature(stream, m_DataPoint.temperature, true);
 

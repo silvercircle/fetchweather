@@ -23,8 +23,11 @@
  *
  * The implementation for the OpenWeatherMap API.
  */
+
+//#include "pch.h"
 #include <time.h>
 #include <utils.h>
+#include "DataHandler_ImplOWM.h"
 
 /**
  * get the charcter code for the current condition.

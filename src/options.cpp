@@ -23,6 +23,7 @@
  */
 
 #include "utils.h"
+#include "options.h"
 
 ProgramOptions::ProgramOptions() :
     m_oCommand(),
@@ -123,6 +124,7 @@ int ProgramOptions::parse(int argc, char **argv)
         this->m_oCommand.parse(argc, argv);
         //CLI11_PARSE(this->m_oCommand, argc, argv);
     } catch(CLI::ParseError &p) {
+        std::cout << this->m_oCommand.help() << std::endl;
         return(0);
     }
 

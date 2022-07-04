@@ -26,6 +26,7 @@
 
 #include <time.h>
 #include <utils.h>
+#include "DataHandler.h"
 #include "DataHandler_ImplVC.h"
 
 DataHandler_ImplVC::DataHandler_ImplVC() : DataHandler()

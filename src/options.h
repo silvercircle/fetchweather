@@ -25,6 +25,8 @@
 #ifndef __OPTIONS_H_
 #define __OPTIONS_H_
 
+#include "pch.h"
+
 typedef struct _cfg {
     unsigned int apiProvider;
     int version;
