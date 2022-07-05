@@ -129,7 +129,6 @@ namespace utils {
       }
       curl_easy_cleanup(curl);
       curl_global_cleanup();
-
       return result;
   }
 } // namespace utils

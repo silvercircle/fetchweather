@@ -51,6 +51,7 @@ typedef struct _cfg {
     bool silent;        // don't write to stdout
     bool debug;         // print debugging information, do not produce any output
     bool dumptofile;    // also write result to file, note that output_dir must be set and valid.
+    bool cmd_version;       // display version
     int  forecastDays = 3;
 } CFG;
 

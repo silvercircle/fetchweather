@@ -43,7 +43,7 @@ ProgramOptions::ProgramOptions() :
 
 void ProgramOptions::_init()
 {
-    m_oCommand.add_flag("--version,-V", "Show program version and exit.");
+    m_oCommand.add_flag("--version,-V", this->m_config.cmd_version, "Show program version and exit.");
     m_oCommand.add_flag("--offline",
                         this->m_config.offline, "No API request, used cached result only.");
     m_oCommand.add_flag("--nocache",
